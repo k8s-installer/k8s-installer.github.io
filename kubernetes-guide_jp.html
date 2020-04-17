@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.9">
+<title>Kubernetes 構築ガイド: 0.1版</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment @import statement to use as custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*::before,*::after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite::before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
+:not(pre)>code.nobreak{word-wrap:normal}
+:not(pre)>code.nowrap{white-space:nowrap}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details>summary:first-of-type{cursor:pointer;display:list-item;outline:none;margin-bottom:.75em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class="highlight"],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos{border-right:1px solid currentColor;opacity:.35;padding-right:.5em}
+pre.pygments .lineno{border-right:1px solid currentColor;opacity:.35;display:inline-block;margin-right:.75em}
+pre.pygments .lineno::before{content:"";margin-right:-.125em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin:0 0 1.25em;padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
+table.tableblock{max-width:100%;border-collapse:separate}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+td.tableblock>.content>:last-child.sidebarblock{margin-bottom:0}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
+table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
+table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
+table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px}
+table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0}
+table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
+table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot,table.frame-ends{border-width:1px 0}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
+ul.inline{display:-ms-flexbox;display:-webkit-box;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media print,amzn-kf8{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>Kubernetes 構築ガイド: 0.1版</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">目次</div>
+<ul class="sectlevel1">
+<li><a href="#_改版履歴">改版履歴</a></li>
+<li><a href="#_はじめに">1. はじめに</a>
+<ul class="sectlevel2">
+<li><a href="#_本書の位置づけ">1.1. 本書の位置づけ</a></li>
+<li><a href="#_用語集">1.2. 用語集</a></li>
+</ul>
+</li>
+<li><a href="#_必要環境">2. 必要環境</a>
+<ul class="sectlevel2">
+<li><a href="#_システム構成">2.1. システム構成</a></li>
+<li><a href="#_必要マシン">2.2. 必要マシン</a>
+<ul class="sectlevel3">
+<li><a href="#_os">2.2.1. OS</a></li>
+<li><a href="#_スペック">2.2.2. スペック</a></li>
+<li><a href="#_ネットワーク">2.2.3. ネットワーク</a></li>
+<li><a href="#_その他の要件">2.2.4. その他の要件</a></li>
+</ul>
+</li>
+<li><a href="#_ロードバランサ">2.3. ロードバランサ</a></li>
+</ul>
+</li>
+<li><a href="#_kubernetes_インストールの概要">3. Kubernetes インストールの概要</a>
+<ul class="sectlevel2">
+<li><a href="#_インストール手順">3.1. インストール手順</a></li>
+<li><a href="#_インストーラ">3.2. インストーラ</a></li>
+</ul>
+</li>
+<li><a href="#_手動インストール手順">4. 手動インストール手順</a>
+<ul class="sectlevel2">
+<li><a href="#_共通手順">4.1. 共通手順</a>
+<ul class="sectlevel3">
+<li><a href="#_proxy_設定">4.1.1. Proxy 設定</a>
+<ul class="sectlevel4">
+<li><a href="#_yum">Yum</a></li>
+<li><a href="#_docker">Docker</a></li>
+</ul>
+</li>
+<li><a href="#_ファイヤウォール">4.1.2. ファイヤウォール</a></li>
+<li><a href="#_docker_コンテナランタイムのインストール">4.1.3. Docker コンテナランタイムのインストール</a></li>
+<li><a href="#_selinux_の無効化">4.1.4. SELinux の無効化</a></li>
+<li><a href="#_swap_の無効化">4.1.5. Swap の無効化</a></li>
+<li><a href="#_sysconfig_設定変更">4.1.6. sysconfig 設定変更</a></li>
+<li><a href="#_kubeadm_kubelet_kubectl_インストール">4.1.7. kubeadm / kubelet / kubectl インストール</a></li>
+</ul>
+</li>
+<li><a href="#_シングルマスター構成インストール">4.2. シングルマスター構成インストール</a>
+<ul class="sectlevel3">
+<li><a href="#_マスターノードインストール">4.2.1. マスターノードインストール</a></li>
+<li><a href="#_ネットワークアドオン">4.2.2. ネットワークアドオン</a></li>
+<li><a href="#_スケジューリング設定">4.2.3. スケジューリング設定</a></li>
+</ul>
+</li>
+<li><a href="#_ワーカーノード追加">4.3. ワーカーノード追加</a></li>
+</ul>
+</li>
+<li><a href="#_スクリプトインストーラ">5. スクリプトインストーラ</a>
+<ul class="sectlevel2">
+<li><a href="#_設定">5.1. 設定</a></li>
+<li><a href="#_docker_kubeadm_インストール">5.2. Docker / kubeadm インストール</a></li>
+<li><a href="#_マスターノードのインストール">5.3. マスターノードのインストール</a></li>
+<li><a href="#_ha構成_残りのマスターノードのインストール">5.4. HA構成: 残りのマスターノードのインストール</a></li>
+<li><a href="#_ワーカーノードのインストール">5.5. ワーカーノードのインストール</a></li>
+<li><a href="#_インストール後の確認">5.6. インストール後の確認</a></li>
+</ul>
+</li>
+<li><a href="#_ansibleインストーラ">6. Ansibleインストーラ</a>
+<ul class="sectlevel2">
+<li><a href="#_必要環境_2">6.1. 必要環境</a></li>
+<li><a href="#_設定_2">6.2. 設定</a>
+<ul class="sectlevel3">
+<li><a href="#_インベントリ">6.2.1. インベントリ</a></li>
+<li><a href="#_変数設定">6.2.2. 変数設定</a></li>
+</ul>
+</li>
+<li><a href="#_インストール">6.3. インストール</a></li>
+<li><a href="#_インストール後の確認_2">6.4. インストール後の確認</a></li>
+</ul>
+</li>
+<li><a href="#_オフラインインストール">7. オフラインインストール</a>
+<ul class="sectlevel2">
+<li><a href="#_概要">7.1. 概要</a></li>
+<li><a href="#_オフラインインストールファイルの生成">7.2. オフラインインストールファイルの生成</a>
+<ul class="sectlevel3">
+<li><a href="#_必要環境_3">7.2.1. 必要環境</a></li>
+<li><a href="#_事前準備">7.2.2. 事前準備</a></li>
+<li><a href="#_proxy_設定_2">7.2.3. Proxy 設定</a>
+<ul class="sectlevel4">
+<li><a href="#_yum_2">yum</a></li>
+<li><a href="#_docker_2">Docker</a></li>
+</ul>
+</li>
+<li><a href="#_オフラインインストールファイルの生成_2">7.2.4. オフラインインストールファイルの生成</a></li>
+</ul>
+</li>
+<li><a href="#_スクリプトベースインストーラ">7.3. スクリプトベースインストーラ</a></li>
+<li><a href="#_ansibleインストーラ_2">7.4. Ansibleインストーラ</a></li>
+</ul>
+</li>
+<li><a href="#_クラスタのアップグレード">8. クラスタのアップグレード</a>
+<ul class="sectlevel2">
+<li><a href="#_注意事項">8.1. 注意事項</a></li>
+<li><a href="#_ansibleインストーラ_3">8.2. Ansibleインストーラ</a>
+<ul class="sectlevel3">
+<li><a href="#_オフラインインストール準備">8.2.1. オフラインインストール準備</a></li>
+<li><a href="#_バージョン設定">8.2.2. バージョン設定</a></li>
+<li><a href="#_アップグレードの実行">8.2.3. アップグレードの実行</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_改版履歴">改版履歴</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TODO:</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_はじめに">1. はじめに</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_本書の位置づけ">1.1. 本書の位置づけ</h3>
+<div class="paragraph">
+<p>本書では、オンプレミス環境に Kubernetes をインストール・利用するための手順について説明したものです。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_用語集">1.2. 用語集</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 28.5714%;">
+<col style="width: 71.4286%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">用語</th>
+<th class="tableblock halign-left valign-top">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">マスターノード</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kubernetesのマスターノード。
+ Kubernetesのマスターサーバ(kube-apiserver, kube-controller-manager, kube-scheduler, etcd) が動作する。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ワーカーノード</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kubernetesのワーカーノード。ワークロードを実行するためのノード。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High Availability。HA構成を組む場合はマスターノード3台構成が必要。</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_必要環境">2. 必要環境</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_システム構成">2.1. システム構成</h3>
+<div class="paragraph">
+<p>Kubernetes をインストールする際のシステム構成としては以下の３通りがあります。
+構成に応じて必要なマシン数が変わってきます。</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>スタンドアロン: 1台のみの構成</p>
+<div class="ulist">
+<ul>
+<li>
+<p>1台のマシンのみを使用し、Kubernetes マスター・ワーカーを同居させる構成です。</p>
+</li>
+<li>
+<p>ワークロードも同一マシン上で動作することになります。</p>
+</li>
+<li>
+<p>開発環境や検証・デモ用途でのみの利用を推奨します</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>シングルマスター: マスター1台、ワーカー1台以上の構成</p>
+<div class="ulist">
+<ul>
+<li>
+<p>マスター1台に、複数台のワーカーで構成します。</p>
+</li>
+<li>
+<p>ワークロードはワーカー上で動作します。</p>
+</li>
+<li>
+<p>マスターノードが SPOF になりますので、本番環境での利用は推奨しません。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>HA構成: マスター3台、ワーカー1台以上の構成</p>
+<div class="ulist">
+<ul>
+<li>
+<p>マスター3台でHA構成を組む構成です。</p>
+</li>
+<li>
+<p>マスター上で稼働する kube-apiserver に対して負荷分散をする必要があるため、別途 L4 ロードバランサが必要です。</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>HA構成を組む場合は、マスターノードとして最低3台のマシンが必要です。
+またこれに加えてワーカーノードが最低1台、推奨3台以上が必要です。
+ワーカーノードの台数は、実行するワークロードの量によって変わります。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_必要マシン">2.2. 必要マシン</h3>
+<div class="paragraph">
+<p>Kubernetes を構成する各マシンについて説明します。</p>
+</div>
+<div class="sect3">
+<h4 id="_os">2.2.1. OS</h4>
+<div class="paragraph">
+<p>以下いずれかの OS がインストールされたマシンが必要です。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>RedHat Enterprise Linux (RHEL) 7 (7.7以上)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>subscription-manager で RedHat サブスクリプションの register を完了させている必要があります。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>CentOS 7 (7.7以上)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_スペック">2.2.2. スペック</h4>
+<div class="paragraph">
+<p>マシンのスペックとしては以下のものが必要です。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>1台あたり2GB以上のメモリ</p>
+<div class="ulist">
+<ul>
+<li>
+<p>ただし、2GBの場合アプリ用のスペースはほとんどありません。推奨は16GB以上です。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>2コア以上のCPU</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ネットワーク">2.2.3. ネットワーク</h4>
+<div class="paragraph">
+<p>ネットワークについては以下の要件が必要です。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>クラスター内のすべてのマシン間で通信可能なネットワーク</p>
+<div class="ulist">
+<ul>
+<li>
+<p>パブリックネットワークでもプライベートネットワークでも構いません</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>インターネット接続 (オンラインインストール時のみ)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_その他の要件">2.2.4. その他の要件</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>ユニークなhostname、MACアドレス、とproduct_uuidが各ノードに必要</p>
+</li>
+<li>
+<p>マシン内の特定のポートがファイヤウォールで開放されていること。詳細は後述します。</p>
+</li>
+<li>
+<p>Swapがオフであること。kubeletが正常に動作するためにはswapは必ずオフでなければなりません。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ロードバランサ">2.3. ロードバランサ</h3>
+<div class="paragraph">
+<p>HA構成を組む場合は、L4(TCP)レベルのロードバランサが必要です。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ロードバランサには DNS 解決可能な FQDN 名が設定されていること</p>
+</li>
+<li>
+<p>L4 レベルの負荷分散を行うこと</p>
+<div class="ulist">
+<ul>
+<li>
+<p>TCP 6443 番ポートをマスターノード(3台)の TCP 6443番ポートに負荷分散すること</p>
+</li>
+<li>
+<p>TCPコネクションでのヘルスチェックを行うこと</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_kubernetes_インストールの概要">3. Kubernetes インストールの概要</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_インストール手順">3.1. インストール手順</h3>
+<div class="paragraph">
+<p>インストール手順として以下の3種類があります。</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>手動インストール: <a href="https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">kubeadm</a> を使用した手動インストール</p>
+<div class="ulist">
+<ul>
+<li>
+<p>本手順は参考として提示しています。通常は <code>k8s-installer</code> インストーラを使った自動インストールを使用してください。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>スクリプトインストーラ: shスクリプトベースのインストーラを使用した自動インストール</p>
+<div class="ulist">
+<ul>
+<li>
+<p>スタンドアロン・シングルマスター構成をサポートします。</p>
+</li>
+<li>
+<p>本インストーラは簡易版なので、HA構成を含む本番環境にインストールする場合は Ansible インストーラを推奨します。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Ansibleインストーラ: Ansibleを使用したクラスタ一括での自動インストール</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>また、スクリプトインストーラ・Ansibleインストーラでは、オフラインインストールにも対応しています。
+オフラインインストールでは、Internetに接続されたマシンでインストールに必要なファイルをすべて取得しておき、
+これをUSBメモリ・ハードディスクなどを使用してインストール先の環境に転送してインストールします。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_インストーラ">3.2. インストーラ</h3>
+<div class="paragraph">
+<p>スクリプトインストーラ・Ansibleインストーラは、 <a href="https://github.com/k8s-installer/k8s-installer">k8s-installer</a>
+に含まれています。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/k8s-installer/k8s-installer" class="bare">https://github.com/k8s-installer/k8s-installer</a> からダウンロードしてください。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_手動インストール手順">4. 手動インストール手順</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>本章では手動で Kubernetes をインストールする手順ついて説明します。</p>
+</div>
+<div class="paragraph">
+<p>なお、本項目の手順は <a href="https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">kubeadmのインストール</a>
+手順に準じています。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+通常はインストーラを使用して自動インストールを行ってください。
+インストーラはここに示す手順を自動的に実行するようになっています。
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_共通手順">4.1. 共通手順</h3>
+<div class="paragraph">
+<p>Kubernetes のインストールに先立ち実施が必要な共通手順を説明します。
+本手順はどの構成を使用する場合であっても全マシンについて実施する必要があります。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+本手順はすべて root 権限で実行する必要があります。<code>sudo bash</code> してから実行するなどしてください。
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_proxy_設定">4.1.1. Proxy 設定</h4>
+<div class="paragraph">
+<p>インターネット接続に Proxy サーバ経由が必要な場合は、以下の手順が必要です。</p>
+</div>
+<div class="sect4">
+<h5 id="_yum">4.1.1.1. Yum</h5>
+<div class="paragraph">
+<p>/etc/yum.conf に以下の一行を追加してください。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>proxy={PROXY_URL}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>{PROXY_URL} には、プロキシサーバのURLを <code>http://[proxy_hostname]:[proxy_port]</code> 形式で指定してください。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_docker">4.1.1.2. Docker</h5>
+<div class="paragraph">
+<p>/etc/systemd/system/docker.service.d/http-proxy.conf を以下の手順で作成してください。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>mkdir -p /etc/systemd/system/docker.service.d
+
+cat &lt;&lt;EOF &gt; /etc/systemd/system/docker.service.d/http-proxy.conf
+[Service]
+Environment="HTTP_PROXY={PROXY_URL}" "HTTPS_PROXY={PROXY_URL}" "NO_PROXY=127.0.0.1,localhost"
+EOF</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ファイヤウォール">4.1.2. ファイヤウォール</h4>
+<div class="paragraph">
+<p>ファイヤウォールについては、無効化するか、以下に示すInbound TCPポートをすべて開放する必要があります。
+開放するポートの詳細は <a href="https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">必須ポートの確認</a>
+を参照してください。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>マスターノード</p>
+<div class="ulist">
+<ul>
+<li>
+<p>6443</p>
+</li>
+<li>
+<p>2379-2380</p>
+</li>
+<li>
+<p>10250-10252</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>ワーカーノード</p>
+<div class="ulist">
+<ul>
+<li>
+<p>10250</p>
+</li>
+<li>
+<p>30000-32767</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>開放する手順は以下の通りです。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># for master node
+firewall-cmd --add-port=6443/tcp --permanent
+firewall-cmd --add-port=2379-2380/tcp --permanent
+firewall-cmd --add-port=10250-10252/tcp --permanent
+firewall-cmd --reload
+
+# for worker-node
+firewall-cmd --add-port=10250tcp --permanent
+firewall-cmd --add-port=30000-32767/tcp --permanent
+firewall-cmd --reload</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_docker_コンテナランタイムのインストール">4.1.3. Docker コンテナランタイムのインストール</h4>
+<div class="paragraph">
+<p>コンテナランタイムとして、RHEL7/CentOS7標準の Docker を使用します。</p>
+</div>
+<div class="paragraph">
+<p>RHEL7 の場合は、rhel-7-server-extra-rpms リポジトリを有効にしてください。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>subscription-manager repos --enable=rhel-7-server-extras-rpms</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>以下手順で docker をインストール・起動してください。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>yum install -y docker
+systemctl enable --now docker</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_selinux_の無効化">4.1.4. SELinux の無効化</h4>
+<div class="paragraph">
+<p>SELinux を無効化してください。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>setenforce 0
+sed -i 's/^SELINUX=enforcing$/SELINUX=disabled/' /etc/selinux/config</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_swap_の無効化">4.1.5. Swap の無効化</h4>
+<div class="paragraph">
+<p>Swap が無効化されていない場合は無効化してください。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sudo swapoff -a</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>また /etc/fstab を確認し、swap 設定が存在する場合はその行を無効化してください。
+以下に手順例を示します。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sed -i 's/^\([^#].* swap .*\)$/#\1/' /etc/fstab</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sysconfig_設定変更">4.1.6. sysconfig 設定変更</h4>
+<div class="paragraph">
+<p>ネットワークをブリッジできるよう、sysctl の設定を変更します。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>cat &lt;&lt;EOF &gt; /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sysctl --system</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_kubeadm_kubelet_kubectl_インストール">4.1.7. kubeadm / kubelet / kubectl インストール</h4>
+<div class="paragraph">
+<p>kubeadm / kubelet / kubectl を以下手順でインストールし、kubelet を起動してください。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+
+yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+
+systemctl enable --now kubelet</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>kubeadm / kubelet / kubectl が更新されないよう、バージョンロックを掛けてください。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>yum install yum-plugin-versionlock
+yum versionlock add kubeadm kubelet kubectl</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_シングルマスター構成インストール">4.2. シングルマスター構成インストール</h3>
+<div class="paragraph">
+<p>シングルマスター構成のインストール手順を示します。</p>
+</div>
+<div class="sect3">
+<h4 id="_マスターノードインストール">4.2.1. マスターノードインストール</h4>
+<div class="paragraph">
+<p>マスターノードに Kubernetes コントロールプレーンをインストールします。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>sudo kubeadm init --pod-network-cidr=192.168.0.0/16</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>ここでは Pod を動作させるネットワークアドレス(CIDR)として 192.168.0.0/16 を使用しています。
+使用中のアドレスと衝突している場合は、適宜変更が必要です。</p>
+</div>
+<div class="paragraph">
+<p>インストールは数分で完了します。画面には以下のようなログが表示されるはずです。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>...
+[bootstraptoken] creating the "cluster-info" ConfigMap in the "kube-public" namespace
+[addons] Applied essential addon: CoreDNS
+[addons] Applied essential addon: kube-proxy
+
+Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+You should now deploy a Pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  /docs/concepts/cluster-administration/addons/
+
+You can now join any number of machines by running the following on each node
+as root:
+
+  kubeadm join &lt;control-plane-host&gt;:&lt;control-plane-port&gt; --token &lt;token&gt; --discovery-token-ca-cert-hash sha256:&lt;hash&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>上記の末尾に表示される <code>kubadm join&#8230;&#8203;</code> の表示は保存(ファイルに保存するなど)してください。
+<code>kubeadm join</code> 手順はワーカーノードが Kubernetes クラスタに参加する際に必要になります。</p>
+</div>
+<div class="paragraph">
+<p>上記手順に従い、~/.kube/config を作成してください。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>以下手順で Kubernetes クラスタに正常に接続できることを確認してください。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>kubectl cluster-info</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ネットワークアドオン">4.2.2. ネットワークアドオン</h4>
+<div class="paragraph">
+<p>Podネットワークアドオンをインストールします。本手順書では、 <a href="https://www.projectcalico.org/">Calico</a> を採用しています。</p>
+</div>
+<div class="paragraph">
+<p>以下手順で Calico をインストールしてください。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>kubectl apply -f https://docs.projectcalico.org/v3.8/manifests/calico.yaml</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_スケジューリング設定">4.2.3. スケジューリング設定</h4>
+<div class="paragraph">
+<p>スタンドアロン構成の場合のみ、マスターノードをスケジュール可能に変更します。
+これを実施しないと、マスターノード上でワークロードを実行できません。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>kubectl taint nodes --all node-role.kubernetes.io/master-</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ワーカーノード追加">4.3. ワーカーノード追加</h3>
+<div class="paragraph">
+<p>各ワーカーノードで以下を実行し、ワーカーノードを Kubernetes クラスタに接続します。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>kubeadm join --token &lt;token&gt; &lt;control-plane-host&gt;:&lt;control-plane-port&gt; --discovery-token-ca-cert-hash sha256:&lt;hash&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>ここで <code>kubeadm join</code> に指定する引数は、マスターノードのインストール時に表示された内容をそのまま利用してください。</p>
+</div>
+<div class="paragraph">
+<p><code>kubeadm join</code> の内容を忘れてしまった場合、あるいは24時間以上経過して token が無効になってしまった場合は、
+マスターノード上で以下手順を実行することで token の再生成と <code>kubeadm join</code> コマンド再取得が可能です。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>kubeadm token create --print-join-command</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_スクリプトインストーラ">5. スクリプトインストーラ</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>スクリプトインストーラを使用したインストール手順について説明します。
+スクリプトインストーラは <code>k8s-installer</code> の <code>script</code> ディレクトリに格納されています。</p>
+</div>
+<div class="paragraph">
+<p>スクリプトインストーラを使用する場合は、各マシン上にインストーラを展開し、各マシン上でそれぞれインストール
+作業を行う必要があります。</p>
+</div>
+<div class="sect2">
+<h3 id="_設定">5.1. 設定</h3>
+<div class="paragraph">
+<p><code>config.sample.sh</code> を <code>config.sh</code> にコピーし、設定を行ってください。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>HA構成にする場合:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>ロードバランサのDNS名(FQDN)とポート番号をを <code>LOAD_BALANCER_DNS</code>, <code>LOAD_BALANCER_PORT</code> に指定してください。</p>
+</li>
+<li>
+<p>ロードバランサは、指定したポートを全マスターノードにL4負荷分散するよう設定しておく必要があります。</p>
+</li>
+<li>
+<p>詳細は <a href="https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/high-availability/">kubeadmを使用した高可用性クラスターの作成</a> を参照してください。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Internet接続に Proxy を経由する必要がある場合は、<code>PROXY_URL</code>, <code>NO_PROXY</code> の値を設定してください。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>NO_PROXY には必ず kube-apiserver の IPアドレスまたはDNS名を指定しなければなりません。
+シングルホストの場合はマスターノードの、HA構成の場合はロードバランサの値を指定してください。
+これが適切に設定されていないとマスターノードのインストールが失敗します。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>オフラインインストールを行う場合は、<code>OFFLINE_INSTALL</code> を <code>yes</code> に設定してください。詳細は後述します。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_docker_kubeadm_インストール">5.2. Docker / kubeadm インストール</h3>
+<div class="paragraph">
+<p>Docker, kubeadm などをインストールします。</p>
+</div>
+<div class="paragraph">
+<p>本手順はマスター・ワーカー全マシン上でそれぞれ行う必要があります。</p>
+</div>
+<div class="paragraph">
+<p>sudo 可能な一般ユーザ権限でログインしてください(root での直接ログインは不可)。
+以下手順でインストールを実行してください。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ sudo ./install-common.sh</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_マスターノードのインストール">5.3. マスターノードのインストール</h3>
+<div class="paragraph">
+<p>マスターノードに Kubernetes マスターコントロールプレーンをインストールします。</p>
+</div>
+<div class="paragraph">
+<p>マスターノード(HA構成の場合は1台目のマスターノード)にログインし、以下手順を実行してください。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># シングルマスター構成の場合
+$ sudo ./install-master-single.sh</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># HA構成の場合(1台目のマスターノード)
+$ sudo ./install-master-ha.sh</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>インストールには数分かかります。
+画面にワーカーノードを join するための <code>kubeadm join</code> コマンドラインが表示されるので、メモしてください。</p>
+</div>
+<div class="paragraph">
+<p>インストールが完了したら、以下手順で ~/.kube/config をインストールします。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ ./install-kubeconfig.sh</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>kubectl cluster-info</code> を実施し、正常にコントロールプレーンが動作していることを確認します。</p>
+</div>
+<div class="paragraph">
+<p>最後に calico ネットワークアドオンをインストールします。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ ./install-cni.sh</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ha構成_残りのマスターノードのインストール">5.4. HA構成: 残りのマスターノードのインストール</h3>
+<div class="paragraph">
+<p>HA構成の2台目以降のマスターノードのインストール手順は、
+<a href="https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/high-availability/">kubeadmを使用した高可用性クラスターの作成</a>
+の「残りのコントロールプレーンノードの手順」を参照してください。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ワーカーノードのインストール">5.5. ワーカーノードのインストール</h3>
+<div class="paragraph">
+<p>各ワーカーノードにログインし、上記取得した <code>kubeadm join</code> コマンドを sudo 付きで実行し、
+ノードを Kubernetes クラスタに参加させてください。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_インストール後の確認">5.6. インストール後の確認</h3>
+<div class="paragraph">
+<p>マスターノード上で <code>kubectl get nodes</code> を実行し、全ノードが追加されていて Ready になっていることを確認してください。</p>
+</div>
+<div class="paragraph">
+<p>また、<code>kubectl get all -n kube-system</code> を実行し、Podがすべて正常に起動していることを確認してください。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ansibleインストーラ">6. Ansibleインストーラ</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ansible ベースインストーラを使用してインストールする手順を説明します。</p>
+</div>
+<div class="paragraph">
+<p>Ansibleインストーラを使う場合は、インストール作業は Ansible をインストールした任意のマシンで実施します。
+(マスターノード上で実行しても構いません)。
+以下、本マシンを Ansibleマシンと呼びます。</p>
+</div>
+<div class="sect2">
+<h3 id="_必要環境_2">6.1. 必要環境</h3>
+<div class="paragraph">
+<p>Ansible マシンに Ansible 2.7 以上をインストールする必要があります。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ pip install ansible</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>全マスターノード・ワーカーノードに対して、以下の条件が必要です。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Ansibleマシンから各ノードに対して ssh 接続が可能であること。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>sshログインはパスワード認証ではなく鍵認証ができるようにすることを推奨します。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Ansibleマシン上の作業ユーザと同名のユーザが全ノード上に存在しており、sudo を実行可能であること。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>作業ユーザとして root は使用できません。一般ユーザを作成してそのユーザで作業してください。</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_設定_2">6.2. 設定</h3>
+<div class="paragraph">
+<p>Ansible マシンに上記作業ユーザでログインします。
+インストーラを展開し、以下作業を行います。</p>
+</div>
+<div class="sect3">
+<h4 id="_インベントリ">6.2.1. インベントリ</h4>
+<div class="paragraph">
+<p>インベントリファイル <code>inventory/hosts</code> ファイルにインストール先のノードの情報を設定してください。サンプルは <code>sample/hosts</code> ファイルにあります。</p>
+</div>
+<div class="paragraph">
+<p>グループが以下3つありますので、適切なグループにマシンを定義してください。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>master_first: マスタノードを指定してください。ここに登録できるマシンは1台だけです。</p>
+</li>
+<li>
+<p>master_secondary: HA構成を取る場合に2台目以降のマスタノードを指定してください。</p>
+</li>
+<li>
+<p>worker: ワーカーノードを指定してください。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>シングルマスター構成の場合は master_first, worker のみ設定してください (master_secondary　は空にしてください)</p>
+</div>
+<div class="paragraph">
+<p>HA構成の場合はマスターノードが3台必要です。
+最初の1台をmaster_first に、残りの2台を master_secondary に指定してください。</p>
+</div>
+<div class="paragraph">
+<p>マシンの指定方法の例を示します。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>hostname ansible_host=10.0.1.10 ip=10.0.1.10</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>hostname: ここに指定した文字列がそのまま Kubernetes のノード名となります。</p>
+</li>
+<li>
+<p>ansible_host: ssh でログイン可能なホスト名・IPアドレスを指定します。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>ホスト名と同一の場合は省略可能です。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>ip: kube-apiserver および kubelet で使用(広告)する IP アドレスを指定します。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>省略した場合は、デフォルトゲートウェイに指定されたインタフェースのIPアドレスが使用されます。</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_変数設定">6.2.2. 変数設定</h4>
+<div class="paragraph">
+<p>sample/group_vars/all/*.yml ファイルを inventory/group_vars/all/ ディレクトリにコピーし、適宜編集してください。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>all.yml</p>
+<div class="ulist">
+<ul>
+<li>
+<p>lb_apiserver_address: HA構成の場合、ロードバランサの FQDN名またはIPアドレスを設定してください。</p>
+</li>
+<li>
+<p>pod_subnet: Podサブネット(CIDR)を指定してください。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>offline.yml</p>
+<div class="ulist">
+<ul>
+<li>
+<p>offline_install: オフラインインストールをする場合は yes に設定してください。(後述)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>proxy.yml</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Internet 接続にプロキシを経由する必要がある場合は、proxy_url, proxy_noproxy を設定してください。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>version.yml</p>
+<div class="ulist">
+<ul>
+<li>
+<p>インストールする Kubernetes バージョンを適宜指定します。無指定の場合はデフォルト値が使用されます。</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+プロキシを使用する場合、proxy_noproxy には必ず kube-apiserver の IPアドレスまたはDNS名を指定しなければなりません。
+シングルホストの場合はマスターノードの、HA構成の場合はロードバランサの値を指定してください。
+これが適切に設定されていないとマスターノードのインストールが失敗します。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_インストール">6.3. インストール</h3>
+<div class="paragraph">
+<p>以下手順でインストールを行ってください。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ ansible-playbook -i inventory/hosts site.yml</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ssh ログイン時にパスワードまたはパスフレーズが必要な場合は -k (--ask-pass) オプションを付与してください。</p>
+</li>
+<li>
+<p>ログイン先マシンで <code>sudo</code> パスワードが必要な場合は -K (--ask-become-pass) オプションを付与してください。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>以下の playbook が順次実行されます。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>common.yml: Docker/Kubeadm インストール、オフラインリポジトリ設定、Proxy設定など、全マシン共通のインストールが実行されます。</p>
+</li>
+<li>
+<p>master-first.yml: 1台目のマスタノードへの Kubernetes デプロイが実行されます。</p>
+</li>
+<li>
+<p>master-secondary.yml: 2台目以降のマスタノードへの Kubernetes デプロイが実行されます。</p>
+</li>
+<li>
+<p>worker.yml: ワーカーノードへの Kubernetes デプロイが実行されます。</p>
+</li>
+<li>
+<p>apps.yml: アプリケーション類のデプロイが実行されます。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_インストール後の確認_2">6.4. インストール後の確認</h3>
+<div class="paragraph">
+<p>マスターノード上で <code>kubectl get nodes</code> を実行し、全ノードが追加されていて Ready になっていることを確認してください。</p>
+</div>
+<div class="paragraph">
+<p>また、<code>kubectl get all -n kube-system</code> を実行し、Podがすべて正常に起動していることを確認してください。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_オフラインインストール">7. オフラインインストール</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_概要">7.1. 概要</h3>
+<div class="paragraph">
+<p>オフラインインストールでは、Internetに接続されたマシンでインストールに必要なファイルをすべて取得しておき、
+これをUSBメモリ・ハードディスクなどを使用してインストール先の環境に転送してインストールします。</p>
+</div>
+<div class="paragraph">
+<p>オフラインインストールの手順は以下のようになります。</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Internet接続されたマシン上でスクリプトを使用してインストールに必要なファイルを取得します。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>具体的には、Dockerやkubeadm/kubeletなどの RPMファイル、コンテナイメージファイルなどを取得します。</p>
+</li>
+<li>
+<p>これらのファイルをまとめた <code>k8s-offline-files.tar.gz</code> ファイルを生成します。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>本ファイルを何らかの手段(USBメモリ・ハードディスク、VPNなど)を使用してインストール先のマシンに転送します。</p>
+</li>
+<li>
+<p>インストーラを使用してインストールを実行します。</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_オフラインインストールファイルの生成">7.2. オフラインインストールファイルの生成</h3>
+<div class="paragraph">
+<p>オフラインインストールファイルを生成する手順を説明します。</p>
+</div>
+<div class="sect3">
+<h4 id="_必要環境_3">7.2.1. 必要環境</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Internet 接続されているマシン。Kubernetesクラスタを構成するマシンと同一の OS がインストールされていること。以下いずれか。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>RHEL 7</p>
+</li>
+<li>
+<p>CentOS 7</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>以下手順は、上記マシンで実行してください。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_事前準備">7.2.2. 事前準備</h4>
+<div class="paragraph">
+<p>RHEL 7 を使用する場合は、以下手順で rhel-7-server-extras-rpms リポジトリを有効にしておく必要があります。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ subscription-manager repos --enable=rhel-7-server-extras-rpms</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_proxy_設定_2">7.2.3. Proxy 設定</h4>
+<div class="paragraph">
+<p>Internet 接続に Proxy サーバを経由する必要がある場合は、事前に Proxy 設定が必要です。</p>
+</div>
+<div class="paragraph">
+<p>なお、<code>config.sh</code> に Proxy 設定を追記し <code>sudo ./setup-proxy.sh</code> を実行することで以下設定を自動投入可能です。</p>
+</div>
+<div class="sect4">
+<h5 id="_yum_2">7.2.3.1. yum</h5>
+<div class="paragraph">
+<p>/etc/yum.conf に <code>proxy=http://proxy.example.com</code> の行を追加して Proxy サーバを指定してください。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_docker_2">7.2.3.2. Docker</h5>
+<div class="paragraph">
+<p><code>/etc/systemd/system/docker.service.d/http-proxy.conf</code> を以下例を参考に作成し、docker を再起動してください。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[Service]
+Environment="HTTP_PROXY=http://proxy.example.com:8080" "HTTPS_PROXY=http://proxy.example.com:8080" "NO_PROXY=localhost,127.0.0.1,..."</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_オフラインインストールファイルの生成_2">7.2.4. オフラインインストールファイルの生成</h4>
+<div class="paragraph">
+<p>sudo 可能な一般ユーザ権限でログインしてください。</p>
+</div>
+<div class="paragraph">
+<p>以下手順でオフラインインストールファイルを生成してください。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ sudo ./generate-offline.sh</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>オフラインインストールファイルは <code>k8s-offline-files.tar.gz</code> というファイル名で生成されます。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_スクリプトベースインストーラ">7.3. スクリプトベースインストーラ</h3>
+<div class="paragraph">
+<p><code>k8s-offline-files.tar.gz</code> をスクリプトベースインストーラのディレクトリにコピーしてください。</p>
+</div>
+<div class="paragraph">
+<p><code>config.sh</code> の <code>OFFLINE_INSTALL=</code> の値を <code>yes</code> に変更します。
+この状態でインストールを実行するとオフラインインストールが実施されます。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ansibleインストーラ_2">7.4. Ansibleインストーラ</h3>
+<div class="paragraph">
+<p><code>k8s-offline-files.tar.gz</code> をAnsibleインストーラのディレクトリで展開してください。</p>
+</div>
+<div class="paragraph">
+<p><code>inventory/group_vars/all/offline.yml</code> の <code>offline_install</code> の値を <code>yes</code> に変更してください。
+この状態でインストールを実行するとオフラインインストールが実施されます。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_クラスタのアップグレード">8. クラスタのアップグレード</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kubernetes クラスタのアップグレード手順を説明します。</p>
+</div>
+<div class="sect2">
+<h3 id="_注意事項">8.1. 注意事項</h3>
+<div class="paragraph">
+<p>Kubernetes クラスタは一度にバージョン 0.1 ずつしかアップグレードできません。</p>
+</div>
+<div class="paragraph">
+<p>詳細は <a href="https://kubernetes.io/ja/docs/setup/release/version-skew-policy/">Kubernetesバージョンとバージョンスキューサポートポリシー</a>
+を参照してください。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ansibleインストーラ_3">8.2. Ansibleインストーラ</h3>
+<div class="paragraph">
+<p>Ansibleインストーラを使用している場合、自動でアップグレードを行うことができます。</p>
+</div>
+<div class="sect3">
+<h4 id="_オフラインインストール準備">8.2.1. オフラインインストール準備</h4>
+<div class="paragraph">
+<p>オフラインインストールを使用している場合は、事前にオフラインインストールファイルの取得・展開が必要です。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_バージョン設定">8.2.2. バージョン設定</h4>
+<div class="paragraph">
+<p>inventory/group_vars/all/version.yml の以下の値を変更してください。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>kube_version: Kubernetes のバージョン</p>
+</li>
+<li>
+<p>kubeadm_version, kubelet_version, kubectl_version: kubeadm, kubelet, kubectl のバージョン (RPMバージョン)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_アップグレードの実行">8.2.3. アップグレードの実行</h4>
+<div class="paragraph">
+<p>以下手順でマスターノードをアップグレードしてください。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ ansible-playbook -i inventory/hosts upgrade-master.yml</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>以下手順でワーカーノードをアップグレードしてください。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ ansible-playbook -i inventory/hosts upgrade-worker.yml</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2020-04-16 13:02:52 +0900
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.min.js"></script>
+</body>
+</html>
