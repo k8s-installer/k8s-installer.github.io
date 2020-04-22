@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.9">
+<meta name="generator" content="Asciidoctor 2.0.10">
 <title>Kubernetes 構築ガイド: 0.1版</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -240,7 +240,7 @@ table.linenotable td.linenos{border-right:1px solid currentColor;opacity:.35;pad
 pre.pygments .lineno{border-right:1px solid currentColor;opacity:.35;display:inline-block;margin-right:.75em}
 pre.pygments .lineno::before{content:"";margin-right:-.125em}
 .quoteblock{margin:0 1em 1.25em 1.5em;display:table}
-.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
 .quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
 .quoteblock blockquote{margin:0;padding:0;border:0}
 .quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
@@ -257,7 +257,8 @@ pre.pygments .lineno::before{content:"";margin-right:-.125em}
 .quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
 .quoteblock.abstract{margin:0 1em 1.25em;display:block}
 .quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
-.quoteblock.excerpt,.quoteblock .quoteblock{margin:0 0 1.25em;padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
 .quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
 .quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
 table.tableblock{max-width:100%;border-collapse:separate}
@@ -509,7 +510,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_ansibleインストーラ">6. Ansibleインストーラ</a>
 <ul class="sectlevel2">
-<li><a href="#_必要環境_2">6.1. 必要環境</a></li>
+<li><a href="#_必要環境_2">6.1. 必要環境</a>
+<ul class="sectlevel3">
+<li><a href="#_ansible_のインストール手順">6.1.1. Ansible のインストール手順</a></li>
+</ul>
+</li>
 <li><a href="#_設定_2">6.2. 設定</a>
 <ul class="sectlevel3">
 <li><a href="#_インベントリ">6.2.1. インベントリ</a></li>
@@ -548,6 +553,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_オフラインインストール準備">8.2.1. オフラインインストール準備</a></li>
 <li><a href="#_バージョン設定">8.2.2. バージョン設定</a></li>
 <li><a href="#_アップグレードの実行">8.2.3. アップグレードの実行</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_運用">9. 運用</a>
+<ul class="sectlevel2">
+<li><a href="#_証明書の更新">9.1. 証明書の更新</a>
+<ul class="sectlevel3">
+<li><a href="#_証明書の自動更新">9.1.1. 証明書の自動更新</a></li>
+<li><a href="#_証明書有効期限の確認">9.1.2. 証明書有効期限の確認</a></li>
+<li><a href="#_証明書の手動更新">9.1.3. 証明書の手動更新</a>
+<ul class="sectlevel4">
+<li><a href="#_ansible_インストーラを使用している場合">Ansible インストーラを使用している場合</a></li>
+<li><a href="#_スクリプトインストーラを使用している場合">スクリプトインストーラを使用している場合</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1355,15 +1376,13 @@ $ sudo ./install-master-ha.sh</pre>
 (マスターノード上で実行しても構いません)。
 以下、本マシンを Ansibleマシンと呼びます。</p>
 </div>
+<div class="paragraph">
+<p>本手順は <code>k8s-installer</code> の ansible ディレクトリで作業してください。</p>
+</div>
 <div class="sect2">
 <h3 id="_必要環境_2">6.1. 必要環境</h3>
 <div class="paragraph">
-<p>Ansible マシンに Ansible 2.7 以上をインストールする必要があります。</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>$ pip install ansible</pre>
-</div>
+<p>Ansible マシンに Ansible 2.9 以上をインストールする必要があります。</p>
 </div>
 <div class="paragraph">
 <p>全マスターノード・ワーカーノードに対して、以下の条件が必要です。</p>
@@ -1371,26 +1390,69 @@ $ sudo ./install-master-ha.sh</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Ansibleマシンから各ノードに対して ssh 接続が可能であること。</p>
+<p>Ansibleマシンから各ノードに対して鍵認証で ssh 接続が可能であること。</p>
 <div class="ulist">
 <ul>
 <li>
-<p>sshログインはパスワード認証ではなく鍵認証ができるようにすることを推奨します。</p>
+<p>ログインユーザとして　root は使用しないでください。</p>
+</li>
+<li>
+<p>ログインするユーザ名は全マシンで同一にすることを推奨します。</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Ansibleマシン上の作業ユーザと同名のユーザが全ノード上に存在しており、sudo を実行可能であること。</p>
-<div class="ulist">
-<ul>
-<li>
-<p>作業ユーザとして root は使用できません。一般ユーザを作成してそのユーザで作業してください。</p>
+<p>Ansibleマシンから各ノードに対して ssh ログインしたあと、ログインユーザで sudo を実行可能であること。</p>
 </li>
 </ul>
 </div>
-</li>
-</ul>
+<div class="sect3">
+<h4 id="_ansible_のインストール手順">6.1.1. Ansible のインストール手順</h4>
+<div class="paragraph">
+<p>Python 仮想環境を作成してください。
+Python 2 + <a href="https://virtualenv.pypa.io/en/latest/">virtualenv</a> または
+Python 3 + <a href="https://docs.python.org/ja/3/library/venv.html">venv</a> を使用します。</p>
+</div>
+<div class="paragraph">
+<p>Python2 + virtualenv の場合の仮想環境作成例を示します。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ sudo yum install python-virtualenv
+$ virtualenv $HOME/venv</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Python 3 + venv の場合の仮想環境作成例を示します。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ sudo subscription-manager repos --enable rhel-7-server-optional-rpms  # RHEL7の場合
+$ sudo yum install python3 python3-pip gcc openssl-devel python3-devel
+$ python3 -m venv $HOME/venv</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>以下手順で仮想環境を activate します。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ . $HOME/venv/bin/activate</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>以下手順で Ansible をインストールしてください。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ pip install -U -r requirements.txt</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>オフライン環境の Ansible マシンに Ansible をインストールする必要がある場合は
+<a href="https://github.com/tmurakam/python-offline-env">python-offline-env</a> を使用してください。</p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1402,7 +1464,7 @@ $ sudo ./install-master-ha.sh</pre>
 <div class="sect3">
 <h4 id="_インベントリ">6.2.1. インベントリ</h4>
 <div class="paragraph">
-<p>インベントリファイル <code>inventory/hosts</code> ファイルにインストール先のノードの情報を設定してください。サンプルは <code>sample/hosts</code> ファイルにあります。</p>
+<p><code>sample/hosts</code> ファイルを <code>inventory/hosts</code> ファイルにコピーし、インストール先のノードの情報を設定してください。</p>
 </div>
 <div class="paragraph">
 <p>グループが以下3つありますので、適切なグループにマシンを定義してください。</p>
@@ -1432,7 +1494,7 @@ $ sudo ./install-master-ha.sh</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>hostname ansible_host=10.0.1.10 ip=10.0.1.10</pre>
+<pre>hostname ansible_user=johndoe ansible_host=10.0.1.10 ip=10.0.1.10</pre>
 </div>
 </div>
 <div class="ulist">
@@ -1441,7 +1503,17 @@ $ sudo ./install-master-ha.sh</pre>
 <p>hostname: ここに指定した文字列がそのまま Kubernetes のノード名となります。</p>
 </li>
 <li>
-<p>ansible_host: ssh でログイン可能なホスト名・IPアドレスを指定します。</p>
+<p>ansible_user: ssh ログインする際に使用するターゲットマシン上のユーザ名を指定します。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Ansibleマシン上のユーザと同一ユーザ名の場合は省略可能です。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>ansible_host: ssh で接続する際に使用するホスト名またはIPアドレスを指定します。</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1455,7 +1527,7 @@ $ sudo ./install-master-ha.sh</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>省略した場合は、デフォルトゲートウェイに指定されたインタフェースのIPアドレスが使用されます。</p>
+<p>省略した場合は、リモートマシンのデフォルトゲートウェイに指定されたインタフェースのIPアドレスが使用されます。</p>
 </li>
 </ul>
 </div>
@@ -1478,7 +1550,7 @@ $ sudo ./install-master-ha.sh</pre>
 <p>lb_apiserver_address: HA構成の場合、ロードバランサの FQDN名またはIPアドレスを設定してください。</p>
 </li>
 <li>
-<p>pod_subnet: Podサブネット(CIDR)を指定してください。</p>
+<p>pod_subnet: Podサブネット(CIDR)を指定してください。通常は変更不要ですが、IPアドレスが既存アドレスと衝突する場合は変更が必要です。</p>
 </li>
 </ul>
 </div>
@@ -1508,7 +1580,7 @@ $ sudo ./install-master-ha.sh</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>インストールする Kubernetes バージョンを適宜指定します。無指定の場合はデフォルト値が使用されます。</p>
+<p>インストールする Kubernetes バージョンを適宜指定します。無指定の場合は <code>k8s-installer</code> のデフォルト値が使用されます。</p>
 </li>
 </ul>
 </div>
@@ -1792,10 +1864,77 @@ Environment="HTTP_PROXY=http://proxy.example.com:8080" "HTTPS_PROXY=http://proxy
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_運用">9. 運用</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_証明書の更新">9.1. 証明書の更新</h3>
+<div class="paragraph">
+<p>Kubernetes のサーバ証明書・クライアント証明書は有効期限が1年となっているため、
+定期的に証明書の更新を行わなければなりません。</p>
+</div>
+<div class="paragraph">
+<p>詳細は <a href="https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-certs/">Certificate Management with kubeadm</a> を参照してください。</p>
+</div>
+<div class="sect3">
+<h4 id="_証明書の自動更新">9.1.1. 証明書の自動更新</h4>
+<div class="paragraph">
+<p>Kubernetes のアップグレードを行った際に、kubeadm が自動的に証明書を更新するようになっています。
+Kubernetes は数ヶ月に1度マイナーバージョンアップされるため、
+これに合わせて定期的にアップグレードを行えば証明書期限が切れることはありません。
+(これがセキュリティを維持するためのベストプラクティスです)</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_証明書有効期限の確認">9.1.2. 証明書有効期限の確認</h4>
+<div class="paragraph">
+<p>各マスターノードで以下手順を実行することで有効期限を確認できます。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ sudo kubeadm alpha certs check-expiration</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_証明書の手動更新">9.1.3. 証明書の手動更新</h4>
+<div class="paragraph">
+<p>以下手順で証明書を手動更新することができます。</p>
+</div>
+<div class="sect4">
+<h5 id="_ansible_インストーラを使用している場合">9.1.3.1. Ansible インストーラを使用している場合</h5>
+<div class="paragraph">
+<p><code>renew-server-certs</code> playbook を使用して、全マスターノードの証明書を手動更新できます。
+全証明書が有効期限1年で再生成されます。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ ansible-playbook -i inventory/hosts renew-server-certs.yml</pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_スクリプトインストーラを使用している場合">9.1.3.2. スクリプトインストーラを使用している場合</h5>
+<div class="paragraph">
+<p>全マスターノード上で、それぞれ以下手順を実行してください。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ sudo kubeadm alpha certs renew all
+$ sudo /bin/rm /var/lib/kubelet/kubelet.crt
+$ sudo /bin/rm /var/lib/kubelet/kubelet.key
+$ sudo systemctl restart kubelet</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-04-16 13:02:52 +0900
+Last updated 2020-04-22 11:26:02 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
