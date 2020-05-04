@@ -513,7 +513,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_仕様">6.1. 仕様</a></li>
 <li><a href="#_必要環境_2">6.2. 必要環境</a>
 <ul class="sectlevel3">
-<li><a href="#_ansible_のインストール手順">6.2.1. Ansible のインストール手順</a></li>
+<li><a href="#_ssh_鍵認証のセットアップ手順">6.2.1. ssh 鍵認証のセットアップ手順</a></li>
+<li><a href="#_ansible_のインストール手順">6.2.2. Ansible のインストール手順</a></li>
 </ul>
 </li>
 <li><a href="#_設定_2">6.3. 設定</a>
@@ -522,7 +523,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_変数設定">6.3.2. 変数設定</a></li>
 </ul>
 </li>
-<li><a href="#_インストール">6.4. インストール</a></li>
+<li><a href="#_インストール">6.4. インストール</a>
+<ul class="sectlevel3">
+<li><a href="#_共通処理">6.4.1. 共通処理</a></li>
+<li><a href="#_1台目のマスターノードへの_kubernetes_デプロイ">6.4.2. 1台目のマスターノードへの Kubernetes デプロイ</a></li>
+<li><a href="#_2台目以降のマスターノードへのデプロイ">6.4.3. 2台目以降のマスターノードへのデプロイ</a></li>
+<li><a href="#_ワーカーノードへのデプロイ">6.4.4. ワーカーノードへのデプロイ</a></li>
+<li><a href="#_アプリケーション類のデプロイ">6.4.5. アプリケーション類のデプロイ</a></li>
+<li><a href="#_補足_全手順を一括で行う方法">6.4.6. 補足: 全手順を一括で行う方法</a></li>
+</ul>
+</li>
 <li><a href="#_インストール後の確認_2">6.5. インストール後の確認</a></li>
 </ul>
 </li>
@@ -1506,10 +1516,13 @@ $ sudo ./install-master-ha.sh</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>ログインユーザとして　root は使用しないでください。</p>
+<p>ログインユーザとして root は使用しないでください。</p>
 </li>
 <li>
 <p>ログインするユーザ名は全マシンで同一にすることを推奨します。</p>
+</li>
+<li>
+<p>ssh パスワード認証は使用できません。必ず鍵認証を使用してください。</p>
 </li>
 </ul>
 </div>
@@ -1520,7 +1533,28 @@ $ sudo ./install-master-ha.sh</pre>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="_ansible_のインストール手順">6.2.1. Ansible のインストール手順</h4>
+<h4 id="_ssh_鍵認証のセットアップ手順">6.2.1. ssh 鍵認証のセットアップ手順</h4>
+<div class="paragraph">
+<p>Ansibleマシン上に ssh 鍵ペアがまだない場合は、以下手順で作成してください。
+~/.ssh/id_rsa, ~/.ssh/id_rsa.pub が生成されます。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ ssh-keygen</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ansible マシン上で、各ノード毎に以下手順を実行し鍵認証でログインできるようにします。
+公開鍵は各ノードの ~/.ssh/authorized_keys に追加されます。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ ssh-copy-id [hostname]</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ansible_のインストール手順">6.2.2. Ansible のインストール手順</h4>
 <div class="paragraph">
 <p>Python 仮想環境を作成してください。
 Python 2 + <a href="https://virtualenv.pypa.io/en/latest/">virtualenv</a> または
@@ -1717,45 +1751,83 @@ $ python3 -m venv $HOME/venv</pre>
 </div>
 <div class="sect2">
 <h3 id="_インストール">6.4. インストール</h3>
+<div class="sect3">
+<h4 id="_共通処理">6.4.1. 共通処理</h4>
 <div class="paragraph">
-<p>以下手順でインストールを行ってください。</p>
+<p>以下手順を実行し、全ノード共通の事前処理を実行します。
+本手順により、オフラインリポジトリ設定、Proxy設定、必要なパッケージ(Docker/kubeadm含む)のインストール、
+共通のコンフィグレーション処理、などが実行されます。</p>
 </div>
 <div class="literalblock">
 <div class="content">
 <pre>$ ansible-playbook -i inventory/hosts site.yml</pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>ssh ログイン時にパスワードまたはパスフレーズが必要な場合は -k (--ask-pass) オプションを付与してください。</p>
-</li>
-<li>
-<p>ログイン先マシンで <code>sudo</code> パスワードが必要な場合は -K (--ask-become-pass) オプションを付与してください。</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>NOTE:
+  ssh ログイン時にパスフレーズが必要な場合は -k (--ask-pass) オプションを付与してください。
+  また、ログイン先マシンで <code>sudo</code> パスワードが必要な場合は -K (--ask-become-pass) オプションを付与してください。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_1台目のマスターノードへの_kubernetes_デプロイ">6.4.2. 1台目のマスターノードへの Kubernetes デプロイ</h4>
+<div class="paragraph">
+<p>以下を実行し、1台目のマスターノードへ Kubernetes マスターをインストールします。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ ansible-playbook -i inventory/hosts master-first.yml</pre>
+</div>
 </div>
 <div class="paragraph">
-<p>以下の playbook が順次実行されます。</p>
+<p>この時点で Kubernetes はシングルノードで動作している状態になります。
+当該ホストに ssh ログインし、<code>kubectl get all --all-namespaces</code> を実行すれば、各種 Pod が稼働していることを確認できます。</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>common.yml: Docker/Kubeadm インストール、オフラインリポジトリ設定、Proxy設定など、全マシン共通のインストールが実行されます。</p>
-</li>
-<li>
-<p>master-first.yml: 1台目のマスタノードへの Kubernetes デプロイが実行されます。</p>
-</li>
-<li>
-<p>master-secondary.yml: 2台目以降のマスタノードへの Kubernetes デプロイが実行されます。</p>
-</li>
-<li>
-<p>worker.yml: ワーカーノードへの Kubernetes デプロイが実行されます。</p>
-</li>
-<li>
-<p>apps.yml: アプリケーション類のデプロイが実行されます。</p>
-</li>
-</ul>
+</div>
+<div class="sect3">
+<h4 id="_2台目以降のマスターノードへのデプロイ">6.4.3. 2台目以降のマスターノードへのデプロイ</h4>
+<div class="paragraph">
+<p>以下を実行し、2台目以降のノードを Kubernetes クラスタにマスターノードとして参加させます。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ ansible-playbook -i inventory/hosts master-secondary.yml</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ワーカーノードへのデプロイ">6.4.4. ワーカーノードへのデプロイ</h4>
+<div class="paragraph">
+<p>以下を実行し、全ワーカーノードを Kubernetes クラスタに参加させます。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ ansible-playbook -i inventory/hosts worker.yml</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_アプリケーション類のデプロイ">6.4.5. アプリケーション類のデプロイ</h4>
+<div class="paragraph">
+<p>以下を実行し、アプリケーション類(Ingress controller, metrics server, Rook など)をdプロイします。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ ansible-playbook -i inventory/hosts apps.yml</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_補足_全手順を一括で行う方法">6.4.6. 補足: 全手順を一括で行う方法</h4>
+<div class="paragraph">
+<p>以下手順を実行することで、上記の全手順を一括で行うことも可能です。
+通常は順を追って１ステップずつ実行することをお勧めします。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ ansible-playbook -i inventory/hosts site.yml</pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -2105,7 +2177,7 @@ registry_pvc_size: 10Gi</code></pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ docket login https://[node]:[nodeport]</pre>
+<pre>$ docker login https://[node]:[nodeport]</pre>
 </div>
 </div>
 </div>
@@ -2389,7 +2461,7 @@ $ sudo systemctl restart kubelet</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-02 19:07:43 +0900
+Last updated 2020-05-04 11:55:27 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
