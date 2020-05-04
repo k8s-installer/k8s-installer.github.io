@@ -514,7 +514,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_必要環境_2">6.2. 必要環境</a>
 <ul class="sectlevel3">
 <li><a href="#_ssh_鍵認証のセットアップ手順">6.2.1. ssh 鍵認証のセットアップ手順</a></li>
-<li><a href="#_ansible_のインストール手順">6.2.2. Ansible のインストール手順</a></li>
+<li><a href="#_ssh_agent">6.2.2. ssh-agent</a></li>
+<li><a href="#_ansible_のインストール手順">6.2.3. Ansible のインストール手順</a></li>
 </ul>
 </li>
 <li><a href="#_設定_2">6.3. 設定</a>
@@ -533,7 +534,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_補足_全手順を一括で行う方法">6.4.6. 補足: 全手順を一括で行う方法</a></li>
 </ul>
 </li>
-<li><a href="#_インストール後の確認_2">6.5. インストール後の確認</a></li>
+<li><a href="#_動作確認">6.5. 動作確認</a></li>
 </ul>
 </li>
 <li><a href="#_ストレージ">7. ストレージ</a>
@@ -1412,8 +1413,8 @@ $ sudo ./install-master-ha.sh</pre>
 </div>
 <div class="paragraph">
 <p>Ansibleインストーラを使う場合は、インストール作業は Ansible をインストールした任意のマシンで実施します。
-(マスターノード上で実行しても構いません)。
-以下、本マシンを Ansibleマシンと呼びます。</p>
+以下、本マシンを Ansibleノードと呼びます。
+なお、マスターノード・ワーカーノードのいずれかを Ansibleノードとして兼用しても構いません。</p>
 </div>
 <div class="paragraph">
 <p>本手順は <code>k8s-installer</code> の ansible ディレクトリで作業してください。</p>
@@ -1504,38 +1505,49 @@ $ sudo ./install-master-ha.sh</pre>
 <div class="sect2">
 <h3 id="_必要環境_2">6.2. 必要環境</h3>
 <div class="paragraph">
-<p>Ansible マシンに Ansible 2.9 以上をインストールする必要があります。</p>
+<p>Ansibleノードに Ansible 2.9 以上をインストールする必要があります。</p>
 </div>
 <div class="paragraph">
-<p>全マスターノード・ワーカーノードに対して、以下の条件が必要です。</p>
+<p>Ansibleノードから全マスターノード・ワーカーノードに対して ssh でログインできる必要があります。
+この際、以下の条件が必要です。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Ansibleマシンから各ノードに対して鍵認証で ssh 接続が可能であること。</p>
+<p>Ansibleノードから各ノードに対して公開鍵認証で ssh 接続が可能であること。</p>
 <div class="ulist">
 <ul>
 <li>
-<p>ログインユーザとして root は使用しないでください。</p>
+<p>この際、ログインユーザとして root は使用しないでください。</p>
 </li>
 <li>
 <p>ログインするユーザ名は全マシンで同一にすることを推奨します。</p>
 </li>
 <li>
-<p>ssh パスワード認証は使用できません。必ず鍵認証を使用してください。</p>
+<p>パスワード認証は使用できません。必ず公開鍵認証を使用してください。</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Ansibleマシンから各ノードに対して ssh ログインしたあと、ログインユーザで sudo を実行可能であること。</p>
+<p>公開鍵認証を行う際、パスフレーズの入力が不要であること。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>パスフレーズを設定している場合、ssh-agent を使用する必要があります。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Ansibleノードから各ノードに対して ssh ログインしたあと、ログインユーザで sudo を実行可能であること。</p>
 </li>
 </ul>
 </div>
 <div class="sect3">
 <h4 id="_ssh_鍵認証のセットアップ手順">6.2.1. ssh 鍵認証のセットアップ手順</h4>
 <div class="paragraph">
-<p>Ansibleマシン上に ssh 鍵ペアがまだない場合は、以下手順で作成してください。
+<p>Ansibleノード上に ssh 鍵ペアがまだない場合は、以下手順で作成してください。
 ~/.ssh/id_rsa, ~/.ssh/id_rsa.pub が生成されます。</p>
 </div>
 <div class="literalblock">
@@ -1544,7 +1556,7 @@ $ sudo ./install-master-ha.sh</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Ansible マシン上で、各ノード毎に以下手順を実行し鍵認証でログインできるようにします。
+<p>Ansibleノード上で、各マスターノード・ワーカーノード毎に以下手順を実行し公開鍵認証でログインできるようにします。
 公開鍵は各ノードの ~/.ssh/authorized_keys に追加されます。</p>
 </div>
 <div class="literalblock">
@@ -1554,9 +1566,35 @@ $ sudo ./install-master-ha.sh</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_ansible_のインストール手順">6.2.2. Ansible のインストール手順</h4>
+<h4 id="_ssh_agent">6.2.2. ssh-agent</h4>
 <div class="paragraph">
-<p>Python 仮想環境を作成してください。
+<p>ssh 鍵にパスフレーズを設定している場合は(セキュリティ上パスフレーズは設定すべきです)、
+ssh-agent を使用してパスフレーズ入力無しで ssh ログインできるようにする必要があります。</p>
+</div>
+<div class="paragraph">
+<p>ssh-agent の起動方法はいくつかありますが、最も簡単な方法は Ansibleノードで以下を実行する方法です。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ exec ssh-agent $SHELL</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>以下手順でパスフレーズを ssh-agent に設定してください。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ ssh-add</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>ログアウトすると ssh-agent は終了しますので、本手順はAnsibleノードへのログインの度に毎回実行する必要があります。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ansible_のインストール手順">6.2.3. Ansible のインストール手順</h4>
+<div class="paragraph">
+<p>Ansibleノード上でPython 仮想環境を作成してください。
 Python 2 + <a href="https://virtualenv.pypa.io/en/latest/">virtualenv</a> または
 Python 3 + <a href="https://docs.python.org/ja/3/library/venv.html">venv</a> を使用します。</p>
 </div>
@@ -1604,7 +1642,7 @@ $ python3 -m venv $HOME/venv</pre>
 <div class="sect2">
 <h3 id="_設定_2">6.3. 設定</h3>
 <div class="paragraph">
-<p>Ansible マシンに上記作業ユーザでログインします。
+<p>Ansibleノードに作業ユーザでログインします。
 インストーラを展開し、以下作業を行います。</p>
 </div>
 <div class="sect3">
@@ -1618,7 +1656,7 @@ $ python3 -m venv $HOME/venv</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>master_first: マスタノードを指定してください。ここに登録できるマシンは1台だけです。</p>
+<p>master_first: 1台目のマスタノードを指定してください。</p>
 </li>
 <li>
 <p>master_secondary: HA構成を取る場合に2台目以降のマスタノードを指定してください。</p>
@@ -1629,31 +1667,31 @@ $ python3 -m venv $HOME/venv</pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>シングルマスター構成の場合は master_first, worker のみ設定してください (master_secondary　は空にしてください)</p>
+<p>シングルマスター構成の場合は master_first, worker のみ設定してください (master_secondary は空にしてください)</p>
 </div>
 <div class="paragraph">
-<p>HA構成の場合はマスターノードが3台必要です。
-最初の1台をmaster_first に、残りの2台を master_secondary に指定してください。</p>
+<p>HA構成の場合はマスターノードが3台以上の奇数台が必要です。
+最初の1台をmaster_first に、残りを master_secondary に指定してください。</p>
 </div>
 <div class="paragraph">
 <p>マシンの指定方法の例を示します。</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>hostname ansible_user=johndoe ansible_host=10.0.1.10 ip=10.0.1.10</pre>
+<pre>master1 ansible_user=johndoe ansible_host=10.0.1.10 ip=10.0.1.10</pre>
 </div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>hostname: ここに指定した文字列がそのまま Kubernetes のノード名となります。</p>
+<p>hostname: 先頭にホスト名を指定します。指定した文字列がそのまま Kubernetes のノード名となります。</p>
 </li>
 <li>
-<p>ansible_user: ssh ログインする際に使用するターゲットマシン上のユーザ名を指定します。</p>
+<p>ansible_user: ssh ログインする際に使用するターゲットノード上のユーザ名を指定します。</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Ansibleマシン上のユーザと同一ユーザ名の場合は省略可能です。</p>
+<p>Ansibleノード上のユーザと同一ユーザ名の場合は省略可能です。</p>
 </li>
 </ul>
 </div>
@@ -1669,9 +1707,12 @@ $ python3 -m venv $HOME/venv</pre>
 </div>
 </li>
 <li>
-<p>ip: kube-apiserver および kubelet で使用(広告)する IP アドレスを指定します。</p>
+<p>ip: ノードの IP アドレスを指定します。</p>
 <div class="ulist">
 <ul>
+<li>
+<p>クラスタの他ノードと直接通信可能な IP アドレスを指定してください。これが kube-apiserver および kubelet で使用(広告)する IP アドレスになります。</p>
+</li>
 <li>
 <p>省略した場合は、リモートマシンのデフォルトゲートウェイに指定されたインタフェースのIPアドレスが使用されます。</p>
 </li>
@@ -1689,7 +1730,7 @@ $ python3 -m venv $HOME/venv</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>all.yml</p>
+<p>main.yml</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1731,6 +1772,26 @@ $ python3 -m venv $HOME/venv</pre>
 </ul>
 </div>
 </li>
+<li>
+<p>storage.yml</p>
+<div class="ulist">
+<ul>
+<li>
+<p>ストレージ設定を行います。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>registry.yml</p>
+<div class="ulist">
+<ul>
+<li>
+<p>プライベートレジストリ設定を行います。</p>
+</li>
+</ul>
+</div>
+</li>
 </ul>
 </div>
 <div class="admonitionblock note">
@@ -1760,13 +1821,20 @@ $ python3 -m venv $HOME/venv</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ ansible-playbook -i inventory/hosts site.yml</pre>
+<pre>$ ansible-playbook -i inventory/hosts common.yml -K</pre>
 </div>
 </div>
-<div class="paragraph">
-<p>NOTE:
-  ssh ログイン時にパスフレーズが必要な場合は -k (--ask-pass) オプションを付与してください。
-  また、ログイン先マシンで <code>sudo</code> パスワードが必要な場合は -K (--ask-become-pass) オプションを付与してください。</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+ログイン先マシンで <code>sudo</code> パスワードが不要な場合は -K (--ask-become-pass) オプションを省略できます。
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -1776,7 +1844,7 @@ $ python3 -m venv $HOME/venv</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ ansible-playbook -i inventory/hosts master-first.yml</pre>
+<pre>$ ansible-playbook -i inventory/hosts master-first.yml -K</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1791,7 +1859,7 @@ $ python3 -m venv $HOME/venv</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ ansible-playbook -i inventory/hosts master-secondary.yml</pre>
+<pre>$ ansible-playbook -i inventory/hosts master-secondary.yml -K</pre>
 </div>
 </div>
 </div>
@@ -1802,7 +1870,7 @@ $ python3 -m venv $HOME/venv</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ ansible-playbook -i inventory/hosts worker.yml</pre>
+<pre>$ ansible-playbook -i inventory/hosts worker.yml -K</pre>
 </div>
 </div>
 </div>
@@ -1813,7 +1881,7 @@ $ python3 -m venv $HOME/venv</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ ansible-playbook -i inventory/hosts apps.yml</pre>
+<pre>$ ansible-playbook -i inventory/hosts apps.yml -K</pre>
 </div>
 </div>
 </div>
@@ -1825,13 +1893,13 @@ $ python3 -m venv $HOME/venv</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>$ ansible-playbook -i inventory/hosts site.yml</pre>
+<pre>$ ansible-playbook -i inventory/hosts site.yml -K</pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_インストール後の確認_2">6.5. インストール後の確認</h3>
+<h3 id="_動作確認">6.5. 動作確認</h3>
 <div class="paragraph">
 <p>マスターノード上で <code>kubectl get nodes</code> を実行し、全ノードが追加されていて Ready になっていることを確認してください。</p>
 </div>
@@ -2461,7 +2529,7 @@ $ sudo systemctl restart kubelet</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-04 11:55:27 +0900
+Last updated 2020-05-04 12:04:04 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
