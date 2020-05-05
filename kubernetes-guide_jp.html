@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Kubernetes 構築ガイド: 0.1版</title>
+<title>Kubernetes 構築ガイド: 0.0.7版</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -439,7 +439,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>Kubernetes 構築ガイド: 0.1版</h1>
+<h1>Kubernetes 構築ガイド: 0.0.7版</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">目次</div>
 <ul class="sectlevel1">
@@ -470,7 +470,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_インストーラ">3.2. インストーラ</a></li>
 </ul>
 </li>
-<li><a href="#_手動インストール手順">4. 手動インストール手順</a>
+<li><a href="#_手動インストール">4. 手動インストール</a>
 <ul class="sectlevel2">
 <li><a href="#_共通手順">4.1. 共通手順</a>
 <ul class="sectlevel3">
@@ -513,7 +513,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_仕様">6.1. 仕様</a></li>
 <li><a href="#_必要環境_2">6.2. 必要環境</a>
 <ul class="sectlevel3">
-<li><a href="#_ssh_鍵認証のセットアップ手順">6.2.1. ssh 鍵認証のセットアップ手順</a></li>
+<li><a href="#_ssh_公開鍵認証のセットアップ手順">6.2.1. ssh 公開鍵認証のセットアップ手順</a></li>
 <li><a href="#_ssh_agent">6.2.2. ssh-agent</a></li>
 <li><a href="#_ansible_のインストール手順">6.2.3. Ansible のインストール手順</a></li>
 </ul>
@@ -531,7 +531,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_2台目以降のマスターノードへのデプロイ">6.4.3. 2台目以降のマスターノードへのデプロイ</a></li>
 <li><a href="#_ワーカーノードへのデプロイ">6.4.4. ワーカーノードへのデプロイ</a></li>
 <li><a href="#_ネットワークストレージアプリケーション類のデプロイ">6.4.5. ネットワーク・ストレージ・アプリケーション類のデプロイ</a></li>
-<li><a href="#_補足_全手順を一括で行う方法">6.4.6. 補足: 全手順を一括で行う方法</a></li>
 </ul>
 </li>
 <li><a href="#_動作確認">6.5. 動作確認</a></li>
@@ -872,6 +871,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li>
 <p>本手順は参考として提示しています。通常は <code>k8s-installer</code> インストーラを使った自動インストールを使用してください。</p>
 </li>
+<li>
+<p>詳細は <a href="#_手動インストール">Chapter 4, <em>手動インストール</em></a> を参照してください。</p>
+</li>
 </ul>
 </div>
 </li>
@@ -883,13 +885,32 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>スタンドアロン・シングルマスター構成をサポートします。</p>
 </li>
 <li>
-<p>本インストーラは簡易版なので、HA構成を含む本番環境にインストールする場合は Ansible インストーラを推奨します。</p>
+<p>本インストーラは簡易版で、Kubernetes クラスタのみをセットアップします(アプリケーション類はインストールしません)。</p>
+</li>
+<li>
+<p>通常は Ansible インストーラを推奨します。</p>
+</li>
+<li>
+<p>詳細は <a href="#_スクリプトインストーラ">Chapter 5, <em>スクリプトインストーラ</em></a> を参照してください。</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Ansibleインストーラ: Ansibleを使用したクラスタ一括での自動インストール</p>
+<p>Ansibleインストーラ</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Ansibleを使用したクラスタ一括での自動インストールです。</p>
+</li>
+<li>
+<p>Kubernetes だけでなく、ネットワーキング・ストレージ・アプリケーションのデプロイも実行します。</p>
+</li>
+<li>
+<p>詳細は <a href="#_ansibleインストーラ">Chapter 6, <em>Ansibleインストーラ</em></a>を参照してください。</p>
+</li>
+</ul>
+</div>
 </li>
 </ol>
 </div>
@@ -906,13 +927,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 に含まれています。</p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/k8s-installer/k8s-installer" class="bare">https://github.com/k8s-installer/k8s-installer</a> からダウンロードしてください。</p>
+<p><a href="https://github.com/k8s-installer/k8s-installer/releases" class="bare">https://github.com/k8s-installer/k8s-installer/releases</a> からダウンロードしてください。</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_手動インストール手順">4. 手動インストール手順</h2>
+<h2 id="_手動インストール">4. 手動インストール</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>本章では手動で Kubernetes をインストールする手順ついて説明します。</p>
@@ -1554,7 +1575,7 @@ $ sudo ./install-master-ha.sh</pre>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="_ssh_鍵認証のセットアップ手順">6.2.1. ssh 鍵認証のセットアップ手順</h4>
+<h4 id="_ssh_公開鍵認証のセットアップ手順">6.2.1. ssh 公開鍵認証のセットアップ手順</h4>
 <div class="paragraph">
 <p>Ansibleノード上に ssh 鍵ペアがまだない場合は、以下手順で作成してください。
 ~/.ssh/id_rsa, ~/.ssh/id_rsa.pub が生成されます。</p>
@@ -1878,7 +1899,7 @@ $ python3 -m venv $HOME/venv</pre>
 <div class="sect3">
 <h4 id="_2台目以降のマスターノードへのデプロイ">6.4.3. 2台目以降のマスターノードへのデプロイ</h4>
 <div class="paragraph">
-<p>以下を実行し、2台目以降のノードを Kubernetes クラスタにマスターノードとして参加させます。</p>
+<p>以下を実行し、2台目以降のマスターノードを Kubernetes クラスタに参加させます。</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1909,9 +1930,9 @@ $ ansible-playbook -i inventory/hosts storage.yml -K
 $ ansible-playbook -i inventory/hosts apps.yml -K</pre>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_補足_全手順を一括で行う方法">6.4.6. 補足: 全手順を一括で行う方法</h4>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">全手順を一括で行う方法</div>
 <div class="paragraph">
 <p>以下手順を実行することで、上記の全手順を一括で行うことも可能です。
 ただし、通常は順を追って１ステップずつ確認しながら実行することをお勧めします。</p>
@@ -1923,13 +1944,15 @@ $ ansible-playbook -i inventory/hosts apps.yml -K</pre>
 </div>
 </div>
 </div>
+</div>
+</div>
 <div class="sect2">
 <h3 id="_動作確認">6.5. 動作確認</h3>
 <div class="paragraph">
 <p>マスターノード上で <code>kubectl get nodes</code> を実行し、全ノードが追加されていて Ready になっていることを確認してください。</p>
 </div>
 <div class="paragraph">
-<p>また、<code>kubectl get all -n kube-system</code> を実行し、Podがすべて正常に起動していることを確認してください。</p>
+<p>また、<code>kubectl get all --all-namespaces</code> を実行し、Podがすべて正常に起動していることを確認してください。</p>
 </div>
 </div>
 </div>
@@ -2615,7 +2638,7 @@ $ sudo systemctl restart kubelet</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-05 18:03:27 +0900
+Last updated 2020-05-05 18:35:26 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
