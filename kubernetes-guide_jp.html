@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Kubernetes 構築ガイド: 0.0.7版</title>
+<title>Kubernetes 構築ガイド: 0.9.0版</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -439,7 +439,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>Kubernetes 構築ガイド: 0.0.7版</h1>
+<h1>Kubernetes 構築ガイド: 0.9.0版</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">目次</div>
 <ul class="sectlevel1">
@@ -470,7 +470,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_インストーラ">3.2. インストーラ</a></li>
 </ul>
 </li>
-<li><a href="#_手動インストール">4. 手動インストール</a>
+<li><a href="#manual_install">4. 手動インストール</a>
 <ul class="sectlevel2">
 <li><a href="#_共通手順">4.1. 共通手順</a>
 <ul class="sectlevel3">
@@ -498,7 +498,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_ワーカーノード追加">4.3. ワーカーノード追加</a></li>
 </ul>
 </li>
-<li><a href="#_スクリプトインストーラ">5. スクリプトインストーラ</a>
+<li><a href="#script_installer">5. スクリプトインストーラ</a>
 <ul class="sectlevel2">
 <li><a href="#_設定">5.1. 設定</a></li>
 <li><a href="#_docker_kubeadm_インストール">5.2. Docker / kubeadm インストール</a></li>
@@ -508,7 +508,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_インストール後の確認">5.6. インストール後の確認</a></li>
 </ul>
 </li>
-<li><a href="#_ansibleインストーラ">6. Ansibleインストーラ</a>
+<li><a href="#ansible_installer">6. Ansibleインストーラ</a>
 <ul class="sectlevel2">
 <li><a href="#_仕様">6.1. 仕様</a></li>
 <li><a href="#_必要環境_2">6.2. 必要環境</a>
@@ -536,22 +536,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_動作確認">6.5. 動作確認</a></li>
 </ul>
 </li>
-<li><a href="#_ネットワーキング">7. ネットワーキング</a>
+<li><a href="#networking">7. ネットワーキング</a>
 <ul class="sectlevel2">
 <li><a href="#_ファイヤウォール_2">7.1. ファイヤウォール</a></li>
 <li><a href="#_metallb">7.2. MetalLB</a></li>
 </ul>
 </li>
-<li><a href="#_ストレージ">8. ストレージ</a>
+<li><a href="#storage">8. ストレージ</a>
 <ul class="sectlevel2">
 <li><a href="#_概要">8.1. 概要</a></li>
-<li><a href="#_rook_nfs">8.2. Rook / NFS</a>
+<li><a href="#rook_nfs">8.2. Rook / NFS</a>
 <ul class="sectlevel3">
 <li><a href="#_設定デプロイ">8.2.1. 設定・デプロイ</a></li>
 <li><a href="#_ストレージクラス">8.2.2. ストレージクラス</a></li>
 </ul>
 </li>
-<li><a href="#_rook_ceph">8.3. Rook / Ceph</a>
+<li><a href="#rook_ceph">8.3. Rook / Ceph</a>
 <ul class="sectlevel3">
 <li><a href="#_必要条件">8.3.1. 必要条件</a></li>
 <li><a href="#_設定デプロイ_2">8.3.2. 設定・デプロイ</a></li>
@@ -562,7 +562,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_アプリケーション">9. アプリケーション</a>
 <ul class="sectlevel2">
-<li><a href="#_プライベートレジストリ">9.1. プライベートレジストリ</a>
+<li><a href="#private_registry">9.1. プライベートレジストリ</a>
 <ul class="sectlevel3">
 <li><a href="#_設定デプロイ_3">9.1.1. 設定・デプロイ</a></li>
 <li><a href="#_レジストリの使用">9.1.2. レジストリの使用</a></li>
@@ -570,7 +570,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 </ul>
 </li>
-<li><a href="#_オフラインインストール">10. オフラインインストール</a>
+<li><a href="#offline_install">10. オフラインインストール</a>
 <ul class="sectlevel2">
 <li><a href="#_概要_2">10.1. 概要</a></li>
 <li><a href="#_オフラインインストールファイルの生成">10.2. オフラインインストールファイルの生成</a>
@@ -587,13 +587,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#_スクリプトベースインストーラ">10.3. スクリプトベースインストーラ</a></li>
-<li><a href="#_ansibleインストーラ_2">10.4. Ansibleインストーラ</a></li>
+<li><a href="#_ansibleインストーラ">10.4. Ansibleインストーラ</a></li>
 </ul>
 </li>
 <li><a href="#_クラスタのアップグレード">11. クラスタのアップグレード</a>
 <ul class="sectlevel2">
 <li><a href="#_注意事項">11.1. 注意事項</a></li>
-<li><a href="#_ansibleインストーラ_3">11.2. Ansibleインストーラ</a>
+<li><a href="#_ansibleインストーラ_2">11.2. Ansibleインストーラ</a>
 <ul class="sectlevel3">
 <li><a href="#_オフラインインストール準備">11.2.1. オフラインインストール準備</a></li>
 <li><a href="#_バージョン設定">11.2.2. バージョン設定</a></li>
@@ -748,7 +748,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>RedHat Enterprise Linux (RHEL) 7 (7.7以上)</p>
+<p>RedHat Enterprise Linux (RHEL) 7 (7.7以上), 8</p>
 <div class="ulist">
 <ul>
 <li>
@@ -758,9 +758,36 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p>CentOS 7 (7.7以上)</p>
+<p>CentOS 7 (7.7以上), 8</p>
+</li>
+<li>
+<p>Ubuntu 18.04, 20.04</p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+RHEL8 / CentOS8 / Ubuntu は Ansible インストーラのみ対応しています。
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+RHEL8 / CentOS8 を使用する場合、firewalld を併用することはできません。
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -804,7 +831,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </li>
 <li>
-<p>インターネット接続 (オンラインインストール時のみ)</p>
+<p>インターネット接続</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Proxyサーバを経由した接続でも構いません。</p>
+</li>
+<li>
+<p>オフラインインストール時はインターネット接続は不要です。ただし、その場合でもデフォルトルートは設定されている必要があります。</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -814,13 +851,50 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>ユニークなhostname、MACアドレス、とproduct_uuidが各ノードに必要</p>
+<p>ユニークなhostname、MACアドレス、product_uuidが各ノードに必要</p>
+<div class="ulist">
+<ul>
+<li>
+<p>hostname は <code>hostname</code> コマンドで確認してください。</p>
 </li>
 <li>
-<p>マシン内の特定のポートがファイヤウォールで開放されていること。詳細は後述します。</p>
+<p>MAC アドレスは <code>ip link</code> または <code>ifconfig -a</code> で確認してください。</p>
 </li>
 <li>
-<p>Swapがオフであること。kubeletが正常に動作するためにはswapは必ずオフでなければなりません。</p>
+<p>product_uuid は <code>sudo cat /sys/class/dmi/id/product_uuid</code> で確認してください。</p>
+</li>
+<li>
+<p>詳細は <a href="https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">kubeadmのインストール</a>
+の「MACアドレスとproduct_uuidが全てのノードでユニークであることの検証」を参照してください。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>マシン内の特定のポートがファイヤウォールで開放されていること。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>開放するポートの詳細は <a href="https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">必須ポートの確認</a> を参照してください。</p>
+</li>
+<li>
+<p>インストーラを使用する場合は、自動的にファイヤウォールの設定が行われます。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Swapがオフであること。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>kubeletが正常に動作するためにはswapは必ずオフでなければなりません。</p>
+</li>
+<li>
+<p>インストーラを使用する場合は、自動的に Swap をオフにします。</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -860,7 +934,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_インストール手順">3.1. インストール手順</h3>
 <div class="paragraph">
-<p>インストール手順として以下の3種類があります。</p>
+<p>インストール手順として以下の3種類があります。Ansibleインストーラの仕様を推奨します。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -872,7 +946,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>本手順は参考として提示しています。通常は <code>k8s-installer</code> インストーラを使った自動インストールを使用してください。</p>
 </li>
 <li>
-<p>詳細は <a href="#_手動インストール">Chapter 4, <em>手動インストール</em></a> を参照してください。</p>
+<p>詳細は <a href="#manual_install">Chapter 4, <em>手動インストール</em></a> を参照してください。</p>
 </li>
 </ul>
 </div>
@@ -888,10 +962,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>本インストーラは簡易版で、Kubernetes クラスタのみをセットアップします(アプリケーション類はインストールしません)。</p>
 </li>
 <li>
-<p>通常は Ansible インストーラを推奨します。</p>
-</li>
-<li>
-<p>詳細は <a href="#_スクリプトインストーラ">Chapter 5, <em>スクリプトインストーラ</em></a> を参照してください。</p>
+<p>詳細は <a href="#script_installer">Chapter 5, <em>スクリプトインストーラ</em></a> を参照してください。</p>
 </li>
 </ul>
 </div>
@@ -907,7 +978,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Kubernetes だけでなく、ネットワーキング・ストレージ・アプリケーションのデプロイも実行します。</p>
 </li>
 <li>
-<p>詳細は <a href="#_ansibleインストーラ">Chapter 6, <em>Ansibleインストーラ</em></a>を参照してください。</p>
+<p>詳細は <a href="#ansible_installer">Chapter 6, <em>Ansibleインストーラ</em></a>を参照してください。</p>
 </li>
 </ul>
 </div>
@@ -918,6 +989,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>また、スクリプトインストーラ・Ansibleインストーラでは、オフラインインストールにも対応しています。
 オフラインインストールでは、Internetに接続されたマシンでインストールに必要なファイルをすべて取得しておき、
 これをUSBメモリ・ハードディスクなどを使用してインストール先の環境に転送してインストールします。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+RHEL8 / CentOS8 / Ubuntu は Ansible インストーラのみ対応しています。
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -933,7 +1016,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_手動インストール">4. 手動インストール</h2>
+<h2 id="manual_install">4. 手動インストール</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>本章では手動で Kubernetes をインストールする手順ついて説明します。</p>
@@ -949,11 +1032,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-通常はインストーラを使用して自動インストールを行ってください。
-インストーラはここに示す手順を自動的に実行するようになっています。
+本手順は RHEL7 / CentOS7 のみ対応しています。
 </td>
 </tr>
 </table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">インストーラの利用を推奨します</div>
+<div class="paragraph">
+<p>手動インストール手順は、参考用として提示しています。</p>
+</div>
+<div class="paragraph">
+<p>通常はインストーラを使用して自動インストールを行ってください。
+インストーラはここに示す手順を自動的に実行するようになっています。</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_共通手順">4.1. 共通手順</h3>
@@ -1262,7 +1356,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>kubectl taint nodes --all node-role.kubernetes.io/master-</pre>
+<pre>kubectl taint nodes --all node-role.kubernetes.io/master:NoSchedule-</pre>
 </div>
 </div>
 </div>
@@ -1293,7 +1387,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_スクリプトインストーラ">5. スクリプトインストーラ</h2>
+<h2 id="script_installer">5. スクリプトインストーラ</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>スクリプトインストーラを使用したインストール手順について説明します。
@@ -1433,7 +1527,7 @@ $ sudo ./install-master-ha.sh</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ansibleインストーラ">6. Ansibleインストーラ</h2>
+<h2 id="ansible_installer">6. Ansibleインストーラ</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Ansible ベースインストーラを使用してインストールする手順を説明します。</p>
@@ -1530,6 +1624,10 @@ $ sudo ./install-master-ha.sh</pre>
 </div>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>なお、インストールの全シーケンスは <a href="https://github.com/k8s-installer/k8s-installer/blob/develop/ansible/design/sequence.md">k8s-installer シーケンス</a>
+を参照してください。</p>
 </div>
 </div>
 <div class="sect2">
@@ -1777,7 +1875,7 @@ $ python3 -m venv $HOME/venv</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>offline_install: オフラインインストールをする場合は yes に設定してください。オフラインインストール手順の詳細は <a href="#_オフラインインストール">Chapter 10, <em>オフラインインストール</em></a> を参照してください。</p>
+<p>offline_install: オフラインインストールをする場合は yes に設定してください。オフラインインストール手順の詳細は <a href="#offline_install">Chapter 10, <em>オフラインインストール</em></a> を参照してください。</p>
 </li>
 </ul>
 </div>
@@ -1807,7 +1905,7 @@ $ python3 -m venv $HOME/venv</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>ネットワーク設定を行います。詳細は <a href="#_ネットワーキング">Chapter 7, <em>ネットワーキング</em></a> を参照してください。</p>
+<p>ネットワーク設定を行います。詳細は <a href="#networking">Chapter 7, <em>ネットワーキング</em></a> を参照してください。</p>
 </li>
 </ul>
 </div>
@@ -1817,7 +1915,7 @@ $ python3 -m venv $HOME/venv</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>ストレージ設定を行います。詳細は <a href="#_ストレージ">Chapter 8, <em>ストレージ</em></a> を参照してください。</p>
+<p>ストレージ設定を行います。詳細は <a href="#storage">Chapter 8, <em>ストレージ</em></a> を参照してください。</p>
 </li>
 </ul>
 </div>
@@ -1827,7 +1925,7 @@ $ python3 -m venv $HOME/venv</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>プライベートレジストリ設定を行います。詳細は <a href="#_プライベートレジストリ">Section 9.1, &#8220;プライベートレジストリ&#8221;</a> を参照してください。</p>
+<p>プライベートレジストリ設定を行います。詳細は <a href="#private_registry">Section 9.1, &#8220;プライベートレジストリ&#8221;</a> を参照してください。</p>
 </li>
 </ul>
 </div>
@@ -1958,7 +2056,7 @@ $ ansible-playbook -i inventory/hosts apps.yml -K</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ネットワーキング">7. ネットワーキング</h2>
+<h2 id="networking">7. ネットワーキング</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_ファイヤウォール_2">7.1. ファイヤウォール</h3>
@@ -2019,12 +2117,12 @@ metallb_ip_range: 192.168.1.200-192.168.1.210</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_ストレージ">8. ストレージ</h2>
+<h2 id="storage">8. ストレージ</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_概要">8.1. 概要</h3>
 <div class="paragraph">
-<p><a href="#_ansibleインストーラ">Chapter 6, <em>Ansibleインストーラ</em></a> を使用する場合は、 <a href="https://rook.io/">Rook</a> を使用してストレージをセットアップすることができます。</p>
+<p><a href="#ansible_installer">Chapter 6, <em>Ansibleインストーラ</em></a> を使用する場合は、 <a href="https://rook.io/">Rook</a> を使用してストレージをセットアップすることができます。</p>
 </div>
 <div class="paragraph">
 <p>以下の2種類をサポートしています。</p>
@@ -2041,7 +2139,7 @@ metallb_ip_range: 192.168.1.200-192.168.1.210</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_rook_nfs">8.2. Rook / NFS</h3>
+<h3 id="rook_nfs">8.2. Rook / NFS</h3>
 <div class="paragraph">
 <p>Rook + NFS (Network File System) を使用することができます。</p>
 </div>
@@ -2053,11 +2151,11 @@ metallb_ip_range: 192.168.1.200-192.168.1.210</code></pre>
 <div class="paragraph">
 <p>詳細は Rook Documentation の <a href="https://rook.github.io/docs/rook/master/nfs.html">NFS</a> を参照してください。</p>
 </div>
-<div class="admonitionblock caution">
+<div class="admonitionblock warning">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-caution" title="Caution"></i>
+<i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
 本設定では特定の1つのノード上のストレージを使用するため、可用性はありません。
@@ -2154,7 +2252,7 @@ spec:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_rook_ceph">8.3. Rook / Ceph</h3>
+<h3 id="rook_ceph">8.3. Rook / Ceph</h3>
 <div class="paragraph">
 <p>Rook + Ceph を使用することができます。</p>
 </div>
@@ -2249,10 +2347,10 @@ spec:
 <h2 id="_アプリケーション">9. アプリケーション</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="#_ansibleインストーラ">Chapter 6, <em>Ansibleインストーラ</em></a> を使用している場合、いくつかのアプリケーションのデプロイを自動実行することができます。</p>
+<p><a href="#ansible_installer">Chapter 6, <em>Ansibleインストーラ</em></a> を使用している場合、いくつかのアプリケーションのデプロイを自動実行することができます。</p>
 </div>
 <div class="sect2">
-<h3 id="_プライベートレジストリ">9.1. プライベートレジストリ</h3>
+<h3 id="private_registry">9.1. プライベートレジストリ</h3>
 <div class="paragraph">
 <p>プライベートレジストリをデプロイすることができます。</p>
 </div>
@@ -2312,10 +2410,10 @@ registry_pvc_size: 10Gi</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#_rook_nfs">Rook / NFS</a> を使用する場合は <code>rook-nfs-share1</code> を指定してください。</p>
+<p><a href="#rook_nfs">Rook / NFS</a> を使用する場合は <code>rook-nfs-share1</code> を指定してください。</p>
 </li>
 <li>
-<p><a href="#_rook_ceph">Rook / Ceph</a> を使用する場合は <code>rook-ceph-block</code> を指定してください。</p>
+<p><a href="#rook_ceph">Rook / Ceph</a> を使用する場合は <code>rook-ceph-block</code> を指定してください。</p>
 </li>
 </ul>
 </div>
@@ -2362,7 +2460,7 @@ registry_pvc_size: 10Gi</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_オフラインインストール">10. オフラインインストール</h2>
+<h2 id="offline_install">10. オフラインインストール</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_概要_2">10.1. 概要</h3>
@@ -2407,17 +2505,7 @@ registry_pvc_size: 10Gi</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Internet 接続されているマシン。Kubernetesクラスタを構成するマシンと同一の OS がインストールされていること。以下いずれか。</p>
-<div class="ulist">
-<ul>
-<li>
-<p>RHEL 7</p>
-</li>
-<li>
-<p>CentOS 7</p>
-</li>
-</ul>
-</div>
+<p>Internet 接続されているマシン。Kubernetesクラスタを構成するマシンと同一の OS がインストールされていること。</p>
 </li>
 </ul>
 </div>
@@ -2492,7 +2580,7 @@ Environment="HTTP_PROXY=http://proxy.example.com:8080" "HTTPS_PROXY=http://proxy
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ansibleインストーラ_2">10.4. Ansibleインストーラ</h3>
+<h3 id="_ansibleインストーラ">10.4. Ansibleインストーラ</h3>
 <div class="paragraph">
 <p><code>k8s-offline-files.tar.gz</code> をAnsibleインストーラのディレクトリで展開してください。</p>
 </div>
@@ -2520,7 +2608,7 @@ Environment="HTTP_PROXY=http://proxy.example.com:8080" "HTTPS_PROXY=http://proxy
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ansibleインストーラ_3">11.2. Ansibleインストーラ</h3>
+<h3 id="_ansibleインストーラ_2">11.2. Ansibleインストーラ</h3>
 <div class="paragraph">
 <p>Ansibleインストーラを使用している場合、自動でアップグレードを行うことができます。</p>
 </div>
@@ -2638,7 +2726,7 @@ $ sudo systemctl restart kubelet</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-05 18:35:26 +0900
+Last updated 2020-05-11 02:31:54 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
