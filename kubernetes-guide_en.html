@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<title>Kubernetes 構築ガイド: 0.9.0版</title>
+<title>Kubernetes Installation Guide: ver 0.9.0</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -439,35 +439,35 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>Kubernetes 構築ガイド: 0.9.0版</h1>
+<h1>Kubernetes Installation Guide: ver 0.9.0</h1>
 <div id="toc" class="toc2">
-<div id="toctitle">目次</div>
+<div id="toctitle">Index</div>
 <ul class="sectlevel1">
-<li><a href="#_改版履歴">改版履歴</a></li>
-<li><a href="#_はじめに">1. はじめに</a>
+<li><a href="#_revision_history">Revision history</a></li>
+<li><a href="#_introduction">1. Introduction</a>
 <ul class="sectlevel2">
-<li><a href="#_本書の位置づけ">1.1. 本書の位置づけ</a></li>
-<li><a href="#_用語集">1.2. 用語集</a></li>
+<li><a href="#_the_purpose_of_this_book">1.1. The purpose of this book</a></li>
+<li><a href="#_glossary">1.2. Glossary</a></li>
 </ul>
 </li>
-<li><a href="#_必要環境">2. 必要環境</a>
+<li><a href="#_requirements">2. Requirements</a>
 <ul class="sectlevel2">
-<li><a href="#_システム構成">2.1. システム構成</a></li>
-<li><a href="#_必要マシン">2.2. 必要マシン</a>
+<li><a href="#_system_configuration">2.1. System Configuration</a></li>
+<li><a href="#_required_machine">2.2. Required machine</a>
 <ul class="sectlevel3">
 <li><a href="#_os">2.2.1. OS</a></li>
-<li><a href="#_スペック">2.2.2. スペック</a></li>
-<li><a href="#_ネットワーク">2.2.3. ネットワーク</a></li>
-<li><a href="#_その他の要件">2.2.4. その他の要件</a></li>
+<li><a href="#_hardware_spec">2.2.2. Hardware spec</a></li>
+<li><a href="#_network">2.2.3. Network</a></li>
+<li><a href="#_other_requirements">2.2.4. Other requirements</a></li>
 </ul>
 </li>
-<li><a href="#_ロードバランサ">2.3. ロードバランサ</a></li>
+<li><a href="#_load_balancer">2.3. Load balancer</a></li>
 </ul>
 </li>
-<li><a href="#_kubernetes_インストールの概要">3. Kubernetes インストールの概要</a>
+<li><a href="#_kubernetes_installation_overview">3. Kubernetes Installation Overview</a>
 <ul class="sectlevel2">
-<li><a href="#_インストール手順">3.1. インストール手順</a></li>
-<li><a href="#_インストーラ">3.2. インストーラ</a></li>
+<li><a href="#_installation_instructions">3.1. Installation Instructions</a></li>
+<li><a href="#_the_installers">3.2. The installers</a></li>
 </ul>
 </li>
 <li><a href="#manual_install">4. 手動インストール</a>
@@ -511,7 +511,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#ansible_installer">6. Ansibleインストーラ</a>
 <ul class="sectlevel2">
 <li><a href="#_仕様">6.1. 仕様</a></li>
-<li><a href="#_必要環境_2">6.2. 必要環境</a>
+<li><a href="#_必要環境">6.2. 必要環境</a>
 <ul class="sectlevel3">
 <li><a href="#_ssh_公開鍵認証のセットアップ手順">6.2.1. ssh 公開鍵認証のセットアップ手順</a></li>
 <li><a href="#_ssh_agent">6.2.2. ssh-agent</a></li>
@@ -575,7 +575,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_概要_2">10.1. 概要</a></li>
 <li><a href="#_オフラインインストールファイルの生成">10.2. オフラインインストールファイルの生成</a>
 <ul class="sectlevel3">
-<li><a href="#_必要環境_3">10.2.1. 必要環境</a></li>
+<li><a href="#_必要環境_2">10.2.1. 必要環境</a></li>
 <li><a href="#_事前準備">10.2.2. 事前準備</a></li>
 <li><a href="#_proxy_設定_2">10.2.3. Proxy 設定</a>
 <ul class="sectlevel4">
@@ -623,7 +623,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_改版履歴">改版履歴</h2>
+<h2 id="_revision_history">Revision history</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>TODO:</p>
@@ -631,16 +631,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_はじめに">1. はじめに</h2>
+<h2 id="_introduction">1. Introduction</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_本書の位置づけ">1.1. 本書の位置づけ</h3>
+<h3 id="_the_purpose_of_this_book">1.1. The purpose of this book</h3>
 <div class="paragraph">
-<p>本書では、オンプレミス環境に Kubernetes をインストール・利用するための手順について説明したものです。</p>
+<p>This document describes how to install and use Kubernetes in an on-premises environment.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_用語集">1.2. 用語集</h3>
+<h3 id="_glossary">1.2. Glossary</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 28.5714%;">
@@ -648,23 +648,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">用語</th>
-<th class="tableblock halign-left valign-top">意味</th>
+<th class="tableblock halign-left valign-top">Term</th>
+<th class="tableblock halign-left valign-top">Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">マスターノード</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Kubernetesのマスターノード。
- Kubernetesのマスターサーバ(kube-apiserver, kube-controller-manager, kube-scheduler, etcd) が動作する。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Master Node</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The master node of Kubernetes.
+ A master servers of Kubernetes (kube-apiserver, kube-controller-manager, kube-scheduler, etcd) run on this node.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ワーカーノード</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Kubernetesのワーカーノード。ワークロードを実行するためのノード。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Worker Node</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A worker node of Kubernetes. A node to run workloads.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">HA</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">High Availability。HA構成を組む場合はマスターノード3台構成が必要。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High Availability. 3 master nodes are required for HA cluster.</p></td>
 </tr>
 </tbody>
 </table>
@@ -672,57 +672,57 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_必要環境">2. 必要環境</h2>
+<h2 id="_requirements">2. Requirements</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_システム構成">2.1. システム構成</h3>
+<h3 id="_system_configuration">2.1. System Configuration</h3>
 <div class="paragraph">
-<p>Kubernetes をインストールする際のシステム構成としては以下の３通りがあります。
-構成に応じて必要なマシン数が変わってきます。</p>
+<p>There are three system configurations for installing Kubernetes.
+The number of machines required will vary depending on the configuration.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>スタンドアロン: 1台のみの構成</p>
+<p>Standalone: a configuration with only one machine.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>1台のマシンのみを使用し、Kubernetes マスター・ワーカーを同居させる構成です。</p>
+<p>Use only one machine and install both Kubernetes master and worker on the machine.</p>
 </li>
 <li>
-<p>ワークロードも同一マシン上で動作することになります。</p>
+<p>The workload will also run on the same machine.</p>
 </li>
 <li>
-<p>開発環境や検証・デモ用途でのみの利用を推奨します</p>
+<p>Recommended for use in development environments and for verification and demonstration purposes only.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>シングルマスター: マスター1台、ワーカー1台以上の構成</p>
+<p>Single Master: one master and one or more workers</p>
 <div class="ulist">
 <ul>
 <li>
-<p>マスター1台に、複数台のワーカーで構成します。</p>
+<p>A single master can be configured with multiple workers.</p>
 </li>
 <li>
-<p>ワークロードはワーカー上で動作します。</p>
+<p>The workload runs on the workers.</p>
 </li>
 <li>
-<p>マスターノードが SPOF になりますので、本番環境での利用は推奨しません。</p>
+<p>The master node will be a SPOF and is not recommended for use in a production environment.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>HA構成: マスター3台、ワーカー1台以上の構成</p>
+<p>HA configuration: 3 masters and 1 or more workers.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>マスター3台でHA構成を組む構成です。</p>
+<p>HA is configured with three masters.</p>
 </li>
 <li>
-<p>マスター上で稼働する kube-apiserver に対して負荷分散をする必要があるため、別途 L4 ロードバランサが必要です。</p>
+<p>L4 load balancer is required separately because it is necessary to distribute the load to the kube-apiserver running on the master.</p>
 </li>
 </ul>
 </div>
@@ -730,39 +730,39 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ol>
 </div>
 <div class="paragraph">
-<p>HA構成を組む場合は、マスターノードとして最低3台のマシンが必要です。
-またこれに加えてワーカーノードが最低1台、推奨3台以上が必要です。
-ワーカーノードの台数は、実行するワークロードの量によって変わります。</p>
+<p>To create an HA configuration, you need at least three machines as master nodes.
+In addition, you need at least one worker node, and at least three recommended.
+The number of worker nodes depends on the amount of workloads to be executed.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_必要マシン">2.2. 必要マシン</h3>
+<h3 id="_required_machine">2.2. Required machine</h3>
 <div class="paragraph">
-<p>Kubernetes を構成する各マシンについて説明します。</p>
+<p>This section describes each of the machines that make up Kubernetes.</p>
 </div>
 <div class="paragraph">
-<p>なお、以下の必要環境は <a href="https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">kubeadmのインストール</a>
-に記載されているものとほぼ同等です。</p>
+<p>The following requirements are almost same as described in
+<a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">Installing kubeadm</a>.</p>
 </div>
 <div class="sect3">
 <h4 id="_os">2.2.1. OS</h4>
 <div class="paragraph">
-<p>以下いずれかの OS がインストールされたマシンが必要です。</p>
+<p>Machines with one of the following operating systems installed is required:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>RedHat Enterprise Linux (RHEL) 7 (7.7以上), 8</p>
+<p>RedHat Enterprise Linux (RHEL) 7 (7.7 or later), 8</p>
 <div class="ulist">
 <ul>
 <li>
-<p>subscription-manager で RedHat サブスクリプションの register を完了させている必要があります。</p>
+<p>You must have completed registration of your RedHat subscription using <code>subscription-manager</code>.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>CentOS 7 (7.7以上), 8</p>
+<p>CentOS 7 (7.7 or later), 8</p>
 </li>
 <li>
 <p>Ubuntu 18.04, 20.04</p>
@@ -776,7 +776,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-RHEL8 / CentOS8 / Ubuntu は Ansible インストーラのみ対応しています。
+Only the ansible installer is supported for RHEL8 / CentOS8 / Ubuntu.
 </td>
 </tr>
 </table>
@@ -788,61 +788,61 @@ RHEL8 / CentOS8 / Ubuntu は Ansible インストーラのみ対応していま�
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-RHEL8 / CentOS8 を使用する場合、firewalld を併用することはできません。
+You can&#8217;t use firewalld for RHEL8 / CentOS8.
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_スペック">2.2.2. スペック</h4>
+<h4 id="_hardware_spec">2.2.2. Hardware spec</h4>
 <div class="paragraph">
-<p>マシンのスペックとしては以下のものが必要です。</p>
+<p>The machine specs require the following.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>1台あたり2GB以上のメモリ</p>
+<p>2 GB or more of RAM per machine</p>
 <div class="ulist">
 <ul>
 <li>
-<p>ただし、2GBの場合アプリ用のスペースはほとんどありません。推奨は16GB以上です。</p>
+<p>any less will leave little room for your apps)</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>2コア以上のCPU</p>
+<p>2 CPUs or more</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_ネットワーク">2.2.3. ネットワーク</h4>
+<h4 id="_network">2.2.3. Network</h4>
 <div class="paragraph">
-<p>ネットワークについては以下の要件が必要です。</p>
+<p>For the network, the following requirements are required</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>クラスター内のすべてのマシン間で通信可能なネットワーク</p>
+<p>Full network connectivity between all machines in the cluster</p>
 <div class="ulist">
 <ul>
 <li>
-<p>パブリックネットワークでもプライベートネットワークでも構いません</p>
+<p>public or private network is fine</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>インターネット接続</p>
+<p>Internet connectivity</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Proxyサーバを経由した接続でも構いません。</p>
+<p>A connection through a proxy server is fine.</p>
 </li>
 <li>
-<p>オフラインインストール時はインターネット接続は不要です。ただし、その場合でもデフォルトルートは設定されている必要があります。</p>
+<p>For offline installation, no Internet connection is required. However, the default route must still be configured.</p>
 </li>
 </ul>
 </div>
@@ -851,51 +851,55 @@ RHEL8 / CentOS8 を使用する場合、firewalld を併用することはでき
 </div>
 </div>
 <div class="sect3">
-<h4 id="_その他の要件">2.2.4. その他の要件</h4>
+<h4 id="_other_requirements">2.2.4. Other requirements</h4>
 <div class="ulist">
 <ul>
 <li>
-<p>ユニークなhostname、MACアドレス、product_uuidが各ノードに必要</p>
+<p>Unique hostname, MAC address, and product_uuid for every node.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>hostname は <code>hostname</code> コマンドで確認してください。</p>
+<p>The hostname can be checked with the <code>hostname</code> command.</p>
 </li>
 <li>
-<p>MAC アドレスは <code>ip link</code> または <code>ifconfig -a</code> で確認してください。</p>
+<p>You can get the MAC address of the network interfaces using the command <code>ip link</code> or <code>ifconfig -a</code>.</p>
 </li>
 <li>
-<p>product_uuid は <code>sudo cat /sys/class/dmi/id/product_uuid</code> で確認してください。</p>
+<p>The product_uuid can be checked by using the command <code>sudo cat /sys/class/dmi/id/product_uuid</code>.</p>
 </li>
 <li>
-<p>詳細は <a href="https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">kubeadmのインストール</a>
-の「MACアドレスとproduct_uuidが全てのノードでユニークであることの検証」を参照してください。</p>
+<p>For more information, See "Verify the MAC address and product_uuid are unique for every node" section in
+<a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">Installing kubeadm</a>.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>マシン内の特定のポートがファイヤウォールで開放されていること。</p>
+<p>Certain ports are open on your machines. See here for more details.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>開放するポートの詳細は <a href="https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">必須ポートの確認</a> を参照してください。</p>
+<p>For more information on the ports to be opened, see "Check required ports" section of
+<a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">Installing kubeadm</a>.</p>
 </li>
 <li>
-<p>インストーラを使用する場合は、自動的にファイヤウォールの設定が行われます。</p>
+<p>If you use the installer, the firewall is automatically configured.</p>
+</li>
+<li>
+<p>If you use the installer, it will automatically configure the firewall for you.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Swapがオフであること。</p>
+<p>Swap disabled.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>kubeletが正常に動作するためにはswapは必ずオフでなければなりません。</p>
+<p>You MUST disable swap in order for the kubelet to work properly.</p>
 </li>
 <li>
-<p>インストーラを使用する場合は、自動的に Swap をオフにします。</p>
+<p>If you use an installer, Swap is automatically turned off.</p>
 </li>
 </ul>
 </div>
@@ -905,24 +909,24 @@ RHEL8 / CentOS8 を使用する場合、firewalld を併用することはでき
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ロードバランサ">2.3. ロードバランサ</h3>
+<h3 id="_load_balancer">2.3. Load balancer</h3>
 <div class="paragraph">
-<p>HA構成を組む場合は、L4(TCP)レベルのロードバランサが必要です。</p>
+<p>When configuring HA configuration, an L4(TCP) level load balancer is required.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>ロードバランサには DNS 解決可能な FQDN 名が設定されていること</p>
+<p>The load balancer must have a DNS-resolvable FQDN name.</p>
 </li>
 <li>
-<p>L4 レベルの負荷分散を行うこと</p>
+<p>Load balancing at the L4 level</p>
 <div class="ulist">
 <ul>
 <li>
-<p>TCP 6443 番ポートをマスターノード(3台)の TCP 6443番ポートに負荷分散すること</p>
+<p>Load balancing TCP port 6443 to same ports of the master node (three nodes).</p>
 </li>
 <li>
-<p>TCPコネクションでのヘルスチェックを行うこと</p>
+<p>Perform health checks on TCP connections.</p>
 </li>
 </ul>
 </div>
@@ -933,56 +937,56 @@ RHEL8 / CentOS8 を使用する場合、firewalld を併用することはでき
 </div>
 </div>
 <div class="sect1">
-<h2 id="_kubernetes_インストールの概要">3. Kubernetes インストールの概要</h2>
+<h2 id="_kubernetes_installation_overview">3. Kubernetes Installation Overview</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_インストール手順">3.1. インストール手順</h3>
+<h3 id="_installation_instructions">3.1. Installation Instructions</h3>
 <div class="paragraph">
-<p>インストール手順として以下の3種類があります。Ansibleインストーラの使用を推奨します。</p>
+<p>There are three different installation procedures. We recommend using the Ansible installer.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>手動インストール: <a href="https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">kubeadm</a> を使用した手動インストール</p>
+<p>Manual Installation: Manual installation using <a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">kubeadm</a></p>
 <div class="ulist">
 <ul>
 <li>
-<p>本手順は参考として提示しています。通常は <code>k8s-installer</code> インストーラを使った自動インストールを使用してください。</p>
+<p>These instructions are provided as a reference only. Normally, you can use the <code>k8s-installer</code> installer to perform an automated installation using</p>
 </li>
 <li>
-<p>詳細は <a href="#manual_install">Chapter 4, <em>手動インストール</em></a> を参照してください。</p>
+<p>Please see <a href="#manual_install">Chapter 4, <em>手動インストール</em></a> for details.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>スクリプトインストーラ: shスクリプトベースのインストーラを使用した自動インストール</p>
+<p>Script Installer: Automatic installation using the sh script-based installer</p>
 <div class="ulist">
 <ul>
 <li>
-<p>スタンドアロン・シングルマスター構成をサポートします。</p>
+<p>Standalone and single-master configurations are supported.</p>
 </li>
 <li>
-<p>本インストーラは簡易版で、Kubernetes クラスタのみをセットアップします(アプリケーション類はインストールしません)。</p>
+<p>This installer is a simplified version and only sets up the Kubernetes cluster (no applications are installed).</p>
 </li>
 <li>
-<p>詳細は <a href="#script_installer">Chapter 5, <em>スクリプトインストーラ</em></a> を参照してください。</p>
+<p>See <a href="#script_installer">Chapter 5, <em>スクリプトインストーラ</em></a> for details.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Ansibleインストーラ</p>
+<p>Ansible installer.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Ansibleを使用したクラスタ一括での自動インストールです。</p>
+<p>Automatic cluster batch installation using Ansible.</p>
 </li>
 <li>
-<p>Kubernetes だけでなく、ネットワーキング・ストレージ・アプリケーションのデプロイも実行します。</p>
+<p>Deploys networking, storage, and applications as well as Kubernetes.</p>
 </li>
 <li>
-<p>詳細は <a href="#ansible_installer">Chapter 6, <em>Ansibleインストーラ</em></a>を参照してください。</p>
+<p>See <a href="#ansible_installer">Chapter 6, <em>Ansibleインストーラ</em></a> for more information.</p>
 </li>
 </ul>
 </div>
@@ -990,9 +994,9 @@ RHEL8 / CentOS8 を使用する場合、firewalld を併用することはでき
 </ol>
 </div>
 <div class="paragraph">
-<p>また、スクリプトインストーラ・Ansibleインストーラでは、オフラインインストールにも対応しています。
-オフラインインストールでは、Internetに接続されたマシンでインストールに必要なファイルをすべて取得しておき、
-これをUSBメモリ・ハードディスクなどを使用してインストール先の環境に転送してインストールします。</p>
+<p>The script installer and Ansible installer also supports offline installation.
+In offline installation, all the files required for the installation are obtained on a machine connected to the Internet,
+and then transferred to the target machines using a USB memory stick or hard disk.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1001,20 +1005,19 @@ RHEL8 / CentOS8 を使用する場合、firewalld を併用することはでき
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-RHEL8 / CentOS8 / Ubuntu は Ansible インストーラのみ対応しています。
+Only the ansible installer is suppported for RHEL8 / CentOS8 / Ubuntu.
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_インストーラ">3.2. インストーラ</h3>
+<h3 id="_the_installers">3.2. The installers</h3>
 <div class="paragraph">
-<p>スクリプトインストーラ・Ansibleインストーラは、 <a href="https://github.com/k8s-installer/k8s-installer">k8s-installer</a>
-に含まれています。</p>
+<p>The scrip installer and ansible installer is included with <a href="https://github.com/k8s-installer/k8s-installer">k8s-installer</a>.</p>
 </div>
 <div class="paragraph">
-<p><a href="https://github.com/k8s-installer/k8s-installer/releases" class="bare">https://github.com/k8s-installer/k8s-installer/releases</a> からダウンロードしてください。</p>
+<p>You can download them from <a href="https://github.com/k8s-installer/k8s-installer/releases" class="bare">https://github.com/k8s-installer/k8s-installer/releases</a></p>
 </div>
 </div>
 </div>
@@ -1645,7 +1648,7 @@ $ sudo ./install-master-ha.sh</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_必要環境_2">6.2. 必要環境</h3>
+<h3 id="_必要環境">6.2. 必要環境</h3>
 <div class="paragraph">
 <p>Ansibleノードに Ansible 2.9 以上をインストールする必要があります。</p>
 </div>
@@ -2515,7 +2518,7 @@ registry_pvc_size: 10Gi</code></pre>
 <p>オフラインインストールファイルを生成する手順を説明します。</p>
 </div>
 <div class="sect3">
-<h4 id="_必要環境_3">10.2.1. 必要環境</h4>
+<h4 id="_必要環境_2">10.2.1. 必要環境</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2740,7 +2743,7 @@ $ sudo systemctl restart kubelet</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-07-12 00:24:19 +0900
+Last updated 2020-07-12 00:23:55 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
