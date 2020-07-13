@@ -470,42 +470,42 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_the_installers">3.2. The installers</a></li>
 </ul>
 </li>
-<li><a href="#manual_install">4. 手動インストール</a>
+<li><a href="#manual_install">4. Manual installation</a>
 <ul class="sectlevel2">
-<li><a href="#_共通手順">4.1. 共通手順</a>
+<li><a href="#_common_proceure">4.1. Common proceure</a>
 <ul class="sectlevel3">
-<li><a href="#_proxy_設定">4.1.1. Proxy 設定</a>
+<li><a href="#_proxy_configuration">4.1.1. Proxy configuration</a>
 <ul class="sectlevel4">
 <li><a href="#_yum">Yum</a></li>
 <li><a href="#_docker">Docker</a></li>
 </ul>
 </li>
-<li><a href="#_ファイヤウォール">4.1.2. ファイヤウォール</a></li>
-<li><a href="#_docker_コンテナランタイムのインストール">4.1.3. Docker コンテナランタイムのインストール</a></li>
-<li><a href="#_selinux_の無効化">4.1.4. SELinux の無効化</a></li>
-<li><a href="#_swap_の無効化">4.1.5. Swap の無効化</a></li>
-<li><a href="#_sysconfig_設定変更">4.1.6. sysconfig 設定変更</a></li>
-<li><a href="#_kubeadm_kubelet_kubectl_インストール">4.1.7. kubeadm / kubelet / kubectl インストール</a></li>
+<li><a href="#_firewall">4.1.2. Firewall</a></li>
+<li><a href="#_installing_the_docker_container_runtime">4.1.3. Installing the Docker Container Runtime</a></li>
+<li><a href="#_disble_selinux">4.1.4. Disble SELinux</a></li>
+<li><a href="#_disable_swap">4.1.5. Disable Swap</a></li>
+<li><a href="#_change_sysconfig_configuration">4.1.6. Change sysconfig configuration</a></li>
+<li><a href="#_insall_kubeadm_kubelet_kubectl">4.1.7. Insall kubeadm / kubelet / kubectl</a></li>
 </ul>
 </li>
-<li><a href="#_シングルマスター構成インストール">4.2. シングルマスター構成インストール</a>
+<li><a href="#_installing_single_master_configuration">4.2. Installing single master configuration</a>
 <ul class="sectlevel3">
-<li><a href="#_マスターノードインストール">4.2.1. マスターノードインストール</a></li>
-<li><a href="#_ネットワークアドオン">4.2.2. ネットワークアドオン</a></li>
-<li><a href="#_スケジューリング設定">4.2.3. スケジューリング設定</a></li>
+<li><a href="#_master_node_installation">4.2.1. Master Node Installation</a></li>
+<li><a href="#_network_add_on">4.2.2. Network add-on</a></li>
+<li><a href="#_scheduling_settings">4.2.3. Scheduling Settings</a></li>
 </ul>
 </li>
-<li><a href="#_ワーカーノード追加">4.3. ワーカーノード追加</a></li>
+<li><a href="#_join_worker_nodes">4.3. Join worker nodes</a></li>
 </ul>
 </li>
-<li><a href="#script_installer">5. スクリプトインストーラ</a>
+<li><a href="#script_installer">5. Script based installer</a>
 <ul class="sectlevel2">
-<li><a href="#_設定">5.1. 設定</a></li>
-<li><a href="#_docker_kubeadm_インストール">5.2. Docker / kubeadm インストール</a></li>
-<li><a href="#_マスターノードのインストール">5.3. マスターノードのインストール</a></li>
-<li><a href="#_ha構成_残りのマスターノードのインストール">5.4. HA構成: 残りのマスターノードのインストール</a></li>
-<li><a href="#_ワーカーノードのインストール">5.5. ワーカーノードのインストール</a></li>
-<li><a href="#_インストール後の確認">5.6. インストール後の確認</a></li>
+<li><a href="#_configuration">5.1. Configuration</a></li>
+<li><a href="#_installing_docker_kubeadm">5.2. Installing Docker / kubeadm</a></li>
+<li><a href="#_installing_master_node">5.3. Installing master node</a></li>
+<li><a href="#_ha_configuration_installing_the_rest_of_the_master_node">5.4. HA configuration: Installing the rest of the master node</a></li>
+<li><a href="#_installing_worker_nodes">5.5. Installing worker nodes.</a></li>
+<li><a href="#_confirmation_after_installation">5.6. Confirmation after installation</a></li>
 </ul>
 </li>
 <li><a href="#ansible_installer">6. Ansible Installer</a>
@@ -518,7 +518,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_ansible_installation_instructions">6.2.3. Ansible installation instructions</a></li>
 </ul>
 </li>
-<li><a href="#_configuration">6.3. Configuration</a>
+<li><a href="#_configuration_2">6.3. Configuration</a>
 <ul class="sectlevel3">
 <li><a href="#_inventory_file">6.3.1. Inventory file</a></li>
 <li><a href="#_define_variables">6.3.2. Define variables</a></li>
@@ -538,7 +538,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#networking">7. Networking</a>
 <ul class="sectlevel2">
-<li><a href="#_firewall">7.1. Firewall</a></li>
+<li><a href="#_firewall_2">7.1. Firewall</a></li>
 <li><a href="#_metallb">7.2. MetalLB</a></li>
 </ul>
 </li>
@@ -577,7 +577,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel3">
 <li><a href="#_requirements_4">10.2.1. Requirements</a></li>
 <li><a href="#_preparation">10.2.2. Preparation</a></li>
-<li><a href="#_proxy_configuration">10.2.3. Proxy configuration</a>
+<li><a href="#_proxy_configuration_2">10.2.3. Proxy configuration</a>
 <ul class="sectlevel4">
 <li><a href="#_yum_2">yum</a></li>
 <li><a href="#_docker_2">Docker</a></li>
@@ -590,28 +590,28 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_ansible_installer">10.4. Ansible installer</a></li>
 </ul>
 </li>
-<li><a href="#_クラスタのアップグレード">11. クラスタのアップグレード</a>
+<li><a href="#_upgrading_cluster">11. Upgrading cluster</a>
 <ul class="sectlevel2">
-<li><a href="#_注意事項">11.1. 注意事項</a></li>
-<li><a href="#_ansibleインストーラ">11.2. Ansibleインストーラ</a>
+<li><a href="#_notes">11.1. Notes</a></li>
+<li><a href="#_ansible_installer_2">11.2. Ansible installer</a>
 <ul class="sectlevel3">
-<li><a href="#_オフラインインストール準備">11.2.1. オフラインインストール準備</a></li>
-<li><a href="#_バージョン設定">11.2.2. バージョン設定</a></li>
-<li><a href="#_アップグレードの実行">11.2.3. アップグレードの実行</a></li>
+<li><a href="#_prepare_for_offline_installation">11.2.1. Prepare for offline installation</a></li>
+<li><a href="#_set_up_version">11.2.2. Set up version</a></li>
+<li><a href="#_performing_upgrades">11.2.3. Performing Upgrades</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_運用">12. 運用</a>
+<li><a href="#_operations">12. Operations</a>
 <ul class="sectlevel2">
-<li><a href="#_証明書の更新">12.1. 証明書の更新</a>
+<li><a href="#_renewal_of_certificates">12.1. Renewal of certificates</a>
 <ul class="sectlevel3">
-<li><a href="#_証明書の自動更新">12.1.1. 証明書の自動更新</a></li>
-<li><a href="#_証明書有効期限の確認">12.1.2. 証明書有効期限の確認</a></li>
-<li><a href="#_証明書の手動更新">12.1.3. 証明書の手動更新</a>
+<li><a href="#_automatic_renewal_of_certificates">12.1.1. Automatic renewal of certificates</a></li>
+<li><a href="#_verification_of_certificate_expiration_date">12.1.2. Verification of Certificate Expiration Date</a></li>
+<li><a href="#_manual_certificate_update">12.1.3. Manual certificate update</a>
 <ul class="sectlevel4">
-<li><a href="#_ansible_インストーラを使用している場合">Ansible インストーラを使用している場合</a></li>
-<li><a href="#_スクリプトインストーラを使用している場合">スクリプトインストーラを使用している場合</a></li>
+<li><a href="#_if_you_are_using_the_ansible_installer">If you are using the Ansible installer</a></li>
+<li><a href="#_if_you_are_using_the_script_based_installer">If you are using the script based installer</a></li>
 </ul>
 </li>
 </ul>
@@ -954,7 +954,7 @@ You can&#8217;t use firewalld for RHEL8 / CentOS8.
 <p>These instructions are provided as a reference only. Normally, you can use the <code>k8s-installer</code> installer to perform an automated installation using</p>
 </li>
 <li>
-<p>Please see <a href="#manual_install">Chapter 4, <em>手動インストール</em></a> for details.</p>
+<p>Please see <a href="#manual_install">Chapter 4, <em>Manual installation</em></a> for details.</p>
 </li>
 </ul>
 </div>
@@ -970,7 +970,7 @@ You can&#8217;t use firewalld for RHEL8 / CentOS8.
 <p>This installer is a simplified version and only sets up the Kubernetes cluster (no applications are installed).</p>
 </li>
 <li>
-<p>See <a href="#script_installer">Chapter 5, <em>スクリプトインストーラ</em></a> for details.</p>
+<p>See <a href="#script_installer">Chapter 5, <em>Script based installer</em></a> for details.</p>
 </li>
 </ul>
 </div>
@@ -1023,14 +1023,13 @@ Only the ansible installer is suppported for RHEL8 / CentOS8 / Ubuntu.
 </div>
 </div>
 <div class="sect1">
-<h2 id="manual_install">4. 手動インストール</h2>
+<h2 id="manual_install">4. Manual installation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>本章では手動で Kubernetes をインストールする手順ついて説明します。</p>
+<p>This chapter describes the steps to install Kubernetes manually.</p>
 </div>
 <div class="paragraph">
-<p>なお、本項目の手順は <a href="https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">kubeadmのインストール</a>
-手順に準じています。</p>
+<p>The procedures of this chapter are base on <a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">Installing kubeadm</a></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1039,28 +1038,28 @@ Only the ansible installer is suppported for RHEL8 / CentOS8 / Ubuntu.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-本手順は RHEL7 / CentOS7 のみ対応しています。
+This procedure is only supported on RHEL7 / CentOS7.
 </td>
 </tr>
 </table>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="title">Ansibleインストーラの利用を推奨します</div>
+<div class="title">The Ansible installer is recommended</div>
 <div class="paragraph">
-<p>手動インストール手順は、<strong>参考用</strong>として提示しています。</p>
+<p>Manual installation instructions are shown <strong>for reference only</strong>.</p>
 </div>
 <div class="paragraph">
-<p>通常はインストーラ(推奨はAnsibleインストーラ)を使用して自動インストールを行ってください。
-インストーラはここに示す手順を自動的に実行するようになっています。</p>
+<p>Normally, you should use an installer (recommended by the Ansible installer) to perform an automated installation.
+The installer is designed to automatically perform the steps shown here.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_共通手順">4.1. 共通手順</h3>
+<h3 id="_common_proceure">4.1. Common proceure</h3>
 <div class="paragraph">
-<p>Kubernetes のインストールに先立ち実施が必要な共通手順を説明します。
-本手順はどの構成を使用する場合であっても全マシンについて実施する必要があります。</p>
+<p>This section describes the common steps that must be performed prior to installing Kubernetes.
+This procedure must be performed on all machines, no matter which configuration you use.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1069,20 +1068,20 @@ Only the ansible installer is suppported for RHEL8 / CentOS8 / Ubuntu.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-本手順はすべて root 権限で実行する必要があります。<code>sudo bash</code> してから実行するなどしてください。
+All of these steps must be performed with root privileges. Execute <code>sudo -i</code> and then execute it.
 </td>
 </tr>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_proxy_設定">4.1.1. Proxy 設定</h4>
+<h4 id="_proxy_configuration">4.1.1. Proxy configuration</h4>
 <div class="paragraph">
-<p>インターネット接続に Proxy サーバ経由が必要な場合は、以下の手順が必要です。</p>
+<p>If you need to connect to the Internet via a proxy server, you need to do the following.</p>
 </div>
 <div class="sect4">
 <h5 id="_yum">4.1.1.1. Yum</h5>
 <div class="paragraph">
-<p>/etc/yum.conf に以下の一行を追加してください。</p>
+<p>Add following line to <code>/etc/yum.conf</code></p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1090,13 +1089,13 @@ Only the ansible installer is suppported for RHEL8 / CentOS8 / Ubuntu.
 </div>
 </div>
 <div class="paragraph">
-<p>{PROXY_URL} には、プロキシサーバのURLを <code>http://[proxy_hostname]:[proxy_port]</code> 形式で指定してください。</p>
+<p>Set proxy server URL to {PROXY_URL} in <code>http://[proxy_hostname]:[proxy_port]</code> format.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_docker">4.1.1.2. Docker</h5>
 <div class="paragraph">
-<p>/etc/systemd/system/docker.service.d/http-proxy.conf を以下の手順で作成してください。</p>
+<p>Create <code>/etc/systemd/system/docker.service.d/http-proxy.conf</code> file as:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1111,16 +1110,15 @@ EOF</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_ファイヤウォール">4.1.2. ファイヤウォール</h4>
+<h4 id="_firewall">4.1.2. Firewall</h4>
 <div class="paragraph">
-<p>ファイヤウォールについては、無効化するか、以下に示すInbound TCPポートをすべて開放する必要があります。
-開放するポートの詳細は <a href="https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">必須ポートの確認</a>
-を参照してください。</p>
+<p>You must disable the firewall, or open all of the Inbound TCP ports listed below.
+For more information on the ports to be opened, see <a href="https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">Check required ports</a>.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>マスターノード</p>
+<p>Master nodes</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1136,7 +1134,7 @@ EOF</pre>
 </div>
 </li>
 <li>
-<p>ワーカーノード</p>
+<p>Worker nodes</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1151,7 +1149,7 @@ EOF</pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>開放する手順は以下の通りです。</p>
+<p>The steps to open ports are as follows:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1169,12 +1167,12 @@ firewall-cmd --reload</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_docker_コンテナランタイムのインストール">4.1.3. Docker コンテナランタイムのインストール</h4>
+<h4 id="_installing_the_docker_container_runtime">4.1.3. Installing the Docker Container Runtime</h4>
 <div class="paragraph">
-<p>コンテナランタイムとして、RHEL7/CentOS7標準の Docker を使用します。</p>
+<p>Use the RHEL7/CentOS7 standard Docker as the container runtime.</p>
 </div>
 <div class="paragraph">
-<p>RHEL7 の場合は、rhel-7-server-extra-rpms リポジトリを有効にしてください。</p>
+<p>For RHEL7, enable the rhel-7-server-extra-rpms repository.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1182,7 +1180,7 @@ firewall-cmd --reload</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>以下手順で docker をインストール・起動してください。</p>
+<p>Follow the steps below to install and start the docker.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1192,9 +1190,9 @@ systemctl enable --now docker</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_selinux_の無効化">4.1.4. SELinux の無効化</h4>
+<h4 id="_disble_selinux">4.1.4. Disble SELinux</h4>
 <div class="paragraph">
-<p>SELinux を無効化してください。</p>
+<p>Disable SELinux</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1204,9 +1202,9 @@ sed -i 's/^SELINUX=enforcing$/SELINUX=disabled/' /etc/selinux/config</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_swap_の無効化">4.1.5. Swap の無効化</h4>
+<h4 id="_disable_swap">4.1.5. Disable Swap</h4>
 <div class="paragraph">
-<p>Swap が無効化されていない場合は無効化してください。</p>
+<p>If Swap is not disabled, disable it.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1214,8 +1212,8 @@ sed -i 's/^SELINUX=enforcing$/SELINUX=disabled/' /etc/selinux/config</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>また /etc/fstab を確認し、swap 設定が存在する場合はその行を無効化してください。
-以下に手順例を示します。</p>
+<p>Also, check <code>/etc/fstab</code> and disable the swap setting.
+Here&#8217;s an example.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1224,9 +1222,9 @@ sed -i 's/^SELINUX=enforcing$/SELINUX=disabled/' /etc/selinux/config</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_sysconfig_設定変更">4.1.6. sysconfig 設定変更</h4>
+<h4 id="_change_sysconfig_configuration">4.1.6. Change sysconfig configuration</h4>
 <div class="paragraph">
-<p>ネットワークをブリッジできるよう、sysctl の設定を変更します。</p>
+<p>Modify sysctl settings to enable bridge the network.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1239,9 +1237,9 @@ sysctl --system</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_kubeadm_kubelet_kubectl_インストール">4.1.7. kubeadm / kubelet / kubectl インストール</h4>
+<h4 id="_insall_kubeadm_kubelet_kubectl">4.1.7. Insall kubeadm / kubelet / kubectl</h4>
 <div class="paragraph">
-<p>kubeadm / kubelet / kubectl を以下手順でインストールし、kubelet を起動してください。</p>
+<p>Install kubeadm / kubelet / kubectl and start kubelet.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1261,7 +1259,7 @@ systemctl enable --now kubelet</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>kubeadm / kubelet / kubectl が更新されないよう、バージョンロックを掛けてください。</p>
+<p>Lock version of the kubeadm / kubelet / kubectl to avoid upgrading.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1272,14 +1270,14 @@ yum versionlock add kubeadm kubelet kubectl</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_シングルマスター構成インストール">4.2. シングルマスター構成インストール</h3>
+<h3 id="_installing_single_master_configuration">4.2. Installing single master configuration</h3>
 <div class="paragraph">
-<p>シングルマスター構成のインストール手順を示します。</p>
+<p>Here are the installation steps for a single master configuration.</p>
 </div>
 <div class="sect3">
-<h4 id="_マスターノードインストール">4.2.1. マスターノードインストール</h4>
+<h4 id="_master_node_installation">4.2.1. Master Node Installation</h4>
 <div class="paragraph">
-<p>マスターノードに Kubernetes コントロールプレーンをインストールします。</p>
+<p>Install the Kubernetes control plane on the master node.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1287,11 +1285,11 @@ yum versionlock add kubeadm kubelet kubectl</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>ここでは Pod を動作させるネットワークアドレス(CIDR)として 192.168.0.0/16 を使用しています。
-使用中のアドレスと衝突している場合は、適宜変更が必要です。</p>
+<p>The network address (CIDR) for the pod is 192.168.0.0/16.
+If there is a conflict with your current address, you may need to change it accordingly.</p>
 </div>
 <div class="paragraph">
-<p>インストールは数分で完了します。画面には以下のようなログが表示されるはずです。</p>
+<p>The installation takes a few minutes. You should see a log on your screen that looks like this.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1319,11 +1317,11 @@ as root:
 </div>
 </div>
 <div class="paragraph">
-<p>上記の末尾に表示される <code>kubadm join&#8230;&#8203;</code> の表示は保存(ファイルに保存するなど)してください。
-<code>kubeadm join</code> 手順はワーカーノードが Kubernetes クラスタに参加する際に必要になります。</p>
+<p>The message <code>kubadm join&#8230;&#8203;' shown at the end of the above should be saved (to file etc).
+The `kubeadm join&#8230;&#8203;</code> procedure is necessary for worker nodes to join the Kubernetes cluster.</p>
 </div>
 <div class="paragraph">
-<p>上記手順に従い、~/.kube/config を作成してください。</p>
+<p>Follow the above instructions to create ~/.kube/config.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1333,7 +1331,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>以下手順で Kubernetes クラスタに正常に接続できることを確認してください。</p>
+<p>Make sure you can connect to your Kubernetes cluster successfully by following these steps.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1342,12 +1340,12 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_ネットワークアドオン">4.2.2. ネットワークアドオン</h4>
+<h4 id="_network_add_on">4.2.2. Network add-on</h4>
 <div class="paragraph">
-<p>Podネットワークアドオンをインストールします。本手順書では、 <a href="https://www.projectcalico.org/">Calico</a> を採用しています。</p>
+<p>Install the Pod Network Add-on. This procedure uses <a href="https://www.projectcalico.org/">Calico</a>.</p>
 </div>
 <div class="paragraph">
-<p>以下手順で Calico をインストールしてください。</p>
+<p>Please install Calico by following the steps below.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1356,10 +1354,10 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_スケジューリング設定">4.2.3. スケジューリング設定</h4>
+<h4 id="_scheduling_settings">4.2.3. Scheduling Settings</h4>
 <div class="paragraph">
-<p>スタンドアロン構成の場合のみ、マスターノードをスケジュール可能に変更します。
-これを実施しないと、マスターノード上でワークロードを実行できません。</p>
+<p>Change the master node to be schedulable only in a standalone configuration.
+Failure to do so prevents workloads from running on the master node.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1369,9 +1367,9 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ワーカーノード追加">4.3. ワーカーノード追加</h3>
+<h3 id="_join_worker_nodes">4.3. Join worker nodes</h3>
 <div class="paragraph">
-<p>各ワーカーノードで以下を実行し、ワーカーノードを Kubernetes クラスタに接続します。</p>
+<p>Join the worker nodes to your Kubernetes cluster by doing the following on each worker node.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1379,11 +1377,11 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>ここで <code>kubeadm join</code> に指定する引数は、マスターノードのインストール時に表示された内容をそのまま利用してください。</p>
+<p>The argument for <code>kubeadm join</code> should be the one shown on the master node installation.</p>
 </div>
 <div class="paragraph">
-<p><code>kubeadm join</code> の内容を忘れてしまった場合、あるいは24時間以上経過して token が無効になってしまった場合は、
-マスターノード上で以下手順を実行することで token の再生成と <code>kubeadm join</code> コマンド再取得が可能です。</p>
+<p>If you forget the contents of the <code>kubeadm join</code> or the token has become invalid after 24 hours,
+you can regenerate the token and perform the following steps on the master node.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1394,68 +1392,67 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="script_installer">5. スクリプトインストーラ</h2>
+<h2 id="script_installer">5. Script based installer</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>スクリプトインストーラを使用したインストール手順について説明します。
-スクリプトインストーラは <code>k8s-installer</code> の <code>script</code> ディレクトリに格納されています。</p>
+<p>This document explains how to install using the script based installer.
+The script installer is located in the <code>script</code> directory of the <code>k8s-installer</code>.</p>
 </div>
 <div class="paragraph">
-<p>スクリプトインストーラを使用する場合は、各マシン上にインストーラを展開し、各マシン上でそれぞれインストール
-作業を行う必要があります。</p>
+<p>If you use the script installer, you will need to deploy the installer on each machine and perform the installation on each machine.</p>
 </div>
 <div class="sect2">
-<h3 id="_設定">5.1. 設定</h3>
+<h3 id="_configuration">5.1. Configuration</h3>
 <div class="paragraph">
-<p><code>config.sample.sh</code> を <code>config.sh</code> にコピーし、設定を行ってください。</p>
+<p>Copy <code>config.sample.sh</code> to <code>config.sh</code> and configure.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>HA構成にする場合:</p>
+<p>In case of HA configuration:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>ロードバランサのDNS名(FQDN)とポート番号をを <code>LOAD_BALANCER_DNS</code>, <code>LOAD_BALANCER_PORT</code> に指定してください。</p>
+<p>Set DNS name (FQDN) and port number of the load balancer to <code>LOAD_BALANCER_DNS</code> and <code>LOAD_BALANCER_PORT</code>.</p>
 </li>
 <li>
-<p>ロードバランサは、指定したポートを全マスターノードにL4負荷分散するよう設定しておく必要があります。</p>
+<p>The load balancer should be configured to load-balance L4 to all master nodes on the specified ports.</p>
 </li>
 <li>
-<p>詳細は <a href="https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/high-availability/">kubeadmを使用した高可用性クラスターの作成</a> を参照してください。</p>
+<p>For more information, see <a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/">Creating Highly Available clusters with kubeadm</a>.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Internet接続に Proxy を経由する必要がある場合は、<code>PROXY_URL</code>, <code>NO_PROXY</code> の値を設定してください。</p>
+<p>If your Internet connection needs to go through a proxy, set the values of <code>PROXY_URL</code> and <code>NO_PROXY</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>NO_PROXY には必ず kube-apiserver の IPアドレスまたはDNS名を指定しなければなりません。
-シングルホストの場合はマスターノードの、HA構成の場合はロードバランサの値を指定してください。
-これが適切に設定されていないとマスターノードのインストールが失敗します。</p>
+<p>NO_PROXY must have the IP address or DNS name of kube-apiserver.
+Specify the value of the master node in the case of a single host configuration, or the value of the load balancer in the case of HA configuration.
+If this is not properly configured, the master node installation will fail.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>オフラインインストールを行う場合は、<code>OFFLINE_INSTALL</code> を <code>yes</code> に設定してください。詳細は後述します。</p>
+<p>If you want to do an offline installation, set <code>OFFLINE_INSTALL</code> to <code>yes</code>. Details are discussed later.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_docker_kubeadm_インストール">5.2. Docker / kubeadm インストール</h3>
+<h3 id="_installing_docker_kubeadm">5.2. Installing Docker / kubeadm</h3>
 <div class="paragraph">
-<p>Docker, kubeadm などをインストールします。</p>
+<p>Install Docker, kubeadm and others.</p>
 </div>
 <div class="paragraph">
-<p>本手順はマスター・ワーカー全マシン上でそれぞれ行う必要があります。</p>
+<p>This procedure must be done on all master and worker nodes.</p>
 </div>
 <div class="paragraph">
-<p>sudo 可能な一般ユーザ権限でログインしてください(root での直接ログインは不可)。
-以下手順でインストールを実行してください。</p>
+<p>Log in as a regular user with possible to use sudo (no direct root login).
+Follow these steps to perform the installation:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1464,31 +1461,31 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_マスターノードのインストール">5.3. マスターノードのインストール</h3>
+<h3 id="_installing_master_node">5.3. Installing master node</h3>
 <div class="paragraph">
-<p>マスターノードに Kubernetes マスターコントロールプレーンをインストールします。</p>
+<p>Install Kubernetes master control plane on master node.</p>
 </div>
 <div class="paragraph">
-<p>マスターノード(HA構成の場合は1台目のマスターノード)にログインし、以下手順を実行してください。</p>
+<p>Log in to the master node (the first master node in the HA configuration) and perform the following procedures.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre># シングルマスター構成の場合
+<pre># For single master configuration
 $ sudo ./install-master-single.sh</pre>
 </div>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre># HA構成の場合(1台目のマスターノード)
+<pre># For HA configuration (the first master node)
 $ sudo ./install-master-ha.sh</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>インストールには数分かかります。
-画面にワーカーノードを join するための <code>kubeadm join</code> コマンドラインが表示されるので、メモしてください。</p>
+<p>The installation takes a few minutes.
+Please take note that you will see a <code>kubeadm join</code> command line on the screen to join worker nodes.</p>
 </div>
 <div class="paragraph">
-<p>インストールが完了したら、以下手順で ~/.kube/config をインストールします。</p>
+<p>Once the installation is complete, follow these steps to install ~/.kube/config</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1496,10 +1493,10 @@ $ sudo ./install-master-ha.sh</pre>
 </div>
 </div>
 <div class="paragraph">
-<p><code>kubectl cluster-info</code> を実施し、正常にコントロールプレーンが動作していることを確認します。</p>
+<p>Execute <code>kubectl cluster-info</code> and verify that the control plane is operating normally.</p>
 </div>
 <div class="paragraph">
-<p>最後に calico ネットワークアドオンをインストールします。</p>
+<p>Finally, install the calico network add-on.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1508,27 +1505,26 @@ $ sudo ./install-master-ha.sh</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ha構成_残りのマスターノードのインストール">5.4. HA構成: 残りのマスターノードのインストール</h3>
+<h3 id="_ha_configuration_installing_the_rest_of_the_master_node">5.4. HA configuration: Installing the rest of the master node</h3>
 <div class="paragraph">
-<p>HA構成の2台目以降のマスターノードのインストール手順は、
-<a href="https://kubernetes.io/ja/docs/setup/production-environment/tools/kubeadm/high-availability/">kubeadmを使用した高可用性クラスターの作成</a>
-の「残りのコントロールプレーンノードの手順」を参照してください。</p>
+<p>See "Steps for the rest of the control plane nodes" section of
+<a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/">Creating Highly Available clusters with kubeadm</a>
+for installation instructions for the second and subsequent master nodes in an HA configuration.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ワーカーノードのインストール">5.5. ワーカーノードのインストール</h3>
+<h3 id="_installing_worker_nodes">5.5. Installing worker nodes.</h3>
 <div class="paragraph">
-<p>各ワーカーノードにログインし、上記取得した <code>kubeadm join</code> コマンドを sudo 付きで実行し、
-ノードを Kubernetes クラスタに参加させてください。</p>
+<p>Login to each worker node and execute the above obtained <code>kubeadm join</code> command with sudo to join the node to the Kubernetes cluster.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_インストール後の確認">5.6. インストール後の確認</h3>
+<h3 id="_confirmation_after_installation">5.6. Confirmation after installation</h3>
 <div class="paragraph">
-<p>マスターノード上で <code>kubectl get nodes</code> を実行し、全ノードが追加されていて Ready になっていることを確認してください。</p>
+<p>Run <code>kubectl get nodes</code> on the master node to make sure that all nodes are added and ready.</p>
 </div>
 <div class="paragraph">
-<p>また、<code>kubectl get all -n kube-system</code> を実行し、Podがすべて正常に起動していることを確認してください。</p>
+<p>Also, run <code>kubectl get all -n kube-system</code> on the master node and make sure that all the pods are running normally.</p>
 </div>
 </div>
 </div>
@@ -1788,7 +1784,7 @@ $ python3 -m venv $HOME/venv</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configuration">6.3. Configuration</h3>
+<h3 id="_configuration_2">6.3. Configuration</h3>
 <div class="paragraph">
 <p>Log in to the Ansible node as a working user.
 Extract the installer and perform the following tasks.</p>
@@ -2079,7 +2075,7 @@ However, it is usually recommended that you go through them step by step.</p>
 <h2 id="networking">7. Networking</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_firewall">7.1. Firewall</h3>
+<h3 id="_firewall_2">7.1. Firewall</h3>
 <div class="paragraph">
 <p>The firewall (firewalld) on each node is disabled by default.</p>
 </div>
@@ -2547,7 +2543,7 @@ and then transferred to the target machine using a USB memory or hard disk.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_proxy_configuration">10.2.3. Proxy configuration</h4>
+<h4 id="_proxy_configuration_2">10.2.3. Proxy configuration</h4>
 <div class="paragraph">
 <p>If your Internet connection needs to go through a proxy server, you need to set up proxy settings beforehand.</p>
 </div>
@@ -2614,52 +2610,51 @@ When you run the installation in this state, an offline installation will be per
 </div>
 </div>
 <div class="sect1">
-<h2 id="_クラスタのアップグレード">11. クラスタのアップグレード</h2>
+<h2 id="_upgrading_cluster">11. Upgrading cluster</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Kubernetes クラスタのアップグレード手順を説明します。</p>
+<p>The steps to upgrade your Kubernetes cluster.</p>
 </div>
 <div class="sect2">
-<h3 id="_注意事項">11.1. 注意事項</h3>
+<h3 id="_notes">11.1. Notes</h3>
 <div class="paragraph">
-<p>Kubernetes クラスタは一度にバージョン 0.1 ずつしかアップグレードできません。</p>
+<p>You can only upgrade your Kubernetes cluster to version 0.1 at a time.</p>
 </div>
 <div class="paragraph">
-<p>詳細は <a href="https://kubernetes.io/ja/docs/setup/release/version-skew-policy/">Kubernetesバージョンとバージョンスキューサポートポリシー</a>
-を参照してください。</p>
+<p>For more information, see <a href="https://kubernetes.io/docs/setup/release/version-skew-policy/">Kubernetes version and version skew support policy</a>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ansibleインストーラ">11.2. Ansibleインストーラ</h3>
+<h3 id="_ansible_installer_2">11.2. Ansible installer</h3>
 <div class="paragraph">
-<p>Ansibleインストーラを使用している場合、自動でアップグレードを行うことができます。</p>
+<p>If you are using the the Ansible installer, the upgrade can be done automatically.</p>
 </div>
 <div class="sect3">
-<h4 id="_オフラインインストール準備">11.2.1. オフラインインストール準備</h4>
+<h4 id="_prepare_for_offline_installation">11.2.1. Prepare for offline installation</h4>
 <div class="paragraph">
-<p>オフラインインストールを使用している場合は、事前にオフラインインストールファイルの取得・展開が必要です。</p>
+<p>If you are using an offline installation, you must obtain and extract the offline installation file in advance.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_バージョン設定">11.2.2. バージョン設定</h4>
+<h4 id="_set_up_version">11.2.2. Set up version</h4>
 <div class="paragraph">
-<p>inventory/group_vars/all/version.yml の以下の値を変更してください。</p>
+<p>Change following variables in <code>inventory/group_vars/all/version.yml</code> file.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>kube_version: Kubernetes のバージョン</p>
+<p>kube_version: Version of the Kubernetes.</p>
 </li>
 <li>
-<p>kubeadm_version, kubelet_version, kubectl_version: kubeadm, kubelet, kubectl のバージョン (RPMバージョン)</p>
+<p>kubeadm_version, kubelet_version, kubectl_version: Versions of kubeadm, kubelet, kubectl (RPM version)</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_アップグレードの実行">11.2.3. アップグレードの実行</h4>
+<h4 id="_performing_upgrades">11.2.3. Performing Upgrades</h4>
 <div class="paragraph">
-<p>以下手順でマスターノードをアップグレードしてください。</p>
+<p>Follow the steps below to upgrade the master nodes.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2667,7 +2662,7 @@ When you run the installation in this state, an offline installation will be per
 </div>
 </div>
 <div class="paragraph">
-<p>以下手順でワーカーノードをアップグレードしてください。</p>
+<p>Follow the steps below to upgrade the worker nodes.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2679,30 +2674,28 @@ When you run the installation in this state, an offline installation will be per
 </div>
 </div>
 <div class="sect1">
-<h2 id="_運用">12. 運用</h2>
+<h2 id="_operations">12. Operations</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_証明書の更新">12.1. 証明書の更新</h3>
+<h3 id="_renewal_of_certificates">12.1. Renewal of certificates</h3>
 <div class="paragraph">
-<p>Kubernetes のサーバ証明書・クライアント証明書は有効期限が1年となっているため、
-定期的に証明書の更新を行わなければなりません。</p>
+<p>Kubernetes server and client certificates are valid for one year, so you have to renew your certificates periodically.</p>
 </div>
 <div class="paragraph">
-<p>詳細は <a href="https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-certs/">Certificate Management with kubeadm</a> を参照してください。</p>
+<p>For more information, see <a href="https://kubernetes.io/docs/tasks/administer-cluster/kubeadm/kubeadm-certs/">Certificate Management with kubeadm</a>.</p>
 </div>
 <div class="sect3">
-<h4 id="_証明書の自動更新">12.1.1. 証明書の自動更新</h4>
+<h4 id="_automatic_renewal_of_certificates">12.1.1. Automatic renewal of certificates</h4>
 <div class="paragraph">
-<p>Kubernetes のアップグレードを行った際に、kubeadm が自動的に証明書を更新するようになっています。
-Kubernetes は数ヶ月に1度マイナーバージョンアップされるため、
-これに合わせて定期的にアップグレードを行えば証明書期限が切れることはありません。
-(これがセキュリティを維持するためのベストプラクティスです)</p>
+<p>When you upgrade Kubernetes, kubeadm will automatically update your certificates.
+Kubernetes gets a minor upgrade every few months, so if you upgrade regularly in conjunction with this, your certificate will not expire.
+(It is a best practice to upgrade your cluster frequently in order to stay secure.)</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_証明書有効期限の確認">12.1.2. 証明書有効期限の確認</h4>
+<h4 id="_verification_of_certificate_expiration_date">12.1.2. Verification of Certificate Expiration Date</h4>
 <div class="paragraph">
-<p>各マスターノードで以下手順を実行することで有効期限を確認できます。</p>
+<p>You can check the expiration date by performing the following procedure on each master node.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2711,15 +2704,15 @@ Kubernetes は数ヶ月に1度マイナーバージョンアップされるた�
 </div>
 </div>
 <div class="sect3">
-<h4 id="_証明書の手動更新">12.1.3. 証明書の手動更新</h4>
+<h4 id="_manual_certificate_update">12.1.3. Manual certificate update</h4>
 <div class="paragraph">
-<p>以下手順で証明書を手動更新することができます。</p>
+<p>You can manually update your certificate by following the steps below.</p>
 </div>
 <div class="sect4">
-<h5 id="_ansible_インストーラを使用している場合">12.1.3.1. Ansible インストーラを使用している場合</h5>
+<h5 id="_if_you_are_using_the_ansible_installer">12.1.3.1. If you are using the Ansible installer</h5>
 <div class="paragraph">
-<p><code>renew-server-certs</code> playbook を使用して、全マスターノードの証明書を手動更新できます。
-全証明書が有効期限1年で再生成されます。</p>
+<p>You can use the <code>renew-server-certs</code> playbook to manually update the certificates on all master nodes.
+All certificates are regenerated with an expiration date of one year.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2728,9 +2721,9 @@ Kubernetes は数ヶ月に1度マイナーバージョンアップされるた�
 </div>
 </div>
 <div class="sect4">
-<h5 id="_スクリプトインストーラを使用している場合">12.1.3.2. スクリプトインストーラを使用している場合</h5>
+<h5 id="_if_you_are_using_the_script_based_installer">12.1.3.2. If you are using the script based installer</h5>
 <div class="paragraph">
-<p>全マスターノード上で、それぞれ以下手順を実行してください。</p>
+<p>Perform the following procedures on all master nodes.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2748,7 +2741,7 @@ $ sudo systemctl restart kubelet</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-07-13 21:47:45 +0900
+Last updated 2020-07-13 22:26:25 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">

@@ -1066,7 +1066,7 @@ RHEL8 / CentOS8 / Ubuntu は Ansible インストーラのみ対応していま�
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-本手順はすべて root 権限で実行する必要があります。<code>sudo bash</code> してから実行するなどしてください。
+本手順はすべて root 権限で実行する必要があります。<code>sudo -i</code> してから実行するなどしてください。
 </td>
 </tr>
 </table>
@@ -1542,7 +1542,7 @@ $ sudo ./install-master-ha.sh</pre>
 なお、マスターノード・ワーカーノードのいずれかを Ansibleノードとして兼用しても構いません。</p>
 </div>
 <div class="paragraph">
-<p>本手順は <code>k8s-installer</code> の ansible ディレクトリで作業してください。</p>
+<p>本手順は <code>k8s-installer</code> の <code>ansible</code> ディレクトリで作業してください。</p>
 </div>
 <div class="sect2">
 <h3 id="_仕様">6.1. 仕様</h3>
