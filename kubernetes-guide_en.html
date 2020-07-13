@@ -508,92 +508,92 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_インストール後の確認">5.6. インストール後の確認</a></li>
 </ul>
 </li>
-<li><a href="#ansible_installer">6. Ansibleインストーラ</a>
+<li><a href="#ansible_installer">6. Ansible Installer</a>
 <ul class="sectlevel2">
-<li><a href="#_仕様">6.1. 仕様</a></li>
-<li><a href="#_必要環境">6.2. 必要環境</a>
+<li><a href="#_specifications">6.1. Specifications</a></li>
+<li><a href="#_requirements_2">6.2. Requirements</a>
 <ul class="sectlevel3">
-<li><a href="#_ssh_公開鍵認証のセットアップ手順">6.2.1. ssh 公開鍵認証のセットアップ手順</a></li>
+<li><a href="#_instructions_for_setting_up_ssh_public_key_authentication">6.2.1. Instructions for setting up ssh public key authentication</a></li>
 <li><a href="#_ssh_agent">6.2.2. ssh-agent</a></li>
-<li><a href="#_ansible_のインストール手順">6.2.3. Ansible のインストール手順</a></li>
+<li><a href="#_ansible_installation_instructions">6.2.3. Ansible installation instructions</a></li>
 </ul>
 </li>
-<li><a href="#_設定_2">6.3. 設定</a>
+<li><a href="#_configuration">6.3. Configuration</a>
 <ul class="sectlevel3">
-<li><a href="#_インベントリ">6.3.1. インベントリ</a></li>
-<li><a href="#_変数設定">6.3.2. 変数設定</a></li>
+<li><a href="#_inventory_file">6.3.1. Inventory file</a></li>
+<li><a href="#_define_variables">6.3.2. Define variables</a></li>
 </ul>
 </li>
-<li><a href="#_インストール">6.4. インストール</a>
+<li><a href="#_install">6.4. Install</a>
 <ul class="sectlevel3">
-<li><a href="#_共通処理">6.4.1. 共通処理</a></li>
-<li><a href="#_1台目のマスターノードへの_kubernetes_デプロイ">6.4.2. 1台目のマスターノードへの Kubernetes デプロイ</a></li>
-<li><a href="#_2台目以降のマスターノードへのデプロイ">6.4.3. 2台目以降のマスターノードへのデプロイ</a></li>
-<li><a href="#_ワーカーノードへのデプロイ">6.4.4. ワーカーノードへのデプロイ</a></li>
-<li><a href="#_ネットワークストレージアプリケーション類のデプロイ">6.4.5. ネットワーク・ストレージ・アプリケーション類のデプロイ</a></li>
+<li><a href="#_common_procedure">6.4.1. common procedure</a></li>
+<li><a href="#_deploying_kubernetes_to_the_first_master_node">6.4.2. Deploying Kubernetes to the first master node</a></li>
+<li><a href="#_deploy_to_the_second_and_subsequent_master_nodes">6.4.3. Deploy to the second and subsequent master nodes</a></li>
+<li><a href="#_deploy_to_the_worker_nodes">6.4.4. Deploy to the worker nodes</a></li>
+<li><a href="#_deploy_network_storage_and_applications">6.4.5. Deploy network, storage, and applications</a></li>
 </ul>
 </li>
-<li><a href="#_動作確認">6.5. 動作確認</a></li>
+<li><a href="#_operation_check">6.5. Operation check</a></li>
 </ul>
 </li>
-<li><a href="#networking">7. ネットワーキング</a>
+<li><a href="#networking">7. Networking</a>
 <ul class="sectlevel2">
-<li><a href="#_ファイヤウォール_2">7.1. ファイヤウォール</a></li>
+<li><a href="#_firewall">7.1. Firewall</a></li>
 <li><a href="#_metallb">7.2. MetalLB</a></li>
 </ul>
 </li>
-<li><a href="#storage">8. ストレージ</a>
+<li><a href="#storage">8. Storage</a>
 <ul class="sectlevel2">
-<li><a href="#_概要">8.1. 概要</a></li>
+<li><a href="#_overview">8.1. Overview</a></li>
 <li><a href="#rook_nfs">8.2. Rook / NFS</a>
 <ul class="sectlevel3">
-<li><a href="#_設定デプロイ">8.2.1. 設定・デプロイ</a></li>
-<li><a href="#_ストレージクラス">8.2.2. ストレージクラス</a></li>
+<li><a href="#_configuration_and_deployment">8.2.1. Configuration and Deployment</a></li>
+<li><a href="#_storage_class">8.2.2. Storage class</a></li>
 </ul>
 </li>
 <li><a href="#rook_ceph">8.3. Rook / Ceph</a>
 <ul class="sectlevel3">
-<li><a href="#_必要条件">8.3.1. 必要条件</a></li>
-<li><a href="#_設定デプロイ_2">8.3.2. 設定・デプロイ</a></li>
-<li><a href="#_ストレージクラス_2">8.3.3. ストレージクラス</a></li>
+<li><a href="#_requirements_3">8.3.1. Requirements.</a></li>
+<li><a href="#_configuration_and_deployment_2">8.3.2. Configuration and Deployment</a></li>
+<li><a href="#_storage_class_2">8.3.3. Storage class</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_アプリケーション">9. アプリケーション</a>
+<li><a href="#_application">9. Application</a>
 <ul class="sectlevel2">
-<li><a href="#private_registry">9.1. プライベートレジストリ</a>
+<li><a href="#private_registry">9.1. Private Registry</a>
 <ul class="sectlevel3">
-<li><a href="#_設定デプロイ_3">9.1.1. 設定・デプロイ</a></li>
-<li><a href="#_レジストリの使用">9.1.2. レジストリの使用</a></li>
+<li><a href="#_configuration_and_deployment_3">9.1.1. Configuration and Deployment</a></li>
+<li><a href="#_using_private_registry">9.1.2. Using private registry</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#offline_install">10. オフラインインストール</a>
+<li><a href="#offline_install">10. Offline Installation</a>
 <ul class="sectlevel2">
-<li><a href="#_概要_2">10.1. 概要</a></li>
-<li><a href="#_オフラインインストールファイルの生成">10.2. オフラインインストールファイルの生成</a>
+<li><a href="#_overview_2">10.1. Overview</a></li>
+<li><a href="#_generating_an_offline_installation_file">10.2. Generating an offline installation file</a>
 <ul class="sectlevel3">
-<li><a href="#_必要環境_2">10.2.1. 必要環境</a></li>
-<li><a href="#_事前準備">10.2.2. 事前準備</a></li>
-<li><a href="#_proxy_設定_2">10.2.3. Proxy 設定</a>
+<li><a href="#_requirements_4">10.2.1. Requirements</a></li>
+<li><a href="#_preparation">10.2.2. Preparation</a></li>
+<li><a href="#_proxy_configuration">10.2.3. Proxy configuration</a>
 <ul class="sectlevel4">
 <li><a href="#_yum_2">yum</a></li>
 <li><a href="#_docker_2">Docker</a></li>
 </ul>
 </li>
-<li><a href="#_オフラインインストールファイルの生成_2">10.2.4. オフラインインストールファイルの生成</a></li>
+<li><a href="#_generating_an_offline_installation_file_2">10.2.4. Generating an offline installation file</a></li>
 </ul>
 </li>
-<li><a href="#_スクリプトベースインストーラ">10.3. スクリプトベースインストーラ</a></li>
-<li><a href="#_ansibleインストーラ">10.4. Ansibleインストーラ</a></li>
+<li><a href="#_use_with_script_based_installer">10.3. Use with script based installer</a></li>
+<li><a href="#_ansible_installer">10.4. Ansible installer</a></li>
 </ul>
 </li>
 <li><a href="#_クラスタのアップグレード">11. クラスタのアップグレード</a>
 <ul class="sectlevel2">
 <li><a href="#_注意事項">11.1. 注意事項</a></li>
-<li><a href="#_ansibleインストーラ_2">11.2. Ansibleインストーラ</a>
+<li><a href="#_ansibleインストーラ">11.2. Ansibleインストーラ</a>
 <ul class="sectlevel3">
 <li><a href="#_オフラインインストール準備">11.2.1. オフラインインストール準備</a></li>
 <li><a href="#_バージョン設定">11.2.2. バージョン設定</a></li>
@@ -986,7 +986,7 @@ You can&#8217;t use firewalld for RHEL8 / CentOS8.
 <p>Deploys networking, storage, and applications as well as Kubernetes.</p>
 </li>
 <li>
-<p>See <a href="#ansible_installer">Chapter 6, <em>Ansibleインストーラ</em></a> for more information.</p>
+<p>See <a href="#ansible_installer">Chapter 6, <em>Ansible Installer</em></a> for more information.</p>
 </li>
 </ul>
 </div>
@@ -1534,58 +1534,60 @@ $ sudo ./install-master-ha.sh</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="ansible_installer">6. Ansibleインストーラ</h2>
+<h2 id="ansible_installer">6. Ansible Installer</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Ansible ベースインストーラを使用してインストールする手順を説明します。</p>
+<p>The following are the steps to install using the Ansible based installer.</p>
 </div>
 <div class="paragraph">
-<p>Ansibleインストーラを使う場合は、インストール作業は Ansible をインストールした任意のマシンで実施します。
-以下、本マシンを Ansibleノードと呼びます。
-なお、マスターノード・ワーカーノードのいずれかを Ansibleノードとして兼用しても構いません。</p>
+<p>When using the Ansible installer, the installation process is carried out on any machine where Ansible is installed.
+We will refer to this machine as "the Ansible node".</p>
 </div>
 <div class="paragraph">
-<p>本手順は <code>k8s-installer</code> の ansible ディレクトリで作業してください。</p>
+<p>You can use any one of the master or the worker node as an Ansible node.</p>
+</div>
+<div class="paragraph">
+<p>This install procedure should be done in the <code>ansible</code> directory of <code>k8s-installer</code>.</p>
 </div>
 <div class="sect2">
-<h3 id="_仕様">6.1. 仕様</h3>
+<h3 id="_specifications">6.1. Specifications</h3>
 <div class="paragraph">
-<p>Ansible インストーラでデプロイされる Kubernetes クラスタの仕様は以下の通りです。</p>
+<p>The specifications for the Kubernetes cluster deployed by the Ansible installer are as follows.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>全ノードに以下の設定がなされます。</p>
+<p>The following settings are made on all nodes.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Swap が無効になります。</p>
+<p>Swap is disabled.</p>
 </li>
 <li>
-<p>SELinux が無効になります。</p>
+<p>SELinux is disabled.</p>
 </li>
 <li>
-<p>ファイヤウォールはデフォルトで off になります (オプションで on に設定可能)</p>
+<p>Firewall is off by default (optionally set to on)</p>
 </li>
 <li>
-<p>sysctl 設定が変更されます。</p>
+<p>The sysctl settings are changed.</p>
 </li>
 <li>
-<p>コンテナランタイムがインストールされます。</p>
+<p>The container runtime is installed.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>設定に応じて Docker または containerd がインストールされます。デフォルトは Docker です (ただし RHEL8/CentOS8 では containerd 固定)</p>
+<p>Docker or containerd is installed, depending on the configuration. The default is Docker (but for RHEL8/CentOS8, only contained will be used)</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>以下のパッケージがインストールされます。</p>
+<p>The following packages are installed:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>kubeadm, kubectl, cfssl, libselinux-python, lvm2, gnupg2, nfs-utils, nfs-common</p>
+<p>kubeadm, kubectl, cfssl, libselinux-python, lvm2, gnupg2, nfs-utils and nfs-common</p>
 </li>
 </ul>
 </div>
@@ -1594,26 +1596,26 @@ $ sudo ./install-master-ha.sh</pre>
 </div>
 </li>
 <li>
-<p>kubeadm を使用して Kubernetes クラスタがデプロイされます。</p>
+<p>The Kubernetes cluster is deployed using kubeadm.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>CA 証明書有効期限は 30 年です (kubeadm デフォルトは 10年)</p>
+<p>The CA certificate expires in 30 years (kubeadm default is 10 years).</p>
 </li>
 <li>
-<p>マスターノードは Schedulable に設定されます (オプションで NoSchedule に設定可能)</p>
+<p>The master node will be set to Schedulable (optionally set to NoSchedule)</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>マスターノード上に ~/.kube/config が設定されます。</p>
+<p>The ~/.kube/config file is installed on the master nodes.</p>
 </li>
 <li>
-<p>Calico network plugin がデプロイされます。</p>
+<p>The Calico network plugin will be deployed</p>
 </li>
 <li>
-<p>Kubernetes クラスタ上に以下のものがデプロイされます。ただし (*) が付与されているものはデフォルトではデプロイされません。</p>
+<p>The following is deployed on the Kubernetes cluster, except for the ones marked with (*) will not be deployed by default.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1629,7 +1631,7 @@ $ sudo ./install-master-ha.sh</pre>
 <p>rook-ceph (*)</p>
 </li>
 <li>
-<p>storageclassデフォルト値設定 (*)</p>
+<p>storageclass default configuration (*)</p>
 </li>
 <li>
 <p>metrics-server</p>
@@ -1643,57 +1645,58 @@ $ sudo ./install-master-ha.sh</pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>なお、インストールの全シーケンスは <a href="https://github.com/k8s-installer/k8s-installer/blob/develop/ansible/design/sequence.md">k8s-installer シーケンス</a>
-を参照してください。</p>
+<p>Please refer the
+<a href="https://github.com/k8s-installer/k8s-installer/blob/develop/ansible/design/sequence.md">k8s-installer sequence</a>
+for the entire install sequence.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_必要環境">6.2. 必要環境</h3>
+<h3 id="_requirements_2">6.2. Requirements</h3>
 <div class="paragraph">
-<p>Ansibleノードに Ansible 2.9 以上をインストールする必要があります。</p>
+<p>Ansible 2.9 or higher must be installed on the Ansible node.</p>
 </div>
 <div class="paragraph">
-<p>Ansibleノードから全マスターノード・ワーカーノードに対して ssh でログインできる必要があります。
-この際、以下の条件が必要です。</p>
+<p>You need to be able to log in via ssh from the Ansible node to all master and worker nodes.
+In this case, the following conditions are required.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Ansibleノードから各ノードに対して公開鍵認証で ssh 接続が可能であること。</p>
+<p>You must be able to make an ssh connection from the Ansible node to each node with public key authentication.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>この際、ログインユーザとして root は使用しないでください。</p>
+<p>Do not use root as the login user.</p>
 </li>
 <li>
-<p>ログインするユーザ名は全マシンで同一にすることを推奨します。</p>
+<p>It is recommended that the login user name be the same on all machines.</p>
 </li>
 <li>
-<p>パスワード認証は使用できません。必ず公開鍵認証を使用してください。</p>
+<p>Password authentication cannot be used. Use only public key authentication.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>公開鍵認証を行う際、パスフレーズの入力が不要であること。</p>
+<p>No passphare input is required when perform public key authentication.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>パスフレーズを設定している場合、ssh-agent を使用する必要があります。</p>
+<p>If you have a passphrase set, you must use ssh-agent.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Ansibleノードから各ノードに対して ssh ログインしたあと、ログインユーザで sudo を実行可能であること。</p>
+<p>You must be able to run sudo as the logged-in user after you ssh login to each node from the Ansible node.</p>
 </li>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="_ssh_公開鍵認証のセットアップ手順">6.2.1. ssh 公開鍵認証のセットアップ手順</h4>
+<h4 id="_instructions_for_setting_up_ssh_public_key_authentication">6.2.1. Instructions for setting up ssh public key authentication</h4>
 <div class="paragraph">
-<p>Ansibleノード上に ssh 鍵ペアがまだない場合は、以下手順で作成してください。
-~/.ssh/id_rsa, ~/.ssh/id_rsa.pub が生成されます。</p>
+<p>If you don&#8217;t already have an ssh key pair on the Ansible node, follow these steps to create it.
+~/.ssh/id_rsa, ~/.ssh/id_rsa.pub will be generated.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1701,8 +1704,8 @@ $ sudo ./install-master-ha.sh</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Ansibleノード上で、各マスターノード・ワーカーノード毎に以下手順を実行し公開鍵認証でログインできるようにします。
-公開鍵は各ノードの ~/.ssh/authorized_keys に追加されます。</p>
+<p>On the Ansible node, perform the following steps for each master/worker node to enable login with public key authentication.
+The public key will be added to ~/.ssh/authorized_keys on each node.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1713,11 +1716,11 @@ $ sudo ./install-master-ha.sh</pre>
 <div class="sect3">
 <h4 id="_ssh_agent">6.2.2. ssh-agent</h4>
 <div class="paragraph">
-<p>ssh 鍵にパスフレーズを設定している場合は(セキュリティ上パスフレーズは設定すべきです)、
-ssh-agent を使用してパスフレーズ入力無しで ssh ログインできるようにする必要があります。</p>
+<p>If you set a passphrase for your ssh key (and you should for security reasons),
+you should use ssh-agent to be able to login using ssh without passphrase.</p>
 </div>
 <div class="paragraph">
-<p>ssh-agent の起動方法はいくつかありますが、最も簡単な方法は Ansibleノードで以下を実行する方法です。</p>
+<p>There are a number of ways to start ssh-agent, but the easiest way is to run the following on the Ansible node:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1725,7 +1728,7 @@ ssh-agent を使用してパスフレーズ入力無しで ssh ログインで�
 </div>
 </div>
 <div class="paragraph">
-<p>以下手順でパスフレーズを ssh-agent に設定してください。</p>
+<p>Set your passphrase to ssh-agent as follows.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1733,18 +1736,18 @@ ssh-agent を使用してパスフレーズ入力無しで ssh ログインで�
 </div>
 </div>
 <div class="paragraph">
-<p>ログアウトすると ssh-agent は終了しますので、本手順はAnsibleノードへのログインの度に毎回実行する必要があります。</p>
+<p>Logging out will cause ssh-agent to exit, so this procedure must be performed each time you log in to the Ansible node.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_ansible_のインストール手順">6.2.3. Ansible のインストール手順</h4>
+<h4 id="_ansible_installation_instructions">6.2.3. Ansible installation instructions</h4>
 <div class="paragraph">
-<p>Ansibleノード上でPython 仮想環境を作成してください。
-Python 2 + <a href="https://virtualenv.pypa.io/en/latest/">virtualenv</a> または
-Python 3 + <a href="https://docs.python.org/ja/3/library/venv.html">venv</a> を使用します。</p>
+<p>Create a Python virtual environment on an Ansible node.
+Use Python 2 + <a href="https://virtualenv.pypa.io/en/latest/">virtualenv</a>
+or Python 3 + <a href="https://docs" class="bare">https://docs</a>. python.org/en/3/library/venv.html[venv].</p>
 </div>
 <div class="paragraph">
-<p>Python2 + virtualenv の場合の仮想環境作成例を示します。</p>
+<p>Here&#8217;s an example of how to create a virtual environment in the case of Python2 + virtualenv:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1753,7 +1756,7 @@ $ virtualenv $HOME/venv</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Python 3 + venv の場合の仮想環境作成例を示します。</p>
+<p>Here&#8217;s an example of how to create a virtual environment for Python 3 + venv:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1763,7 +1766,7 @@ $ python3 -m venv $HOME/venv</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>以下手順で仮想環境を activate します。</p>
+<p>Activate the virtual environment as follows:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1771,7 +1774,7 @@ $ python3 -m venv $HOME/venv</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>以下手順で Ansible をインストールしてください。</p>
+<p>Follow the steps below to install Ansible.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1779,47 +1782,47 @@ $ python3 -m venv $HOME/venv</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>オフライン環境の Ansible マシンに Ansible をインストールする必要がある場合は
-<a href="https://github.com/tmurakam/python-offline-env">python-offline-env</a> を使用してください。</p>
+<p>If you need to install Ansible on an Ansible machine in an offline environment, use
+<a href="https://github.com/tmurakam/python-offline-env">python-offline-env</a>.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_設定_2">6.3. 設定</h3>
+<h3 id="_configuration">6.3. Configuration</h3>
 <div class="paragraph">
-<p>Ansibleノードに作業ユーザでログインします。
-インストーラを展開し、以下作業を行います。</p>
+<p>Log in to the Ansible node as a working user.
+Extract the installer and perform the following tasks.</p>
 </div>
 <div class="sect3">
-<h4 id="_インベントリ">6.3.1. インベントリ</h4>
+<h4 id="_inventory_file">6.3.1. Inventory file</h4>
 <div class="paragraph">
-<p><code>sample/hosts</code> ファイルを <code>inventory/hosts</code> ファイルにコピーし、インストール先のノードの情報を設定してください。</p>
+<p>Copy the <code>sample/hosts</code> file to the <code>inventory/hosts</code> file and set the information of the node to be installed.</p>
 </div>
 <div class="paragraph">
-<p>グループが以下3つありますので、適切なグループにマシンを定義してください。</p>
+<p>There are three groups, please define the machine in the appropriate group.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>master_first: 1台目のマスタノードを指定してください。</p>
+<p>master_first: Specify the first master node.</p>
 </li>
 <li>
-<p>master_secondary: HA構成を取る場合に2台目以降のマスタノードを指定してください。</p>
+<p>master_secondary: Specify the second or later master nodes in case of HA configuration.</p>
 </li>
 <li>
-<p>worker: ワーカーノードを指定してください。</p>
+<p>worker: Specify the worker nodes.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>シングルマスター構成の場合は master_first, worker のみ設定してください (master_secondary は空にしてください)</p>
+<p>For single master configuration, set only master_first and worke. (leave master_secondary empty)</p>
 </div>
 <div class="paragraph">
-<p>HA構成の場合はマスターノードが3台以上の奇数台が必要です。
-最初の1台をmaster_first に、残りを master_secondary に指定してください。</p>
+<p>In the HA configuration, you need at least three odd-numbered master nodes.
+Specify the first one as master_first and the rest as master_secondary.</p>
 </div>
 <div class="paragraph">
-<p>マシンの指定方法の例を示します。</p>
+<p>Here is an example of how to specify the machine:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1829,37 +1832,37 @@ $ python3 -m venv $HOME/venv</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>hostname: 先頭にホスト名を指定します。指定した文字列がそのまま Kubernetes のノード名となります。</p>
+<p>hostname: Specify the hostname at the beginning. The hostname is the Kubernetes node name as it is.</p>
 </li>
 <li>
-<p>ansible_user: ssh ログインする際に使用するターゲットノード上のユーザ名を指定します。</p>
+<p>ansible_user: Specify the username on the target node to be used for ssh login.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Ansibleノード上のユーザと同一ユーザ名の場合は省略可能です。</p>
+<p>You can omit this if it is the same username as the user on the Ansible node.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>ansible_host: ssh で接続する際に使用するホスト名またはIPアドレスを指定します。</p>
+<p>ansible_host: The hostname or IP address to use when connecting with ssh.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>ホスト名と同一の場合は省略可能です。</p>
+<p>If it is the same as the host name, it can be omitted.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>ip: ノードの IP アドレスを指定します。</p>
+<p>ip: Specify the IP address of the node.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>クラスタの他ノードと直接通信可能な IP アドレスを指定してください。これが kube-apiserver および kubelet で使用(広告)する IP アドレスになります。</p>
+<p>Specify an IP address that can communicate directly with other nodes in the cluster. This is the advertized IP address of the kube-apiserver and kubelet.</p>
 </li>
 <li>
-<p>省略した場合は、リモートマシンのデフォルトゲートウェイに指定されたインタフェースのIPアドレスが使用されます。</p>
+<p>If omitted, the IP address of the interface specified as the default gateway for the remote machine will be used.</p>
 </li>
 </ul>
 </div>
@@ -1868,9 +1871,9 @@ $ python3 -m venv $HOME/venv</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_変数設定">6.3.2. 変数設定</h4>
+<h4 id="_define_variables">6.3.2. Define variables</h4>
 <div class="paragraph">
-<p>sample/group_vars/all/*.yml ファイルを inventory/group_vars/all/ ディレクトリにコピーし、適宜編集してください。</p>
+<p>Copy <code>sample/group_vars/all/*.yml</code> files to <code>inventory/group_vars/all/</code> directory and edit as follows:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1879,10 +1882,10 @@ $ python3 -m venv $HOME/venv</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>lb_apiserver_address: HA構成の場合、ロードバランサの FQDN名またはIPアドレスを設定してください。</p>
+<p>lb_apiserver_address: In case of HA configuration, set the FQDN name or IP address of the load balancer.</p>
 </li>
 <li>
-<p>pod_subnet: Podサブネット(CIDR)を指定してください。通常は変更不要ですが、IPアドレスが既存アドレスと衝突する場合は変更が必要です。</p>
+<p>pod_subnet: Speccify Pod subnet (CIDR). Normally, no changes are required, but if the IP address conflicts with an existing address, you need to change it.</p>
 </li>
 </ul>
 </div>
@@ -1892,7 +1895,7 @@ $ python3 -m venv $HOME/venv</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>offline_install: オフラインインストールをする場合は yes に設定してください。オフラインインストール手順の詳細は <a href="#offline_install">Chapter 10, <em>オフラインインストール</em></a> を参照してください。</p>
+<p>offline_install: Set to <code>yes</code> If you want to do an offline installation. See <a href="#offline_install">Chapter 10, <em>Offline Installation</em></a> for details of the offline installation procedure.</p>
 </li>
 </ul>
 </div>
@@ -1902,7 +1905,7 @@ $ python3 -m venv $HOME/venv</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Internet 接続にプロキシを経由する必要がある場合は、proxy_url, proxy_noproxy を設定してください。</p>
+<p>If your Internet connection needs to go through a proxy, set the <code>proxy_url</code> and <code>proxy_noproxy</code>.</p>
 </li>
 </ul>
 </div>
@@ -1912,7 +1915,7 @@ $ python3 -m venv $HOME/venv</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>インストールする Kubernetes バージョンを適宜指定します。無指定の場合は <code>k8s-installer</code> のデフォルト値が使用されます。</p>
+<p>Specify the version of Kubernetes to install. If not specified, the default value of <code>k8s-installer</code> is used.</p>
 </li>
 </ul>
 </div>
@@ -1922,7 +1925,7 @@ $ python3 -m venv $HOME/venv</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>ネットワーク設定を行います。詳細は <a href="#networking">Chapter 7, <em>ネットワーキング</em></a> を参照してください。</p>
+<p>Configure the network settings. See <a href="#networking">Chapter 7, <em>Networking</em></a> for details.</p>
 </li>
 </ul>
 </div>
@@ -1932,7 +1935,7 @@ $ python3 -m venv $HOME/venv</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>ストレージ設定を行います。詳細は <a href="#storage">Chapter 8, <em>ストレージ</em></a> を参照してください。</p>
+<p>Configure the storage settings. See <a href="#storage">Chapter 8, <em>Storage</em></a> for details.</p>
 </li>
 </ul>
 </div>
@@ -1942,7 +1945,7 @@ $ python3 -m venv $HOME/venv</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>プライベートレジストリ設定を行います。詳細は <a href="#private_registry">Section 9.1, &#8220;プライベートレジストリ&#8221;</a> を参照してください。</p>
+<p>Configure the private registry settings. See <a href="#private_registry">Section 9.1, &#8220;Private Registry&#8221;</a> for details.</p>
 </li>
 </ul>
 </div>
@@ -1957,11 +1960,11 @@ $ python3 -m venv $HOME/venv</pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>プロキシを使用する場合、proxy_noproxy には必ず kube-apiserver の IPアドレスまたはDNS名を指定しなければなりません。
-シングルホストの場合はマスターノードの、HA構成の場合はロードバランサの値を指定してください。</p>
+<p>If you use a proxy, you must specify the IP address or DNS name of the kube-apiserver in <code>proxy_noproxy</code>.
+Specify the value of the master node in the case of a single host configuration, or the value of the load balancer in the case of HA configuration.</p>
 </div>
 <div class="paragraph">
-<p>これが適切に設定されていないとマスターノードのインストールが失敗します。</p>
+<p>If this is not set properly, the master node installation will fail.</p>
 </div>
 </td>
 </tr>
@@ -1970,13 +1973,13 @@ $ python3 -m venv $HOME/venv</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_インストール">6.4. インストール</h3>
+<h3 id="_install">6.4. Install</h3>
 <div class="sect3">
-<h4 id="_共通処理">6.4.1. 共通処理</h4>
+<h4 id="_common_procedure">6.4.1. common procedure</h4>
 <div class="paragraph">
-<p>以下手順を実行し、全ノード共通の事前処理を実行します。
-本手順により、オフラインリポジトリ設定、Proxy設定、必要なパッケージ(Docker/kubeadm含む)のインストール、
-共通のコンフィグレーション処理、などが実行されます。</p>
+<p>Perform the following steps to common pre-process for all nodes.
+This procedure involves offline repository configuration, proxy configuration, installation of necessary packages (including Docker/kubeadm) and
+common configuration process, etc.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -1990,16 +1993,16 @@ $ python3 -m venv $HOME/venv</pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-ログイン先マシンで <code>sudo</code> パスワードが不要な場合は -K (--ask-become-pass) オプションを省略できます。
+If you don&#8217;t need a <code>sudo</code> password on the machine you are logging into, you can omit the -K (--ask-become-pass) option.
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_1台目のマスターノードへの_kubernetes_デプロイ">6.4.2. 1台目のマスターノードへの Kubernetes デプロイ</h4>
+<h4 id="_deploying_kubernetes_to_the_first_master_node">6.4.2. Deploying Kubernetes to the first master node</h4>
 <div class="paragraph">
-<p>以下を実行し、1台目のマスターノードへ Kubernetes マスターをインストールします。</p>
+<p>Install the Kubernetes on the first master node by doing the following:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2007,14 +2010,14 @@ $ python3 -m venv $HOME/venv</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>この時点で Kubernetes はシングルノードで動作している状態になります。
-当該ホストに ssh ログインし、<code>kubectl get all --all-namespaces</code> を実行すれば、各種 Pod が稼働していることを確認できます。</p>
+<p>At this point, Kubernetes will be running as a single node configuration.
+You can verify that some pods are running by logging in to the host and running <code>kubectl get all --all-namespaces</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_2台目以降のマスターノードへのデプロイ">6.4.3. 2台目以降のマスターノードへのデプロイ</h4>
+<h4 id="_deploy_to_the_second_and_subsequent_master_nodes">6.4.3. Deploy to the second and subsequent master nodes</h4>
 <div class="paragraph">
-<p>以下を実行し、2台目以降のマスターノードを Kubernetes クラスタに参加させます。</p>
+<p>Join the second and subsequent master nodes to the Kubernetes cluster by doing the following:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2023,9 +2026,9 @@ $ python3 -m venv $HOME/venv</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_ワーカーノードへのデプロイ">6.4.4. ワーカーノードへのデプロイ</h4>
+<h4 id="_deploy_to_the_worker_nodes">6.4.4. Deploy to the worker nodes</h4>
 <div class="paragraph">
-<p>以下を実行し、全ワーカーノードを Kubernetes クラスタに参加させます。</p>
+<p>Join all worker nodes to the Kubernetes cluster by doing the following:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2034,9 +2037,9 @@ $ python3 -m venv $HOME/venv</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_ネットワークストレージアプリケーション類のデプロイ">6.4.5. ネットワーク・ストレージ・アプリケーション類のデプロイ</h4>
+<h4 id="_deploy_network_storage_and_applications">6.4.5. Deploy network, storage, and applications</h4>
 <div class="paragraph">
-<p>以下を実行し、ネットワーク・ストレージ・アプリケーションをデプロイします。</p>
+<p>Deploy the network, storage, and applications by doing the following:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2047,10 +2050,10 @@ $ ansible-playbook -i inventory/hosts apps.yml -K</pre>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="title">全手順を一括で行う方法</div>
+<div class="title">How to do all steps at once</div>
 <div class="paragraph">
-<p>以下手順を実行することで、上記の全手順を一括で行うことも可能です。
-ただし、通常は順を追って１ステップずつ確認しながら実行することをお勧めします。</p>
+<p>You can also perform all of the above steps at once by following the steps below.
+However, it is usually recommended that you go through them step by step.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2062,26 +2065,26 @@ $ ansible-playbook -i inventory/hosts apps.yml -K</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_動作確認">6.5. 動作確認</h3>
+<h3 id="_operation_check">6.5. Operation check</h3>
 <div class="paragraph">
-<p>マスターノード上で <code>kubectl get nodes</code> を実行し、全ノードが追加されていて Ready になっていることを確認してください。</p>
+<p>Run <code>kubectl get nodes</code> on the master node to make sure that all nodes are added and ready.</p>
 </div>
 <div class="paragraph">
-<p>また、<code>kubectl get all --all-namespaces</code> を実行し、Podがすべて正常に起動していることを確認してください。</p>
+<p>Also, run <code>kubectl get all --all-namespaces</code> on the master node and make sure all the pods are running properly.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="networking">7. ネットワーキング</h2>
+<h2 id="networking">7. Networking</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_ファイヤウォール_2">7.1. ファイヤウォール</h3>
+<h3 id="_firewall">7.1. Firewall</h3>
 <div class="paragraph">
-<p>各ノードのファイヤウォール(firewalld) はデフォルトで無効化されます。</p>
+<p>The firewall (firewalld) on each node is disabled by default.</p>
 </div>
 <div class="paragraph">
-<p>有効化したい場合は、<code>inventory/group_vars/all/networking.yml</code> の <code>firewall_enabled</code> の値を yes に設定してください。</p>
+<p>If you want to enable it, set the <code>firwall_enabled</code> variable to <code>yes</code> in the <code>inventory/group_vars/all/networking.yml</code> file.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2090,8 +2093,8 @@ $ ansible-playbook -i inventory/hosts apps.yml -K</pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-RHEL 8 / CentOS 8 ではファイヤウォールは必ず無効化してください。
-有効化すると <code>kube-proxy</code> の nftables 設定と干渉し、正常に動作しません。
+On RHEL 8 / CentOS 8, the firewall must be disabled.
+If you enable it, it interferes with the <code>kube-proxy</code> nftables configuration and won&#8217;t work properly.
 </td>
 </tr>
 </table>
@@ -2100,15 +2103,15 @@ RHEL 8 / CentOS 8 ではファイヤウォールは必ず無効化してくだ�
 <div class="sect2">
 <h3 id="_metallb">7.2. MetalLB</h3>
 <div class="paragraph">
-<p>LoadBalancer の実装として MetalLB を使用することができます。</p>
+<p>You can use MetalLB as an implementation of the LoadBalancer.</p>
 </div>
 <div class="paragraph">
-<p>詳細は <a href="https://metallb.universe.tf/">MetalLB</a> を参照してください。
-MetalLB の動作モードには L2 モードと BGP モードがありますが、本インストーラでは L2 モードのみ対応しています。</p>
+<p>See <a href="https://metallb.universe.tf/">MetalLB</a> for details.
+There are two operating modes for MetalLB, L2 mode and BGP mode, but this installer supports only L2 mode.</p>
 </div>
 <div class="paragraph">
-<p>MetalLB を使用したい場合は、<code>inventory/group_vars/all/networking.yml</code> をエディタで編集し設定を追加してください。
-設定例を以下に示します。</p>
+<p>If you want to use MetalLB, you need to change the file <code>inventory/group_vars/all/networking.yml</code> file with editor and add configurations.
+An example configuration is shown below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2122,11 +2125,11 @@ metallb_ip_range: 192.168.1.200-192.168.1.210</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>metallb_enabled: yes に設定してください。</p>
+<p>metallb_enabled: set to <code>yes</code></p>
 </li>
 <li>
-<p>metallb_ip_range: LoadBalancer に使用する IP アドレスプールの範囲を指定してください。
-各ノードが接続されたサブネット上の空きIPアドレスを指定する必要があります。</p>
+<p>metallb_ip_range: IP address pool range to be used for LoadBalancer.
+You must specify the free IP addresses on the subnet to which each node is connected.</p>
 </li>
 </ul>
 </div>
@@ -2134,15 +2137,15 @@ metallb_ip_range: 192.168.1.200-192.168.1.210</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="storage">8. ストレージ</h2>
+<h2 id="storage">8. Storage</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_概要">8.1. 概要</h3>
+<h3 id="_overview">8.1. Overview</h3>
 <div class="paragraph">
-<p><a href="#ansible_installer">Chapter 6, <em>Ansibleインストーラ</em></a> を使用する場合は、 <a href="https://rook.io/">Rook</a> を使用してストレージをセットアップすることができます。</p>
+<p>When you use <a href="#ansible_installer">Chapter 6, <em>Ansible Installer</em></a>, you can use <a href="https://rook.io/">Rook</a> to set up storage.</p>
 </div>
 <div class="paragraph">
-<p>以下の2種類をサポートしています。</p>
+<p>The following two types are supported.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2158,15 +2161,14 @@ metallb_ip_range: 192.168.1.200-192.168.1.210</code></pre>
 <div class="sect2">
 <h3 id="rook_nfs">8.2. Rook / NFS</h3>
 <div class="paragraph">
-<p>Rook + NFS (Network File System) を使用することができます。</p>
+<p>You can use Rook + NFS (Network File System).</p>
 </div>
 <div class="paragraph">
-<p>NFSサーバは Kubernetes クラスタ上の Pod として起動されます。
-ストレージは、指定した特定の1台のノード上のストレージ(local volume)を使用し、
-このノード上でNFSサーバ Pod を起動するように設定されます。</p>
+<p>The NFS server is started as a pod on the Kubernetes cluster.
+The NFS server uses local volume on one specific node that you specify, and the NFS server pod is configured to run on this node.</p>
 </div>
 <div class="paragraph">
-<p>詳細は Rook Documentation の <a href="https://rook.github.io/docs/rook/master/nfs.html">NFS</a> を参照してください。</p>
+<p>For more information, see <a href="https://rook.github.io/docs/rook/master/nfs.html">NFS</a> of the Rook Documentation.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -2175,16 +2177,16 @@ metallb_ip_range: 192.168.1.200-192.168.1.210</code></pre>
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-本設定では特定の1つのノード上のストレージを使用するため、可用性はありません。
+This configuration uses storage on one particular node, so it has no availability.
 </td>
 </tr>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_設定デプロイ">8.2.1. 設定・デプロイ</h4>
+<h4 id="_configuration_and_deployment">8.2.1. Configuration and Deployment</h4>
 <div class="paragraph">
-<p>NFS を使用する場合は <code>inventory/group_vars/all/storage.yml</code> に設定を記述します。
-例を示します。</p>
+<p>To use NFS, describe configuration in <code>inventory/group_vars/all/storage.yml</code> file.
+For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2208,34 +2210,34 @@ rook_nfs_pv_host: "worker-1"
 <div class="ulist">
 <ul>
 <li>
-<p>rook_nfs_enabled: NFS を使用する場合、yes に設定してください。</p>
+<p>rook_nfs_enabled: To enable NFS, set to <code>yes</code>.</p>
 </li>
 <li>
-<p>rook_nfs_pv_host: Local Volume PV を作成するノード名を指定してください。</p>
+<p>rook_nfs_pv_host: The name of the node where Local Volume PV is created.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Inventory に記載されたノード名のいずれか1つを指定してください。</p>
+<p>Specify one of the node names listed in Inventory file.</p>
 </li>
 <li>
-<p>指定したノード上に NFS サーバストレージが確保されます。また NFS サーバ Pod もこのノード上で動作します。</p>
+<p>The NFS server storage is allocated on the node you specify, and the NFS server pod also runs on this node.</p>
 </li>
 <li>
-<p>指定したノードは Schedulable である必要があります。</p>
+<p>The node must be Schedulable.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>rook_nfs_pv_size: Local Volume のサイズ(NFSサーバとして使用するストレージサイズ)を指定します。デフォルトは 10Gi です。</p>
+<p>rook_nfs_pv_size: Size of Local Volume (storage size of the NFS server). Default is 10Gi.</p>
 </li>
 <li>
-<p>rook_nfs_pv_dir: Local Volume を作成するディレクトリを指定します。デフォルトは /var/lib/rook-nfs です。</p>
+<p>rook_nfs_pv_dir: Specify the directory where you want to create the Local Volume. The default is <code>/var/lib/rook-nfs</code>.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>以下手順でデプロイを行ってください。</p>
+<p>Follow the steps below to deploy.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2244,12 +2246,12 @@ rook_nfs_pv_host: "worker-1"
 </div>
 </div>
 <div class="sect3">
-<h4 id="_ストレージクラス">8.2.2. ストレージクラス</h4>
+<h4 id="_storage_class">8.2.2. Storage class</h4>
 <div class="paragraph">
-<p>本 NFS サーバに対応するストレージクラスとして、<code>rook-nfs-share1</code> が追加されます。</p>
+<p>A new storage class, <code>rook-nfs-share1</code>, has been added for this NFS server.</p>
 </div>
 <div class="paragraph">
-<p>本ストレージを使用するための Persistent Volume Claim (PVC) の例を示します。</p>
+<p>Here is an example of a Persistent Volume Claim (PVC) to use this storage.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2271,34 +2273,37 @@ spec:
 <div class="sect2">
 <h3 id="rook_ceph">8.3. Rook / Ceph</h3>
 <div class="paragraph">
-<p>Rook + Ceph を使用することができます。</p>
+<p>You can use <code>Rook</code> + <code>Ceph</code>.</p>
 </div>
 <div class="paragraph">
-<p>詳細は Rook Documentation の <a href="https://rook.github.io/docs/rook/master/ceph-quickstart.html">Ceph Storage Quickstart</a> を参照してください。</p>
+<p>For more information, see <a href="https://rook.github.io/docs/rook/master/ceph-quickstart.html">Ceph Storage Quickstart</a> of the Rook documentation.</p>
 </div>
 <div class="sect3">
-<h4 id="_必要条件">8.3.1. 必要条件</h4>
+<h4 id="_requirements_3">8.3.1. Requirements.</h4>
 <div class="paragraph">
-<p>以下の条件が必要です。</p>
+<p>The following conditions are required.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>ワーカーノードが３台以上必要です。</p>
+<p>A minimum of three worker nodes are required.</p>
 </li>
 <li>
-<p>未フォーマット/パーティション無しの Raw block device がワーカーノードに接続されている必要があります。</p>
+<p>You must have an unformatted/unpartitioned raw block device connected to your worker nodes.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p><a href="https://rook.github.io/docs/rook/master/ceph-prerequisites.html">Ceph Prerequisites</a> も参照してください。</p>
+<p><a href="https://rook.github.io/docs/rook/master/" class="bare">https://rook.github.io/docs/rook/master/</a> &#8230;&#8203; ceph-prerequisites.html[Ceph Prerequisites] also See also.</p>
+</div>
+<div class="paragraph">
+<p>See also <a href="https://rook.github.io/docs/rook/master/ceph-prerequisites.html">Ceph Prerequisites</a></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_設定デプロイ_2">8.3.2. 設定・デプロイ</h4>
+<h4 id="_configuration_and_deployment_2">8.3.2. Configuration and Deployment</h4>
 <div class="paragraph">
-<p>Ceph を使用する場合は <code>inventory/group_vars/all/storage.yml</code> に設定を記述します。</p>
+<p>If you use Ceph, describe the configuration in <code>inventory/group_vars/all/storage.yml</code> file.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2309,10 +2314,10 @@ rook_ceph_enabled: yes</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>rook_ceph_enabled を yes に設定してください。</p>
+<p>Set <code>rook_ceph_enabled</code> to <code>yes</code>.</p>
 </div>
 <div class="paragraph">
-<p>以下手順でデプロイを行ってください。</p>
+<p>Deploy the rook-ceph as follows:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2320,26 +2325,26 @@ rook_ceph_enabled: yes</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Rook / Ceph のデプロイには10分程度かかります。<code>watch kubectl -n rook-ceph get all</code> で状態を確認してください。</p>
+<p>Deploying Rook / Ceph takes about 10 minutes. Check the status with <code>watch kubectl -n rook-ceph get all</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_ストレージクラス_2">8.3.3. ストレージクラス</h4>
+<h4 id="_storage_class_2">8.3.3. Storage class</h4>
 <div class="paragraph">
-<p>以下のストレージクラスが追加されます。</p>
+<p>The following storage classes will be added.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>rook-ceph-block</code> : ブロックストレージ(rbd)</p>
+<p><code>rook-ceph-block</code> : block storage (rbd)</p>
 </li>
 <li>
-<p><code>rook-cephfs</code> : ファイルシステム (cephfs)</p>
+<p><code>rook-cephfs</code> : Filesystem (cephfs)</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>本ストレージを使用するための Persistent Volume Claim (PVC) の例を示します。</p>
+<p>Here is an example of a Persistent Volume Claim (PVC) to use this storage class.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2361,27 +2366,27 @@ spec:
 </div>
 </div>
 <div class="sect1">
-<h2 id="_アプリケーション">9. アプリケーション</h2>
+<h2 id="_application">9. Application</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="#ansible_installer">Chapter 6, <em>Ansibleインストーラ</em></a> を使用している場合、いくつかのアプリケーションのデプロイを自動実行することができます。</p>
+<p>When you use <a href="#ansible_installer">Chapter 6, <em>Ansible Installer</em></a>,  you can deploy some application automatically.</p>
 </div>
 <div class="sect2">
-<h3 id="private_registry">9.1. プライベートレジストリ</h3>
+<h3 id="private_registry">9.1. Private Registry</h3>
 <div class="paragraph">
-<p>プライベートレジストリをデプロイすることができます。</p>
+<p>You can deploy a private registry.</p>
 </div>
 <div class="paragraph">
-<p>レジストリには、 <a href="https://docs.docker.com/registry/">Docker Registry</a> を使用します。</p>
+<p><a href="https://docs.docker.com/registry/">Docker Registry</a> is used for private registry.</p>
 </div>
 <div class="paragraph">
-<p>また、コンテナイメージを格納するために Persistent Volume が必要です。
-Rook / NFS または Rook / Ceph をデプロイしている場合は、これをそのまま使用できます。</p>
+<p>You need Persistent Volume to store container images.
+If you have Rook / NFS or Rook / Ceph deployment, you can use them.</p>
 </div>
 <div class="sect3">
-<h4 id="_設定デプロイ_3">9.1.1. 設定・デプロイ</h4>
+<h4 id="_configuration_and_deployment_3">9.1.1. Configuration and Deployment</h4>
 <div class="paragraph">
-<p>プライベートレジストリを使用する場合は <code>inventory/group_vars/all/registry.yml</code> に設定を記述します。</p>
+<p>If you deploy the private registry, put the configuration in <code>inventory/group_vars/all/registry.yml</code> file.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2411,37 +2416,37 @@ registry_pvc_size: 10Gi</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>registry_enabled: レジストリを有効にします。yes に設定してください。</p>
+<p>registry_enabled: Enable the registry. Set to <code>yes</code>.</p>
 </li>
 <li>
-<p>registry_type: レジストリタイプを指定します。'pv' を指定してください。デフォルトは 'pv' です。</p>
+<p>registry_type: Specify the registry type. Set to <code>pv</code>. Default is 'pv'.</p>
 </li>
 <li>
-<p>registry_user: レジストリ認証ユーザ名を指定します。適宜変更してください。</p>
+<p>registry_user: Specify the registry authentication user name. Change it if necessary.</p>
 </li>
 <li>
-<p>registry_password: レジストリ認証パスワードを指定します。適宜変更してください。</p>
+<p>registry_password: Specify the registry authentication password. Change it if necessary.</p>
 </li>
 <li>
-<p>registry_pvc_storage_class: 使用する PV のストレージクラスを指定します。</p>
+<p>registry_pvc_storage_class: Specify the storage class of PV to be used.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#rook_nfs">Rook / NFS</a> を使用する場合は <code>rook-nfs-share1</code> を指定してください。</p>
+<p>If you use <a href="#rook_nfs">Rook / NFS</a>, specify <code>rook-nfs-share-1</code>.</p>
 </li>
 <li>
-<p><a href="#rook_ceph">Rook / Ceph</a> を使用する場合は <code>rook-ceph-block</code> を指定してください。</p>
+<p>If you use <a href="#rook_ceph">Rook / Ceph</a>, specify <code>rook-ceph-block</code>.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>registry_pvc_size: レジストリとして確保する PV のサイズを指定してください。</p>
+<p>registry_pvc_size: Specify the size of the PV to be allocated as a registry.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>以下手順でデプロイを行ってください。</p>
+<p>Follow the steps below to deploy:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2450,10 +2455,10 @@ registry_pvc_size: 10Gi</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_レジストリの使用">9.1.2. レジストリの使用</h4>
+<h4 id="_using_private_registry">9.1.2. Using private registry</h4>
 <div class="paragraph">
-<p>レジストリは Node Port service として export されます。
-以下手順でポート番号を確認してください。</p>
+<p>The registry is exported as a NodePort service.
+To find out the port number, follow these steps:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2461,11 +2466,11 @@ registry_pvc_size: 10Gi</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>レジストリの URL は <code>https://[node]:[nodeport]</code> となります。
-ここで、node はいずれかのノードのアドレス/ホスト名、nodeport は上記で確認した NodePort のポート番号です。</p>
+<p>The URL of the registry is <code>https://[node]:[nodeport]</code>,
+where <code>node</code> is the address/host of one of the nodes, and <code>nodeport</code> is the port number of the NodePort identified above.</p>
 </div>
 <div class="paragraph">
-<p>以下手順で login 可能です。</p>
+<p>You can login by the following procedure.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2477,63 +2482,63 @@ registry_pvc_size: 10Gi</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="offline_install">10. オフラインインストール</h2>
+<h2 id="offline_install">10. Offline Installation</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_概要_2">10.1. 概要</h3>
+<h3 id="_overview_2">10.1. Overview</h3>
 <div class="paragraph">
-<p>オフラインインストールでは、Internetに接続されたマシンでインストールに必要なファイルをすべて取得しておき、
-これをUSBメモリ・ハードディスクなどを使用してインストール先の環境に転送してインストールします。</p>
+<p>In offline installation, all the files required for the installation are obtained on a machine connected to the Internet,
+and then transferred to the target machine using a USB memory or hard disk.</p>
 </div>
 <div class="paragraph">
-<p>オフラインインストールの手順は以下のようになります。</p>
+<p>The procedure for offline installation is as follows:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Internet接続されたマシン上でスクリプトを使用してインストールに必要なファイルを取得します。</p>
+<p>On a machine connected to the Internet, use the script to acquire files to required to installation.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>具体的には、Dockerやkubeadm/kubeletなどの RPMファイル、コンテナイメージファイルなどを取得します。</p>
+<p>This will retrieve the RPM file of Docker/Kubeadm/Kubelet, container image files, etc.</p>
 </li>
 <li>
-<p>これらのファイルをまとめた <code>k8s-offline-files.tar.gz</code> ファイルを生成します。</p>
+<p>The file <code>k8s-offline-files.tar.gz</code> will be generated contains which contains all these files.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>本ファイルを何らかの手段(USBメモリ・ハードディスク、VPNなど)を使用してインストール先のマシンに転送します。</p>
+<p>Transfer this file to the target machine using some means (USB memory, hard disk, VPN, etc.).</p>
 </li>
 <li>
-<p>インストーラを使用してインストールを実行します。</p>
+<p>Use the installer to run the installation.</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_オフラインインストールファイルの生成">10.2. オフラインインストールファイルの生成</h3>
+<h3 id="_generating_an_offline_installation_file">10.2. Generating an offline installation file</h3>
 <div class="paragraph">
-<p>オフラインインストールファイルを生成する手順を説明します。</p>
+<p>This section describes the process of generating an offline installation file.</p>
 </div>
 <div class="sect3">
-<h4 id="_必要環境_2">10.2.1. 必要環境</h4>
+<h4 id="_requirements_4">10.2.1. Requirements</h4>
 <div class="ulist">
 <ul>
 <li>
-<p>Internet 接続されているマシン。Kubernetesクラスタを構成するマシンと同一の OS がインストールされていること。</p>
+<p>The machines that are connected to the Internet. The machine must have the same operating system installed as the machine comprising the Kubernetes cluster.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>以下手順は、上記マシンで実行してください。</p>
+<p>The following steps must be performed on the above machine.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_事前準備">10.2.2. 事前準備</h4>
+<h4 id="_preparation">10.2.2. Preparation</h4>
 <div class="paragraph">
-<p>RHEL 7 を使用する場合は、以下手順で rhel-7-server-extras-rpms リポジトリを有効にしておく必要があります。</p>
+<p>If you are using RHEL 7, you must enable the <code>rhel-7-server-extras-rpms</code> repository.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2542,23 +2547,23 @@ registry_pvc_size: 10Gi</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_proxy_設定_2">10.2.3. Proxy 設定</h4>
+<h4 id="_proxy_configuration">10.2.3. Proxy configuration</h4>
 <div class="paragraph">
-<p>Internet 接続に Proxy サーバを経由する必要がある場合は、事前に Proxy 設定が必要です。</p>
+<p>If your Internet connection needs to go through a proxy server, you need to set up proxy settings beforehand.</p>
 </div>
 <div class="paragraph">
-<p>なお、<code>config.sh</code> に Proxy 設定を追記し <code>sudo ./setup-proxy.sh</code> を実行することで以下設定を自動投入可能です。</p>
+<p>You can add the proxy settings to <code>config.sh</code> and execute <code>sudo . /setup-proxy.sh</code> to configure following settings.</p>
 </div>
 <div class="sect4">
 <h5 id="_yum_2">10.2.3.1. yum</h5>
 <div class="paragraph">
-<p>/etc/yum.conf に <code>proxy=http://proxy.example.com</code> の行を追加して Proxy サーバを指定してください。</p>
+<p>Add a line <code>proxy=http://proxy.example.com</code> in /etc/yum.conf to specify your proxy server.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_docker_2">10.2.3.2. Docker</h5>
 <div class="paragraph">
-<p><code>/etc/systemd/system/docker.service.d/http-proxy.conf</code> を以下例を参考に作成し、docker を再起動してください。</p>
+<p>Create <code>/etc/systemd/system/docker.service.d/http-proxy.conf</code> like as following, and reboot docker.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2569,12 +2574,12 @@ Environment="HTTP_PROXY=http://proxy.example.com:8080" "HTTPS_PROXY=http://proxy
 </div>
 </div>
 <div class="sect3">
-<h4 id="_オフラインインストールファイルの生成_2">10.2.4. オフラインインストールファイルの生成</h4>
+<h4 id="_generating_an_offline_installation_file_2">10.2.4. Generating an offline installation file</h4>
 <div class="paragraph">
-<p>sudo 可能な一般ユーザ権限でログインしてください。</p>
+<p>Log in with user with have sudo privileges.</p>
 </div>
 <div class="paragraph">
-<p>以下手順でオフラインインストールファイルを生成してください。</p>
+<p>Follow these steps to generate an offline installation file.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2582,28 +2587,28 @@ Environment="HTTP_PROXY=http://proxy.example.com:8080" "HTTPS_PROXY=http://proxy
 </div>
 </div>
 <div class="paragraph">
-<p>オフラインインストールファイルは <code>k8s-offline-files.tar.gz</code> というファイル名で生成されます。</p>
+<p>Offline install file is generated as <code>k8s-offline-files.tar.gz</code> file.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_スクリプトベースインストーラ">10.3. スクリプトベースインストーラ</h3>
+<h3 id="_use_with_script_based_installer">10.3. Use with script based installer</h3>
 <div class="paragraph">
-<p><code>k8s-offline-files.tar.gz</code> をスクリプトベースインストーラのディレクトリにコピーしてください。</p>
+<p>Place <code>k8s-offline-files.tar.gz</code> in the script based installer directory.</p>
 </div>
 <div class="paragraph">
-<p><code>config.sh</code> の <code>OFFLINE_INSTALL=</code> の値を <code>yes</code> に変更します。
-この状態でインストールを実行するとオフラインインストールが実施されます。</p>
+<p>Change <code>OFFLINE_INSTALL=</code> value to <code>yes</code> in <code>config.sh</code>.
+When you run the installation in this state, an offline installation will be performed.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ansibleインストーラ">10.4. Ansibleインストーラ</h3>
+<h3 id="_ansible_installer">10.4. Ansible installer</h3>
 <div class="paragraph">
-<p><code>k8s-offline-files.tar.gz</code> をAnsibleインストーラのディレクトリで展開してください。</p>
+<p>Extract <code>k8s-offline-files.tar.gz</code> file in the Ansible installer directory.</p>
 </div>
 <div class="paragraph">
-<p><code>inventory/group_vars/all/offline.yml</code> の <code>offline_install</code> の値を <code>yes</code> に変更してください。
-この状態でインストールを実行するとオフラインインストールが実施されます。</p>
+<p>Change <code>offline_install</code> variable to <code>yes</code> in <code>inventory/group_vars/all/offline.yml</code> file.
+When you run the installation in this state, an offline installation will be performed.</p>
 </div>
 </div>
 </div>
@@ -2625,7 +2630,7 @@ Environment="HTTP_PROXY=http://proxy.example.com:8080" "HTTPS_PROXY=http://proxy
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ansibleインストーラ_2">11.2. Ansibleインストーラ</h3>
+<h3 id="_ansibleインストーラ">11.2. Ansibleインストーラ</h3>
 <div class="paragraph">
 <p>Ansibleインストーラを使用している場合、自動でアップグレードを行うことができます。</p>
 </div>
@@ -2743,7 +2748,7 @@ $ sudo systemctl restart kubelet</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-07-12 00:23:55 +0900
+Last updated 2020-07-13 21:47:45 +0900
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
