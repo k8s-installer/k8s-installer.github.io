@@ -539,7 +539,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#networking">7. ネットワーキング</a>
 <ul class="sectlevel2">
 <li><a href="#_ファイヤウォール_2">7.1. ファイヤウォール</a></li>
-<li><a href="#_metallb">7.2. MetalLB</a></li>
+<li><a href="#calico">7.2. Calico</a></li>
+<li><a href="#_metallb">7.3. MetalLB</a></li>
 </ul>
 </li>
 <li><a href="#storage">8. ストレージ</a>
@@ -1608,6 +1609,13 @@ $ sudo ./install-master-ha.sh</pre>
 </li>
 <li>
 <p>Calico network plugin がデプロイされます。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Overlay network (IPIP/VXLAN) は使用しません。全ノードは同一の L2 ネットワークに接続されている必要があります。</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>Kubernetes クラスタ上に以下のものがデプロイされます。ただし (*) が付与されているものはデフォルトではデプロイされません。</p>
@@ -2095,7 +2103,30 @@ RHEL 8 / CentOS 8 ではファイヤウォールは必ず無効化してくだ�
 </div>
 </div>
 <div class="sect2">
-<h3 id="_metallb">7.2. MetalLB</h3>
+<h3 id="calico">7.2. Calico</h3>
+<div class="paragraph">
+<p>CNI Plugin として <a href="https://www.projectcalico.org/">Calico</a> がインストールされます。</p>
+</div>
+<div class="paragraph">
+<p>デフォルトでは Overlay network (IPIP/VXLAN) は使用しません。
+全ノードは同一の L2 ネットワークに接続されている必要があります。</p>
+</div>
+<div class="paragraph">
+<p>設定を変更したい場合は、<code>inventory/group_vars/all/networking.yml</code> をエディタで編集し設定を追加してください。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>IPIP を使用する場合は <code>calico_ipv4pool_ipip</code> を <code>Always</code> に設定してください。</p>
+</li>
+<li>
+<p>VXLAN を使用する場合は <code>calico_ipv4pool_vxlan</code> を <code>Always</code> に設定してください。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_metallb">7.3. MetalLB</h3>
 <div class="paragraph">
 <p>LoadBalancer の実装として MetalLB を使用することができます。</p>
 </div>

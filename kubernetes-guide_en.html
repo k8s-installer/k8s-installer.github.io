@@ -539,7 +539,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#networking">7. Networking</a>
 <ul class="sectlevel2">
 <li><a href="#_firewall_2">7.1. Firewall</a></li>
-<li><a href="#_metallb">7.2. MetalLB</a></li>
+<li><a href="#calico">7.2. Calico</a></li>
+<li><a href="#_metallb">7.3. MetalLB</a></li>
 </ul>
 </li>
 <li><a href="#storage">8. Storage</a>
@@ -1609,6 +1610,13 @@ We will refer to this machine as "the Ansible node".</p>
 </li>
 <li>
 <p>The Calico network plugin will be deployed</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Overlay network (IPIP/VXLAN) is not used. All nodes must be connected to the same L2 network.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>The following is deployed on the Kubernetes cluster, except for the ones marked with (*) will not be deployed by default.</p>
@@ -2097,7 +2105,30 @@ If you enable it, it interferes with the <code>kube-proxy</code> nftables config
 </div>
 </div>
 <div class="sect2">
-<h3 id="_metallb">7.2. MetalLB</h3>
+<h3 id="calico">7.2. Calico</h3>
+<div class="paragraph">
+<p><a href="https://www.projectcalico.org/">Calico</a> is installed as CNI Plugin.</p>
+</div>
+<div class="paragraph">
+<p>Overlay network (IPIP/VXLAN) is not used by default.
+All nodes must be connected to the same L2 network.</p>
+</div>
+<div class="paragraph">
+<p>If you want to change the configuration, edit the file <code>inventory/group_vars/all/networking.yml</code> with your editor and add your own settings.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you want to use IPIP, set <code>calico_ipv4pool_ipip</code> to <code>Always</code>.</p>
+</li>
+<li>
+<p>If you use VXLAN, set <code>calico_ipv4pool_vxlan</code> to <code>Always</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_metallb">7.3. MetalLB</h3>
 <div class="paragraph">
 <p>You can use MetalLB as an implementation of the LoadBalancer.</p>
 </div>
